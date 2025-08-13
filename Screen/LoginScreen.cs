@@ -11,6 +11,8 @@ public partial class LoginScreen : Control
 	[Export] private Label _passwordErrorLabel;
 	[Export] private Button _loginButton;
 	[Export] private LinkButton _createAccountLinkButton;
+	[Export(PropertyHint.File, "*.tscn,*.scn")]
+	private PackedScene _registerScene;
 	
 	public override void _Ready()
 	{
@@ -118,6 +120,9 @@ public partial class LoginScreen : Control
 	
 	private void OnCreateAccountLinkButtonPressed()
 	{
-		// redirect to another page
+		if (_registerScene != null)
+		{
+			GetTree().ChangeSceneToPacked(_registerScene);
+		}
 	}
 }
