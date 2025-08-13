@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using BCrypt.Net;
 
 public partial class LoginScreen : Control
 {
@@ -111,7 +112,7 @@ public partial class LoginScreen : Control
 			return;
 		}
 		// future enhance
-		string hashPassword = password;
+		string hashPassword = BCrypt.Net.BCrypt.HashPassword(password);;
 		SubmitLoginToServer(username, hashPassword);
 	}
 	
