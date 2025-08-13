@@ -15,10 +15,11 @@
 2.Depending on the function, the function name begins with the following fields shown in the table. 
 
 |Field|Function|
-|:------:|:------|
+|:------:|:------|  
 |Get|Indicates that the main purpose of this function is to return a value|
 |On|This function is not called by you actively, but the system (or framework) will automatically call it when a specific event occurs.|
 |Validate|This function is used for justify the condition is valid or not and return an result object|
+|Submit|This function handle the work submit requiest to the server or other services|
 
 3. A function should not have more than one function or task. (Comply with the Single Responsibility Principle)
 
