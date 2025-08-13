@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://de87jpjxuo2nk"]
 
-[ext_resource type="Script" uid="uid://b0vrfndg2nxkb" path="res://Screen/LoginScreen.cs" id="1_hqhqj"]
+[ext_resource type="Script" uid="uid://dikflk4r6gn46" path="res://Screen/RegisterScreen.cs" id="1_hqhqj"]
 [ext_resource type="Texture2D" uid="uid://c3lioli54c6os" path="res://Assets/Svg/icon.svg" id="2_nng06"]
 [ext_resource type="FontFile" uid="uid://dj76jfbo5q6ko" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_xvvmh"]
 
@@ -57,19 +57,12 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="LoginScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_usernameLineEdit", "_passwordLineEdit", "_usernameErrorLabel", "_passwordErrorLabel", "_loginButton", "_createAccountLinkButton")]
+[node name="LoginScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 640.0
 script = ExtResource("1_hqhqj")
-_httpRequest = NodePath("HTTPRequest")
-_usernameLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/UsernameLineEdit")
-_passwordLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/PasswordLineEdit")
-_usernameErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/UsernameErrorLabel")
-_passwordErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/PasswordErrorLabel")
-_loginButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/LoginButton")
-_createAccountLinkButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer/CreateAccountLinkButton")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
