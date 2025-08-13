@@ -57,11 +57,13 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="RegisterScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_usernameLineEdit", "_passwordLineEdit", "_usernameErrorLabel", "_passwordErrorLabel", "_loginButton", "_createAccountLinkButton")]
+[node name="LoginScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_usernameLineEdit", "_passwordLineEdit", "_usernameErrorLabel", "_passwordErrorLabel", "_loginButton", "_createAccountLinkButton")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 640.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_y4u5i")
 _httpRequest = NodePath("HTTPRequest")
 _usernameLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/UsernameLineEdit")
@@ -69,7 +71,7 @@ _passwordLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VB
 _usernameErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/UsernameErrorLabel")
 _passwordErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/PasswordErrorLabel")
 _loginButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/LoginButton")
-_createAccountLinkButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer/SignInLinkButton")
+_createAccountLinkButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer/CreateAccountLinkButton")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -167,34 +169,6 @@ size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 
-[node name="MarginContainer5" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_bottom = 8
-
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer/MarginContainer"]
-layout_mode = 2
-text = "Email"
-label_settings = SubResource("LabelSettings_354gg")
-
-[node name="UsernameLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer"]
-layout_mode = 2
-placeholder_text = "Enter your email"
-max_length = 50
-
-[node name="EmailErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 12
-
 [node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 16
@@ -239,7 +213,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_85sry")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_85sry")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_85sry")
 theme_override_styles/normal = SubResource("StyleBoxFlat_y4u5i")
-text = "Register"
+text = "Sign In"
 
 [node name="MarginContainer4" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
 clip_contents = true
@@ -256,9 +230,9 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_y4u5i")
 theme_override_font_sizes/font_size = 14
-text = "Already have an account? "
+text = "Don't have an account? "
 
-[node name="SignInLinkButton" type="LinkButton" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer"]
+[node name="CreateAccountLinkButton" type="LinkButton" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.85098, 0.541176, 0.72549, 1)
@@ -269,7 +243,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("1_oj103")
 theme_override_font_sizes/font_size = 14
-text = "Sign in"
+text = "Create one"
 underline = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
