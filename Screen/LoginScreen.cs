@@ -115,9 +115,17 @@ public partial class LoginScreen : Control
 		string hashPassword = BCrypt.Net.BCrypt.HashPassword(password);;
 		SubmitLoginToServer(username, hashPassword);
 	}
-	
+
 	private void OnCreateAccountLinkButtonPressed()
 	{
-		// redirect to another page
+		var sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		if (sceneManager != null)
+		{
+			sceneManager.ChangeToRegisterScreen();
+		}
+		else
+		{
+			GD.PrintErr("SceneManager not found!");
+		}
 	}
 }
