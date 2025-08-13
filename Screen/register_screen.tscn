@@ -58,9 +58,8 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="LoginScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_usernameLineEdit", "_emailLineEdit", "_passwordLineEdit", "_usernameErrorLabel", "_emailErrorLabel", "_passwordErrorLabel", "_registerButton", "_signInLinkButton")]
+[node name="RegisterScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_usernameLineEdit", "_emailLineEdit", "_passwordLineEdit", "_usernameErrorLabel", "_emailErrorLabel", "_passwordErrorLabel", "_registerButton", "_signInLinkButton")]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -78,8 +77,10 @@ _signInLinkButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VB
 _loginScene = ExtResource("2_xvvmh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+layout_direction = 4
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
