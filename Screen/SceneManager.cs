@@ -8,8 +8,8 @@ public partial class SceneManager : Node
 
 	public override void _Ready()
 	{
-		_loginScreen = GD.Load<PackedScene>("res://Screen/LoginScreen.tscn");
-		_registerScreen = GD.Load<PackedScene>("res://Screen/RegisterScreen.tscn");
+		_loginScreen = GD.Load<PackedScene>("res://Screen/login_screen.tscn");
+		_registerScreen = GD.Load<PackedScene>("res://Screen/register_screen.tscn");
 	}
 
 	public void ChangeToLoginScreen()

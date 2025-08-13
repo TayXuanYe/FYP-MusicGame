@@ -120,6 +120,9 @@ public partial class RegisterScreen : Control
 		_usernameErrorLabel.Text = string.Empty;
 		_emailErrorLabel.Text = string.Empty;
 		_passwordErrorLabel.Text = string.Empty;
+		_usernameErrorLabel.Visible = false;
+		_emailErrorLabel.Visible = false;
+		_passwordErrorLabel.Visible = false;
 
 		var usernameValidation = ValidateUsername(username);
 		var emailValidation = ValidateEmail(email);
@@ -127,18 +130,21 @@ public partial class RegisterScreen : Control
 
 		if (!usernameValidation.IsValid)
 		{
+			_usernameErrorLabel.Visible = true;
 			_usernameErrorLabel.Text = usernameValidation.ErrorMessage;
 			return;
 		}
 
 		if (!emailValidation.IsValid)
 		{
+			_emailErrorLabel.Visible = true;
 			_emailErrorLabel.Text = emailValidation.ErrorMessage;
 			return;
 		}
 
 		if (!passwordValidation.IsValid)
 		{
+			_passwordErrorLabel.Visible = true;
 			_passwordErrorLabel.Text = passwordValidation.ErrorMessage;
 			return;
 		}
