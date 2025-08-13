@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://de87jpjxuo2nk"]
+[gd_scene load_steps=14 format=3 uid="uid://de87jpjxuo2nk"]
 
 [ext_resource type="Script" uid="uid://dikflk4r6gn46" path="res://Screen/RegisterScreen.cs" id="1_hqhqj"]
 [ext_resource type="Texture2D" uid="uid://c3lioli54c6os" path="res://Assets/Svg/icon.svg" id="2_nng06"]
+[ext_resource type="PackedScene" uid="uid://btym38jse128i" path="res://Screen/login_screen.tscn" id="2_xvvmh"]
 [ext_resource type="FontFile" uid="uid://dj76jfbo5q6ko" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_xvvmh"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
@@ -57,12 +58,24 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="LoginScreen" type="Control"]
+[node name="LoginScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_usernameLineEdit", "_emailLineEdit", "_passwordLineEdit", "_usernameErrorLabel", "_emailErrorLabel", "_passwordErrorLabel", "_registerButton", "_signInLinkButton")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 640.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_hqhqj")
+_httpRequest = NodePath("HTTPRequest")
+_usernameLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/UsernameLineEdit")
+_emailLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer/EmailLineEdit")
+_passwordLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/PasswordLineEdit")
+_usernameErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/UsernameErrorLabel")
+_emailErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer/EmailErrorLabel")
+_passwordErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/PasswordErrorLabel")
+_registerButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/RegisterButton")
+_signInLinkButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer/SignInLinkButton")
+_loginScene = ExtResource("2_xvvmh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -160,6 +173,36 @@ size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 
+[node name="MarginContainer5" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Email"
+label_settings = SubResource("LabelSettings_354gg")
+
+[node name="EmailLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter your email address"
+max_length = 32
+secret = true
+
+[node name="EmailErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+
 [node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 16
@@ -195,7 +238,7 @@ clip_contents = true
 layout_mode = 2
 theme_override_constants/margin_top = 24
 
-[node name="LoginButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3"]
+[node name="RegisterButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 mouse_filter = 1
@@ -204,7 +247,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_85sry")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_85sry")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_85sry")
 theme_override_styles/normal = SubResource("StyleBoxFlat_y4u5i")
-text = "Sign In"
+text = "Register"
 
 [node name="MarginContainer4" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
 clip_contents = true
@@ -221,9 +264,9 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_y4u5i")
 theme_override_font_sizes/font_size = 14
-text = "Don't have an account? "
+text = "Already have an account? "
 
-[node name="CreateAccountLinkButton" type="LinkButton" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer"]
+[node name="SignInLinkButton" type="LinkButton" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.85098, 0.541176, 0.72549, 1)
@@ -234,7 +277,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("3_xvvmh")
 theme_override_font_sizes/font_size = 14
-text = "Create one"
+text = "Sign in"
 underline = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
