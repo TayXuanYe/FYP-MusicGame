@@ -13,8 +13,7 @@ public partial class RegisterScreen : Control
 	[Export] private Label _passwordErrorLabel;
 	[Export] private Button _registerButton;
 	[Export] private LinkButton _signInLinkButton;
-	[Export(PropertyHint.File, "*.tscn,*.scn")]
-	private PackedScene _loginScene;
+
 
 	public override void _Ready()
 	{
@@ -150,9 +149,14 @@ public partial class RegisterScreen : Control
 
 	private void OnSignInLinkButtonPressed()
 	{
-		if (_loginScene != null)
+		var sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		if (sceneManager != null)
 		{
-			GetTree().ChangeSceneToPacked(_loginScene);
+			sceneManager.ChangeToLoginScreen();
+		}
+		else
+		{
+			GD.PrintErr("SceneManager not found!");
 		}
 	}
 }

@@ -11,8 +11,6 @@ public partial class LoginScreen : Control
 	[Export] private Label _passwordErrorLabel;
 	[Export] private Button _loginButton;
 	[Export] private LinkButton _createAccountLinkButton;
-	[Export(PropertyHint.File, "*.tscn,*.scn")]
-	private PackedScene _registerScene;
 	
 	public override void _Ready()
 	{
@@ -117,12 +115,17 @@ public partial class LoginScreen : Control
 		string hashPassword = BCrypt.Net.BCrypt.HashPassword(password);;
 		SubmitLoginToServer(username, hashPassword);
 	}
-	
+
 	private void OnCreateAccountLinkButtonPressed()
 	{
-		if (_registerScene != null)
+		var sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		if (sceneManager != null)
 		{
-			GetTree().ChangeSceneToPacked(_registerScene);
+			sceneManager.ChangeToRegisterScreen();
+		}
+		else
+		{
+			GD.PrintErr("SceneManager not found!");
 		}
 	}
 }

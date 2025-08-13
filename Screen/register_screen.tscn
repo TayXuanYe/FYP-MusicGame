@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://de87jpjxuo2nk"]
+[gd_scene load_steps=13 format=3 uid="uid://de87jpjxuo2nk"]
 
 [ext_resource type="Script" uid="uid://dikflk4r6gn46" path="res://Screen/RegisterScreen.cs" id="1_hqhqj"]
 [ext_resource type="Texture2D" uid="uid://c3lioli54c6os" path="res://Assets/Svg/icon.svg" id="2_nng06"]
-[ext_resource type="PackedScene" uid="uid://btym38jse128i" path="res://Screen/login_screen.tscn" id="2_xvvmh"]
 [ext_resource type="FontFile" uid="uid://dj76jfbo5q6ko" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_xvvmh"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
@@ -60,6 +59,7 @@ corner_radius_bottom_left = 8
 
 [node name="RegisterScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_usernameLineEdit", "_emailLineEdit", "_passwordLineEdit", "_usernameErrorLabel", "_emailErrorLabel", "_passwordErrorLabel", "_registerButton", "_signInLinkButton")]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -74,7 +74,6 @@ _emailErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBo
 _passwordErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/PasswordErrorLabel")
 _registerButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/RegisterButton")
 _signInLinkButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer/SignInLinkButton")
-_loginScene = ExtResource("2_xvvmh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 clip_contents = true
