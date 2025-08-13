@@ -13,6 +13,8 @@ public partial class RegisterScreen : Control
     [Export] private Label _passwordErrorLabel;
     [Export] private Button _registerButton;
     [Export] private LinkButton _signInLinkButton;
+    [Export(PropertyHint.File, "*.tscn,*.scn")]
+    private PackedScene _loginScene;
 
     public override void _Ready()
     {
@@ -87,27 +89,27 @@ public partial class RegisterScreen : Control
     private void SubmitRegistrationToServer(string username, string email, string password)
     {
         // temp login url haven‘t build backend
-		string loginUrl = "https://your-server-api.com/login";
-		
-		// prepare headers for the request
-		var headers = new string[] { "Content-Type: application/json" };
-		
-		// prepare body for the request
-		var data = new Godot.Collections.Dictionary
-		{
-			{"username", username},
-			{"password", password}
-		};
-		string body = Json.Stringify(data);
-		
-		// submit request
-		_httpRequest.Request(loginUrl, headers, HttpClient.Method.Post, body);
+        string loginUrl = "https://your-server-api.com/login";
+
+        // prepare headers for the request
+        var headers = new string[] { "Content-Type: application/json" };
+
+        // prepare body for the request
+        var data = new Godot.Collections.Dictionary
+        {
+            {"username", username},
+            {"password", password}
+        };
+        string body = Json.Stringify(data);
+
+        // submit request
+        _httpRequest.Request(loginUrl, headers, HttpClient.Method.Post, body);
     }
 
-	private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
-	{
-		// handle the response from the server
-	}
+    private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
+    {
+        // handle the response from the server
+    }
 
     private void OnRegisterButtonPressed()
     {
@@ -145,5 +147,12 @@ public partial class RegisterScreen : Control
         string hashPassword = BCrypt.Net.BCrypt.HashPassword(password);
         SubmitRegistrationToServer(username, email, hashPassword);
     }
-        
+
+    private void OnSignInLinkButtonPressed()
+    {
+        if (_loginScene != null)
+        {
+            GetTree().ChangeSceneToPacked(_loginScene);
+        }
+    }
 }
