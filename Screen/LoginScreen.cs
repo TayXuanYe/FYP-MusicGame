@@ -3,24 +3,19 @@ using System;
 
 public partial class LoginScreen : Control
 {
-	private HttpRequest _httpRequest;
-	private LineEdit _usernameLineEdit;
-	private LineEdit _passwordLineEdit;
-	private Label _usernameErrorLabel;
-	private Label _passwordErrorLabel;
+	[Export] private HttpRequest _httpRequest;
+	[Export] private LineEdit _usernameLineEdit;
+	[Export] private LineEdit _passwordLineEdit;
+	[Export] private Label _usernameErrorLabel;
+	[Export] private Label _passwordErrorLabel;
+	[Export] private Button _loginButton;
+	[Export] private LinkButton _createAccountLinkButton;
 	
 	public override void _Ready()
 	{
-		_httpRequest = GetNode<HttpRequest>("HTTPRequest");
 		_httpRequest.RequestCompleted += OnHttpRequestCompleted;
-		
-		Button loginButton = GetNode<Button>("LoginButton");
-		loginButton.Pressed += OnLoginButtonPressed;
-		
-		_usernameLineEdit = GetNode<LineEdit>("UsernameLineEdit");
-		_passwordLineEdit = GetNode<LineEdit>("PasswordLineEdit");
-		_usernameErrorLabel = GetNode<Label>("UsernameErrorLabel");
-		_passwordErrorLabel = GetNode<Label>("PasswordErrorLabel");
+		_loginButton.Pressed += OnLoginButtonPressed;
+		_createAccountLinkButton.Pressed += OnCreateAccountLinkButtonPressed;
 	}
 	
 	private string GetUsername()
@@ -118,5 +113,10 @@ public partial class LoginScreen : Control
 		// future enhance
 		string hashPassword = password;
 		SubmitLoginToServer(username, hashPassword);
+	}
+	
+	private void OnCreateAccountLinkButtonPressed()
+	{
+		// redirect to another page
 	}
 }
