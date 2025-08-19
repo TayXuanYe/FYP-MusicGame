@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://d0k21vq5nx2gk"]
+[gd_scene load_steps=23 format=3 uid="uid://d0k21vq5nx2gk"]
 
+[ext_resource type="Script" uid="uid://bk7m1efd83nlx" path="res://Screen/MainScreen.cs" id="1_72i6h"]
 [ext_resource type="Texture2D" uid="uid://dg6o28i0vso5u" path="res://Assets/Svg/icon.svg" id="2_i7nbl"]
 [ext_resource type="Texture2D" uid="uid://bnjjmnhkxmbsg" path="res://Assets/Svg/user.svg" id="3_3tb14"]
 [ext_resource type="FontFile" uid="uid://cqsaqxed7sfuj" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_phuym"]
@@ -50,6 +51,8 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_72i6h"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phuym"]
 bg_color = Color(1, 1, 1, 0.313726)
 corner_radius_top_left = 8
@@ -72,6 +75,12 @@ expand_margin_top = 4.0
 expand_margin_right = 8.0
 expand_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3qwvu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxetw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d1wiv"]
+
 [node name="MainScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -79,6 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_72i6h")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -201,7 +211,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="PlayGameButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_72i6h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_phuym")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_phuym")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_phuym")
@@ -219,7 +229,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="PlayGameButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3qwvu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_phuym")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_phuym")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_phuym")
@@ -237,7 +247,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="PlayGameButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer3"]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fxetw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_phuym")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_phuym")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_phuym")
@@ -255,7 +265,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="PlayGameButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer4"]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d1wiv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_phuym")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_phuym")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_phuym")
