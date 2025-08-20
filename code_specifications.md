@@ -21,6 +21,7 @@
 |Validate|This function is used for justify the condition is valid or not and return an result object|
 |Submit|This function handle the work submit requiest to the server or other services|
 |ChangeTo|This function is specific on change screen from one to another|
+|Init|Mark a function as an initialization function|
 
 3. A function should not have more than one function or task. (Comply with the Single Responsibility Principle)
 
