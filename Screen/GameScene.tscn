@@ -1,14 +1,33 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkog4fxx41wlu"]
+[gd_scene load_steps=21 format=3 uid="uid://bkog4fxx41wlu"]
 
+[ext_resource type="Script" uid="uid://de5ksj6isa6si" path="res://Screen/GameScene.cs" id="1_51csq"]
 [ext_resource type="Texture2D" uid="uid://dg6o28i0vso5u" path="res://Assets/Svg/icon.svg" id="1_v6gi8"]
 [ext_resource type="FontFile" uid="uid://cqsaqxed7sfuj" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_51csq"]
 [ext_resource type="Texture2D" uid="uid://cy8hkmndynv7k" path="res://Assets/Svg/escape.svg" id="3_1o6g0"]
+[ext_resource type="Script" uid="uid://csjd4qjhh0bdp" path="res://Screen/Lane.cs" id="5_1o6g0"]
 
 [sub_resource type="Gradient" id="Gradient_rk1hp"]
 colors = PackedColorArray(0.247059, 0.156863, 0.517647, 1, 0.247059, 0.156863, 0.517647, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6wfee"]
 gradient = SubResource("Gradient_rk1hp")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6gi8"]
+
+[sub_resource type="Gradient" id="Gradient_1o6g0"]
+colors = PackedColorArray(1, 1, 1, 0.0392157, 1, 1, 1, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s1g5e"]
+gradient = SubResource("Gradient_1o6g0")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1o6g0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1g5e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6img8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jaseg"]
 
 [sub_resource type="Gradient" id="Gradient_s1g5e"]
 colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
@@ -45,15 +64,18 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6gi8"]
-
-[node name="GameScene" type="Control"]
+[node name="GameScene" type="Control" node_paths=PackedStringArray("lane1", "lane2", "lane3", "lane4")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_51csq")
+lane1 = NodePath("GameWorld/Lanes/Lane1")
+lane2 = NodePath("GameWorld/Lanes/Lane2")
+lane3 = NodePath("GameWorld/Lanes/Lane3")
+lane4 = NodePath("GameWorld/Lanes/Lane4")
 
 [node name="Background" type="TextureRect" parent="."]
 clip_contents = true
@@ -64,6 +86,164 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_6wfee")
+
+[node name="GameWorld" type="Node2D" parent="."]
+
+[node name="Lanes" type="Node2D" parent="GameWorld"]
+
+[node name="Lane1" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("LaneLine", "HittingArea", "LaneLabel")]
+script = ExtResource("5_1o6g0")
+KeyCode = "D"
+LaneLine = NodePath("LaneSprite")
+HittingArea = NodePath("HittingArea")
+LaneLabel = NodePath("HittingArea/CenterContainer/Label")
+
+[node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane1"]
+points = PackedVector2Array(784, 1081)
+width = 2.0
+
+[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane1/JudgementLine"]
+shape = SubResource("RectangleShape2D_v6gi8")
+
+[node name="HittingArea" type="TextureRect" parent="GameWorld/Lanes/Lane1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_s1g5e")
+
+[node name="CenterContainer" type="CenterContainer" parent="GameWorld/Lanes/Lane1/HittingArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameWorld/Lanes/Lane1/HittingArea/CenterContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_1o6g0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lane2" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("LaneLine", "HittingArea", "LaneLabel")]
+script = ExtResource("5_1o6g0")
+KeyCode = "F"
+LaneLine = NodePath("LaneSprite")
+HittingArea = NodePath("HittingArea")
+LaneLabel = NodePath("HittingArea/CenterContainer/Label")
+
+[node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane2"]
+points = PackedVector2Array(784, 1081)
+width = 2.0
+
+[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane2/JudgementLine"]
+shape = SubResource("RectangleShape2D_v6gi8")
+
+[node name="HittingArea" type="TextureRect" parent="GameWorld/Lanes/Lane2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_s1g5e")
+
+[node name="CenterContainer" type="CenterContainer" parent="GameWorld/Lanes/Lane2/HittingArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameWorld/Lanes/Lane2/HittingArea/CenterContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_s1g5e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lane3" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("LaneLine", "HittingArea", "LaneLabel")]
+script = ExtResource("5_1o6g0")
+KeyCode = "J"
+LaneLine = NodePath("LaneSprite")
+HittingArea = NodePath("HittingArea")
+LaneLabel = NodePath("HittingArea/CenterContainer/Label")
+
+[node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane3"]
+points = PackedVector2Array(784, 1081)
+width = 2.0
+
+[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane3/JudgementLine"]
+shape = SubResource("RectangleShape2D_v6gi8")
+
+[node name="HittingArea" type="TextureRect" parent="GameWorld/Lanes/Lane3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_s1g5e")
+
+[node name="CenterContainer" type="CenterContainer" parent="GameWorld/Lanes/Lane3/HittingArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameWorld/Lanes/Lane3/HittingArea/CenterContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_6img8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lane4" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("LaneLine", "HittingArea", "LaneLabel")]
+script = ExtResource("5_1o6g0")
+KeyCode = "K"
+LaneLine = NodePath("LaneSprite")
+HittingArea = NodePath("HittingArea")
+LaneLabel = NodePath("HittingArea/CenterContainer/Label")
+
+[node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane4"]
+points = PackedVector2Array(784, 1081)
+width = 2.0
+
+[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane4/JudgementLine"]
+shape = SubResource("RectangleShape2D_v6gi8")
+
+[node name="HittingArea" type="TextureRect" parent="GameWorld/Lanes/Lane4"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_s1g5e")
+
+[node name="CenterContainer" type="CenterContainer" parent="GameWorld/Lanes/Lane4/HittingArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameWorld/Lanes/Lane4/HittingArea/CenterContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_jaseg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Notes" type="Node2D" parent="."]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
@@ -161,53 +341,3 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_txcjb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dbae2")
 icon = ExtResource("3_1o6g0")
 icon_alignment = 1
-
-[node name="Notes" type="Node2D" parent="."]
-
-[node name="GameWorld" type="Node2D" parent="."]
-
-[node name="Lanes" type="Node2D" parent="GameWorld"]
-
-[node name="Lane1" type="Node2D" parent="GameWorld/Lanes"]
-
-[node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane1"]
-points = PackedVector2Array(784, 1081)
-width = 2.0
-
-[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane1/JudgementLine"]
-shape = SubResource("RectangleShape2D_v6gi8")
-
-[node name="Lane2" type="Node2D" parent="GameWorld/Lanes"]
-
-[node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane2"]
-points = PackedVector2Array(784, 1081)
-width = 2.0
-
-[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane2/JudgementLine"]
-shape = SubResource("RectangleShape2D_v6gi8")
-
-[node name="Lane3" type="Node2D" parent="GameWorld/Lanes"]
-
-[node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane3"]
-points = PackedVector2Array(784, 1081)
-width = 2.0
-
-[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane3/JudgementLine"]
-shape = SubResource("RectangleShape2D_v6gi8")
-
-[node name="Lane4" type="Node2D" parent="GameWorld/Lanes"]
-
-[node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane4"]
-points = PackedVector2Array(784, 1081)
-width = 2.0
-
-[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane4"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane4/JudgementLine"]
-shape = SubResource("RectangleShape2D_v6gi8")
