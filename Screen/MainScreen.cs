@@ -14,7 +14,8 @@ public partial class MainScreen : Control
 	{
 		if (!UserDataManager.Instance.CurrentUser.IsLoggedIn)
 		{
-			// redirect to login page
+			SceneManager.Instance.ChangeToLoginScreen();
+			return;
 		}
 		
 		_playGameButton.Pressed += OnPlayGameButtonPressed;
@@ -50,5 +51,4 @@ public partial class MainScreen : Control
 		UserDataManager.Instance.CurrentUser.IsLoggedIn = false;
 		SceneManager.Instance.ChangeToLoginScreen();
 	}
-
 }
