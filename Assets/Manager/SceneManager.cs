@@ -3,11 +3,16 @@ using System;
 
 public partial class SceneManager : Node
 {
+	private static SceneManager _instance;
+    public static SceneManager Instance => _instance;
+	
 	private PackedScene _loginScreen;
 	private PackedScene _registerScreen;
 
 	public override void _Ready()
 	{
+		_instance = this;
+
 		_loginScreen = GD.Load<PackedScene>("res://Screen/login_screen.tscn");
 		_registerScreen = GD.Load<PackedScene>("res://Screen/register_screen.tscn");
 	}

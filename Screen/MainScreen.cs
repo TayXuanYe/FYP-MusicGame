@@ -3,19 +3,26 @@ using System;
 
 public partial class MainScreen : Control
 {
-	[Export] private label _usernameLabel;
+	[Export] private Label _usernameLabel;
 	[Export] private Button _playGameButton;
 	[Export] private Button _gameHistoryButton;
 	[Export] private Button _settingButton;
 	[Export] private Button _reportBugButton;
+	[Export] private Button _logoutButton;
 
 	public override void _Ready()
 	{
+		if (!UserDataManager.Instance.CurrentUser.IsLoggedIn)
+		{
+			// redirect to login page
+		}
+		
 		_playGameButton.Pressed += OnPlayGameButtonPressed;
 		_gameHistoryButton.Pressed += OnGameHistoryButtonPressed;
 		_settingButton.Pressed += OnSettingButtonPressed;
 		_reportBugButton.Pressed += OnReportBugButtonPressed;
-        _usernameLabel.Text = UserDataManager.Instance.Username;
+		_logoutButton.Pressed += OnLogoutButtonPressed;
+		_usernameLabel.Text = UserDataManager.Instance.CurrentUser.Username;
 	}
 
 	private void OnPlayGameButtonPressed()
@@ -37,4 +44,11 @@ public partial class MainScreen : Control
 	{
 		// Handle report bug button pressed
 	}
+
+	private void OnLogoutButtonPressed()
+	{
+		UserDataManager.Instance.CurrentUser.IsLoggedIn = false;
+		SceneManager.Instance.ChangeToLoginScreen();
+	}
+
 }

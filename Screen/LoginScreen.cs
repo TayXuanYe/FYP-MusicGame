@@ -118,14 +118,6 @@ public partial class LoginScreen : Control
 
 	private void OnCreateAccountLinkButtonPressed()
 	{
-		var sceneManager = GetNode<SceneManager>("/root/SceneManager");
-		if (sceneManager != null)
-		{
-			sceneManager.ChangeToRegisterScreen();
-		}
-		else
-		{
-			GD.PrintErr("SceneManager not found!");
-		}
+		SceneManager.Instance.ChangeToRegisterScreen();
 	}
 }

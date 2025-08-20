@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c7bsjo6ew3g14" path="res://Screen/MainScreen.cs" id="1_72i6h"]
 [ext_resource type="Texture2D" uid="uid://c8jirda0horyi" path="res://Assets/Svg/icon.svg" id="2_i7nbl"]
-[ext_resource type="Texture2D" uid="uid://b850onxb05n56" path="res://Assets/Svg/user.svg" id="3_3tb14"]
 [ext_resource type="FontFile" uid="uid://cffa5bhb4g440" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_phuym"]
+[ext_resource type="Texture2D" uid="uid://d1e7uplvdk1c5" path="res://Assets/Svg/escape.svg" id="4_3qwvu"]
 [ext_resource type="Texture2D" uid="uid://dijrgf27yld1b" path="res://Assets/Svg/play.svg" id="4_i7nbl"]
 [ext_resource type="Texture2D" uid="uid://cbqtt811dyuux" path="res://Assets/Svg/clock.svg" id="5_doiu5"]
 [ext_resource type="Texture2D" uid="uid://dihcjgysmgw3w" path="res://Assets/Svg/setting.svg" id="6_72i6h"]
@@ -173,12 +173,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "!"
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
+[node name="MarginContainer3" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
 
-[node name="UserAccountButton" type="Button" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2"]
+[node name="LogoutButton" type="Button" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -187,7 +187,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_i7nbl")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_i7nbl")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_i7nbl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_3tb14")
-icon = ExtResource("3_3tb14")
+icon = ExtResource("4_3qwvu")
 icon_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
