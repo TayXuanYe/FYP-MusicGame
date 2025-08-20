@@ -15,6 +15,7 @@ public partial class MainScreen : Control
 		_gameHistoryButton.Pressed += OnGameHistoryButtonPressed;
 		_settingButton.Pressed += OnSettingButtonPressed;
 		_reportBugButton.Pressed += OnReportBugButtonPressed;
+        _usernameLabel.Text = UserDataManager.Instance.Username;
 	}
 
 	private void OnPlayGameButtonPressed()
