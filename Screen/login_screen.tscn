@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://btym38jse128i"]
 
-[ext_resource type="FontFile" uid="uid://dj76jfbo5q6ko" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="1_oj103"]
-[ext_resource type="Texture2D" uid="uid://c3lioli54c6os" path="res://Assets/Svg/icon.svg" id="1_sq1fn"]
+[ext_resource type="FontFile" uid="uid://cqsaqxed7sfuj" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="1_oj103"]
+[ext_resource type="Texture2D" uid="uid://dg6o28i0vso5u" path="res://Assets/Svg/icon.svg" id="1_sq1fn"]
 [ext_resource type="Script" uid="uid://b0vrfndg2nxkb" path="res://Screen/LoginScreen.cs" id="1_y4u5i"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]

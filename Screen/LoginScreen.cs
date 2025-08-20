@@ -111,21 +111,13 @@ public partial class LoginScreen : Control
 			passwordErrorLabel.Text = passwordValidateResult.ErrorMessage;
 			return;
 		}
-		// future enhance
+		
 		string hashPassword = BCrypt.Net.BCrypt.HashPassword(password);;
 		SubmitLoginToServer(username, hashPassword);
 	}
 
 	private void OnCreateAccountLinkButtonPressed()
 	{
-		var sceneManager = GetNode<SceneManager>("/root/SceneManager");
-		if (sceneManager != null)
-		{
-			sceneManager.ChangeToRegisterScreen();
-		}
-		else
-		{
-			GD.PrintErr("SceneManager not found!");
-		}
+		SceneManager.Instance.ChangeToRegisterScreen();
 	}
 }

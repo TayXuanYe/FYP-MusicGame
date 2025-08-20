@@ -1,0 +1,281 @@
+[gd_scene load_steps=23 format=3 uid="uid://d0k21vq5nx2gk"]
+
+[ext_resource type="Script" uid="uid://c7bsjo6ew3g14" path="res://Screen/MainScreen.cs" id="1_72i6h"]
+[ext_resource type="Texture2D" uid="uid://dg6o28i0vso5u" path="res://Assets/Svg/icon.svg" id="2_i7nbl"]
+[ext_resource type="FontFile" uid="uid://cqsaqxed7sfuj" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_phuym"]
+[ext_resource type="Texture2D" uid="uid://cy8hkmndynv7k" path="res://Assets/Svg/escape.svg" id="4_3qwvu"]
+[ext_resource type="Texture2D" uid="uid://cmkngjk6i8uuy" path="res://Assets/Svg/play.svg" id="4_i7nbl"]
+[ext_resource type="Texture2D" uid="uid://d4mu25c8jyb2o" path="res://Assets/Svg/clock.svg" id="5_doiu5"]
+[ext_resource type="Texture2D" uid="uid://by4en2hwfl213" path="res://Assets/Svg/setting.svg" id="6_72i6h"]
+[ext_resource type="Texture2D" uid="uid://ch4t7g4duu536" path="res://Assets/Svg/warning.svg" id="7_3qwvu"]
+
+[sub_resource type="Gradient" id="Gradient_rmkfi"]
+colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oj103"]
+gradient = SubResource("Gradient_rmkfi")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_sc7om"]
+colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2jbio"]
+gradient = SubResource("Gradient_sc7om")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0241h"]
+texture = SubResource("GradientTexture1D_2jbio")
+
+[sub_resource type="FontVariation" id="FontVariation_0241h"]
+base_font = ExtResource("3_phuym")
+variation_embolden = 1.45
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7nbl"]
+bg_color = Color(0, 0, 0, 0.196078)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tb14"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_72i6h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phuym"]
+bg_color = Color(1, 1, 1, 0.313726)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfhbf"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3qwvu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxetw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d1wiv"]
+
+[node name="MainScreen" type="Control" node_paths=PackedStringArray("_usernameLabel", "_playGameButton", "_gameHistoryButton", "_settingButton", "_reportBugButton", "_logoutButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_72i6h")
+_usernameLabel = NodePath("Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer/UserNameLabel")
+_playGameButton = NodePath("CenterContainer/VBoxContainer/MarginContainer/PlayGameButton")
+_gameHistoryButton = NodePath("CenterContainer/VBoxContainer/MarginContainer2/GameHistoryButton")
+_settingButton = NodePath("CenterContainer/VBoxContainer/MarginContainer3/SettingButton")
+_reportBugButton = NodePath("CenterContainer/VBoxContainer/MarginContainer4/ReportBugButton")
+_logoutButton = NodePath("Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3/LogoutButton")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_oj103")
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0241h")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 64.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_i7nbl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 8
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_0241h")
+theme_override_font_sizes/font_size = 20
+text = "BeatMaster"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Welcome back, "
+
+[node name="UserNameLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Username"
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "!"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+
+[node name="LogoutButton" type="Button" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_i7nbl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7nbl")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_i7nbl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i7nbl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3tb14")
+icon = ExtResource("4_3qwvu")
+icon_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PlayGameButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_72i6h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tfhbf")
+text = "   Play Game"
+icon = ExtResource("4_i7nbl")
+alignment = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="GameHistoryButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3qwvu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tfhbf")
+text = "   Game History"
+icon = ExtResource("5_doiu5")
+alignment = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="SettingButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fxetw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tfhbf")
+text = "   Setting"
+icon = ExtResource("6_72i6h")
+alignment = 0
+
+[node name="MarginContainer4" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ReportBugButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d1wiv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_phuym")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tfhbf")
+text = "   Report Bug"
+icon = ExtResource("7_3qwvu")
+alignment = 0

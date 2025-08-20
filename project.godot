@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneManager="*res://Screen/SceneManager.cs"
+SceneManager="*res://Assets/Manager/SceneManager.cs"
+UserDataManager="*res://Assets/Manager/UserDataManager.cs"
 
 [display]
 
