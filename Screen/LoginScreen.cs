@@ -111,7 +111,7 @@ public partial class LoginScreen : Control
 			passwordErrorLabel.Text = passwordValidateResult.ErrorMessage;
 			return;
 		}
-		// future enhance
+		
 		string hashPassword = BCrypt.Net.BCrypt.HashPassword(password);;
 		SubmitLoginToServer(username, hashPassword);
 	}

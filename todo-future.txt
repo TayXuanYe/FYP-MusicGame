@@ -1,7 +1,3 @@
-enhance LoginScreen.cs
-    On login button function 
-    handle reset label from "" to string.Empty
-    delete future enhance remark
-    MODIFY FOCUST STYLE -> EMPTY
-
-log system
+#LoginScreen
+1. SubmitLoginToServer function
+2. OnHttpRequestCompleted
