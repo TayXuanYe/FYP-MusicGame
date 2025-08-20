@@ -1,3 +1,14 @@
 #LoginScreen
 1. SubmitLoginToServer function
 2. OnHttpRequestCompleted
+
+#RegisterScreen
+1. SubmitEmailUniqueValidationToServer
+2. SubmitRegistrationToServer
+3. OnHttpRequestCompleted
+
+#MainScreen
+1. OnPlayGameButtonPressed
+2. OnGameHistoryButtonPressed
+3. OnSettingButtonPressed
+4. OnReportBugButtonPressed
