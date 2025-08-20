@@ -2,3 +2,5 @@ enhance LoginScreen.cs
 On login button function 
 handle reset label from "" to string.Empty
 delete future enhance remark
+
+log system
