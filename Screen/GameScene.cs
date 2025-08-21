@@ -9,6 +9,7 @@ public partial class GameScene : Node2D
 	[Export] private Lane _lane4;
 	[Export] private Button _pauseButton;
 	[Export] private TextureRect _background;
+	[Export] private Panel _navBarPanel;
 
 	[Export] private float _laneSpacing = 0f;
 	[Export] private float _laneWidth = 100f;
@@ -17,6 +18,7 @@ public partial class GameScene : Node2D
 	{
 		InitBackground();
 		InitLanesLocation();
+		_navBarPanel.Size = new Vector2(GetViewportRect().Size.X, _navBarPanel.Size.Y);
 		_pauseButton.Pressed += OnPauseButtonPressed;
 	}
 

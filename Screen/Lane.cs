@@ -8,6 +8,7 @@ public partial class Lane : Node2D
 	[Export] private Line2D _laneLine;
 	[Export] private TextureRect _hittingArea;
 	[Export] private Label _laneLabel;
+	[Export] private PackedScene _tapNoteScene;
 
 	[Export] private float _laneWidth = 100f;
 	[Export] private float _hittingAreaHeight = 80f;
@@ -66,27 +67,27 @@ public partial class Lane : Node2D
 	{
 		_currentTime += delta;
 
-		// spawn notes
-		if (NotesMetadataQueue.Count > 0)
-		{
-			while (CalculateNoteSpawnTime(NotesMetadataQueue.Peek().targetHittedTime) <= _currentTime)
-			{
-				var noteMetadata = NotesMetadataQueue.Dequeue();
-				if (noteMetadata.type == "Tap")
-				{
-					SpawnTapNote(noteMetadata.targetHittedTime, noteMetadata.noteColor);
-				}
-				else if (noteMetadata.type == "Hold")
-				{
-					SpawnHoldNote(noteMetadata.targetHittedTime, noteMetadata.durationTime, noteMetadata.noteColor);
-				}
+		// // spawn notes
+		// if (NotesMetadataQueue.Count > 0)
+		// {
+		// 	while (CalculateNoteSpawnTime(NotesMetadataQueue.Peek().targetHittedTime) <= _currentTime)
+		// 	{
+		// 		var noteMetadata = NotesMetadataQueue.Dequeue();
+		// 		if (noteMetadata.type == "Tap")
+		// 		{
+		// 			SpawnTapNote(noteMetadata.targetHittedTime, noteMetadata.noteColor);
+		// 		}
+		// 		else if (noteMetadata.type == "Hold")
+		// 		{
+		// 			SpawnHoldNote(noteMetadata.targetHittedTime, noteMetadata.durationTime, noteMetadata.noteColor);
+		// 		}
 
-				if (NotesMetadataQueue.Count == 0)
-				{
-					break;
-				}
-			}
-		}
+		// 		if (NotesMetadataQueue.Count == 0)
+		// 		{
+		// 			break;
+		// 		}
+		// 	}
+		// }
 
 		// check for missed tap notes
 		if (_tapNotesQueue != null && _tapNotesQueue.Count > 0)
@@ -103,6 +104,8 @@ public partial class Lane : Node2D
 				}
 			}
 		}
+		// test
+		SpawnTapNote(5.0, Colors.Red);
 	}
 
 	private double CalculateNoteSpawnTime(double targetHittedTime)
@@ -149,8 +152,8 @@ public partial class Lane : Node2D
 
 	public void SpawnTapNote(double targetHittedTime, Color noteColor)
 	{
-		TapNote tapNote = new TapNote(NoteSpeed, _currentTime, noteColor, targetHittedTime);
-
+		TapNote tapNote = _tapNoteScene.Instantiate<TapNote>();
+		tapNote.Initialize(NoteSpeed, _currentTime, noteColor, targetHittedTime);
 		AddChild(tapNote);
 		_tapNotesQueue.Enqueue(tapNote);
 	}
