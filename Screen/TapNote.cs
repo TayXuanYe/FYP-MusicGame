@@ -10,7 +10,7 @@ public partial class TapNote : Area2D
     [Export] private float _greatTimeRange = 0.1f;
     [Export] private float _perfectTimeRange = 0.05f;
     [Export] private float _criticalPerfectTimeRange = 0.02f;
-    [Export] private double _targetHittedTime;
+    [Export] public double TargetHittedTime { get; private set; }
     private double _currentTime;
 
     public TapNote(float noteSpeed, double currentTime, Color noteColor, double targetHittedTime)
@@ -18,7 +18,7 @@ public partial class TapNote : Area2D
         _noteSpeed = noteSpeed;
         _currentTime = currentTime;
         _noteColor = noteColor;
-        _targetHittedTime = targetHittedTime;
+        TargetHittedTime = targetHittedTime;
     }
 
     public override void _Ready()
@@ -42,31 +42,27 @@ public partial class TapNote : Area2D
         Position += new Vector2(0, _noteSpeed * (float)GetProcessDeltaTime());
     }
 
-    public int CheckNoteHit()
+    public (bool isTrigger,string hitResult, double hitTime, double timeDifference) CheckNoteHit()
     {
-        double timeDifference = _currentTime - _targetHittedTime;
+        double timeDifference = _currentTime - TargetHittedTime;
 
         if (Math.Abs(timeDifference) <= _criticalPerfectTimeRange)
         {
-            QueueFree();
-            return 4; // Critical Perfect
+            return (true, "Critical Perfect", _currentTime, timeDifference);
         }
         else if (Math.Abs(timeDifference) <= _perfectTimeRange)
         {
-            QueueFree();
-            return 3; // Perfect
+            return (true, "Perfect", _currentTime, timeDifference);
         }
         else if (Math.Abs(timeDifference) <= _greatTimeRange)
         {
-            QueueFree();
-            return 2; // Great
+            return (true, "Great", _currentTime, timeDifference);
         }
         else if (Math.Abs(timeDifference) <= _goodTimeRange)
         {
-            QueueFree();
-            return 1; // Good
+            return (true, "Good", _currentTime, timeDifference);
         }
 
-        return 0;
+        return (false, null, 0, 0);
     }
 }
