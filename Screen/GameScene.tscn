@@ -67,7 +67,7 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[node name="GameScene" type="Control" node_paths=PackedStringArray("lane1", "lane2", "lane3", "lane4")]
+[node name="GameScene" type="Control" node_paths=PackedStringArray("_lane1", "_lane2", "_lane3", "_lane4", "_pauseButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,10 +75,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_51csq")
-lane1 = NodePath("GameWorld/Lanes/Lane1")
-lane2 = NodePath("GameWorld/Lanes/Lane2")
-lane3 = NodePath("GameWorld/Lanes/Lane3")
-lane4 = NodePath("GameWorld/Lanes/Lane4")
+_lane1 = NodePath("GameWorld/Lanes/Lane1")
+_lane2 = NodePath("GameWorld/Lanes/Lane2")
+_lane3 = NodePath("GameWorld/Lanes/Lane3")
+_lane4 = NodePath("GameWorld/Lanes/Lane4")
+_pauseButton = NodePath("UI/Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3/PauseButton")
 
 [node name="Background" type="TextureRect" parent="."]
 clip_contents = true

@@ -3,43 +3,43 @@ using System;
 
 public partial class Lane : Node2D
 {
-	[Export] public string KeyCode { get; set; }
-	[Export] public Line2D LaneLine;
-	[Export] public TextureRect HittingArea;
-	[Export] public Label LaneLabel;
+    [Export] public string KeyCode { get; set; }
+    [Export] private Line2D _laneLine;
+    [Export] private TextureRect _hittingArea;
+    [Export] private Label _laneLabel;
 
-	[Export] public float LaneWidth = 100f;
-	[Export] public float HittingAreaHeight = 80f;
-	[Export] public float LaneLineWidth = 2f;
-	[Export] public int FontSize = 32;
+    [Export] private float _laneWidth = 100f;
+    [Export] private float _hittingAreaHeight = 80f;
+    [Export] private float _laneLineWidth = 2f;
+    [Export] private int _fontSize = 32;
 
-	[Export] public Vector2 StartPoint = new Vector2(0, 0);
+    [Export] private Vector2 _startPoint = new Vector2(0, 0);
 
-	public override void _Ready()
-	{
-		Vector2 viewportSize = GetViewportRect().Size;
-		LaneLine.Width = LaneLineWidth;
+    public override void _Ready()
+    {
+        Vector2 viewportSize = GetViewportRect().Size;
+        _laneLine.Width = _laneLineWidth;
 
-		Vector2 LeftEndPoint = new Vector2(0, viewportSize.Y);
-		Vector2 LeftHittingBoxPoint = new Vector2(0, viewportSize.Y - HittingAreaHeight);
-		Vector2 RightHittingBoxPoint = new Vector2(LaneWidth, viewportSize.Y - HittingAreaHeight);
-		Vector2 RightStartPoint = new Vector2(LaneWidth, 0);
-		Vector2 RightEndPoint = new Vector2(LaneWidth, viewportSize.Y);
+        Vector2 leftEndPoint = new Vector2(0, viewportSize.Y);
+        Vector2 leftHittingBoxPoint = new Vector2(0, viewportSize.Y - _hittingAreaHeight);
+        Vector2 rightHittingBoxPoint = new Vector2(_laneWidth, viewportSize.Y - _hittingAreaHeight);
+        Vector2 rightStartPoint = new Vector2(_laneWidth, 0);
+        Vector2 rightEndPoint = new Vector2(_laneWidth, viewportSize.Y);
 
-		LaneLine.ClearPoints();
-		LaneLine.AddPoint(StartPoint);
-		LaneLine.AddPoint(LeftEndPoint);
-		LaneLine.AddPoint(LeftHittingBoxPoint);
-		LaneLine.AddPoint(RightHittingBoxPoint);
-		LaneLine.AddPoint(RightStartPoint);
-		LaneLine.AddPoint(RightEndPoint);
+        _laneLine.ClearPoints();
+        _laneLine.AddPoint(_startPoint);
+        _laneLine.AddPoint(leftEndPoint);
+        _laneLine.AddPoint(leftHittingBoxPoint);
+        _laneLine.AddPoint(rightHittingBoxPoint);
+        _laneLine.AddPoint(rightStartPoint);
+        _laneLine.AddPoint(rightEndPoint);
 
-		HittingArea.Size = new Vector2(LaneWidth, HittingAreaHeight);
-		HittingArea.Position = new Vector2(0, viewportSize.Y - HittingAreaHeight);
+        _hittingArea.Size = new Vector2(_laneWidth, _hittingAreaHeight);
+        _hittingArea.Position = new Vector2(0, viewportSize.Y - _hittingAreaHeight);
 
-		LaneLabel.Position = new Vector2(LaneWidth / 2, viewportSize.Y - HittingAreaHeight / 2);
-		LaneLabel.Text = KeyCode;
-		LaneLabel.LabelSettings.FontSize = FontSize;
-		LaneLabel.LabelSettings.OutlineSize = 2;
-	}
+        _laneLabel.Position = new Vector2(_laneWidth / 2, viewportSize.Y - _hittingAreaHeight / 2);
+        _laneLabel.Text = KeyCode;
+        _laneLabel.LabelSettings.FontSize = _fontSize;
+        _laneLabel.LabelSettings.OutlineSize = 2;
+    }
 }
