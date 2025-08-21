@@ -19,11 +19,11 @@ fill_to = Vector2(1, 1)
 [sub_resource type="Gradient" id="Gradient_sc7om"]
 colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2jbio"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_72i6h"]
 gradient = SubResource("Gradient_sc7om")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0241h"]
-texture = SubResource("GradientTexture1D_2jbio")
+texture = SubResource("GradientTexture1D_72i6h")
 
 [sub_resource type="FontVariation" id="FontVariation_0241h"]
 base_font = ExtResource("3_phuym")
