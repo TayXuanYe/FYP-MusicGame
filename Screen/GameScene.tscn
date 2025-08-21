@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bkog4fxx41wlu"]
+[gd_scene load_steps=22 format=3 uid="uid://bkog4fxx41wlu"]
 
 [ext_resource type="Script" uid="uid://de5ksj6isa6si" path="res://Screen/GameScene.cs" id="1_51csq"]
 [ext_resource type="FontFile" uid="uid://cqsaqxed7sfuj" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_51csq"]
@@ -25,8 +25,6 @@ colors = PackedColorArray(0.8, 0.8, 0.8, 0.0392157, 0.8, 0.8, 0.8, 0.392157)
 gradient = SubResource("Gradient_51csq")
 fill_from = Vector2(0, 0.0412844)
 fill_to = Vector2(0, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6gi8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1o6g0"]
 
@@ -112,11 +110,6 @@ _pressedHintTextColor = Color(0.8, 0.8, 0.8, 1)
 points = PackedVector2Array(784, 1081)
 width = 2.0
 
-[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane1/JudgementLine"]
-shape = SubResource("RectangleShape2D_v6gi8")
-
 [node name="HittingArea" type="TextureRect" parent="GameWorld/Lanes/Lane1"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,11 +146,6 @@ _pressedHintTextColor = Color(0.8, 0.8, 0.8, 1)
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane2"]
 points = PackedVector2Array(784, 1081)
 width = 2.0
-
-[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane2/JudgementLine"]
-shape = SubResource("RectangleShape2D_v6gi8")
 
 [node name="HittingArea" type="TextureRect" parent="GameWorld/Lanes/Lane2"]
 anchors_preset = 15
@@ -196,11 +184,6 @@ _pressedHintTextColor = Color(0.8, 0.8, 0.8, 1)
 points = PackedVector2Array(784, 1081)
 width = 2.0
 
-[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane3/JudgementLine"]
-shape = SubResource("RectangleShape2D_v6gi8")
-
 [node name="HittingArea" type="TextureRect" parent="GameWorld/Lanes/Lane3"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -237,11 +220,6 @@ _pressedHintTextColor = Color(0.8, 0.8, 0.8, 1)
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane4"]
 points = PackedVector2Array(784, 1081)
 width = 2.0
-
-[node name="JudgementLine" type="Area2D" parent="GameWorld/Lanes/Lane4"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Lanes/Lane4/JudgementLine"]
-shape = SubResource("RectangleShape2D_v6gi8")
 
 [node name="HittingArea" type="TextureRect" parent="GameWorld/Lanes/Lane4"]
 anchors_preset = 15
