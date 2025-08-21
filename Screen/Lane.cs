@@ -21,7 +21,7 @@ public partial class Lane : Node2D
 
 	public float NoteSpeed { get; set; } = 200f;
 	public Queue<(double targetHittedTime, Color noteColor, string type, double durationTime)> NotesMetadataQueue { get; private set; }
-	private Queue<TapNote> _tapNotesQueue;
+	private Queue<TapNote> _tapNotesQueue = new Queue<TapNote>();
 	private double _currentTime = 0;
 
 	public override void _Ready()
@@ -152,10 +152,6 @@ public partial class Lane : Node2D
 		TapNote tapNote = new TapNote(NoteSpeed, _currentTime, noteColor, targetHittedTime);
 
 		AddChild(tapNote);
-		if (_tapNotesQueue == null)
-		{
-			_tapNotesQueue = new Queue<TapNote>();
-		}
 		_tapNotesQueue.Enqueue(tapNote);
 	}
 
