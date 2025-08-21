@@ -5,8 +5,6 @@ public partial class TapNote : Area2D
 {
     // unit px per second
     [Export] private float _noteSpeed = 200f;
-    // unit px
-    [Export] private float _judgmentLineVerticalDistance = 1000f;
     [Export] private Color _noteColor;
     [Export] private float _goodTimeRange = 0.15f; // seconds
     [Export] private float _greatTimeRange = 0.1f;
@@ -15,8 +13,9 @@ public partial class TapNote : Area2D
     [Export] private double _targetHittedTime;
     private double _currentTime;
 
-    public TapNote(double currentTime, Color noteColor, double targetHittedTime)
+    public TapNote(float noteSpeed, double currentTime, Color noteColor, double targetHittedTime)
     {
+        _noteSpeed = noteSpeed;
         _currentTime = currentTime;
         _noteColor = noteColor;
         _targetHittedTime = targetHittedTime;
