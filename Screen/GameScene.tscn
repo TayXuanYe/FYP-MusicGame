@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bkog4fxx41wlu"]
+[gd_scene load_steps=23 format=3 uid="uid://bkog4fxx41wlu"]
 
 [ext_resource type="Script" uid="uid://de5ksj6isa6si" path="res://Screen/GameScene.cs" id="1_51csq"]
 [ext_resource type="FontFile" uid="uid://cqsaqxed7sfuj" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_51csq"]
@@ -11,14 +11,22 @@ colors = PackedColorArray(0.247059, 0.156863, 0.517647, 1, 0.247059, 0.156863, 0
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6wfee"]
 gradient = SubResource("Gradient_rk1hp")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6gi8"]
-
 [sub_resource type="Gradient" id="Gradient_1o6g0"]
 colors = PackedColorArray(1, 1, 1, 0.0392157, 1, 1, 1, 0.392157)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_s1g5e"]
 gradient = SubResource("Gradient_1o6g0")
 fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_51csq"]
+colors = PackedColorArray(0.8, 0.8, 0.8, 0.0392157, 0.8, 0.8, 0.8, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1o6g0"]
+gradient = SubResource("Gradient_51csq")
+fill_from = Vector2(0, 0.0412844)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6gi8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1o6g0"]
 
@@ -67,23 +75,17 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[node name="GameScene" type="Control" node_paths=PackedStringArray("_lane1", "_lane2", "_lane3", "_lane4", "_pauseButton")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("_lane1", "_lane2", "_lane3", "_lane4", "_pauseButton", "_background")]
 script = ExtResource("1_51csq")
 _lane1 = NodePath("GameWorld/Lanes/Lane1")
 _lane2 = NodePath("GameWorld/Lanes/Lane2")
 _lane3 = NodePath("GameWorld/Lanes/Lane3")
 _lane4 = NodePath("GameWorld/Lanes/Lane4")
 _pauseButton = NodePath("UI/Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3/PauseButton")
+_background = NodePath("Background")
 
 [node name="Background" type="TextureRect" parent="."]
 clip_contents = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -101,6 +103,10 @@ KeyCode = "D"
 _laneLine = NodePath("LaneSprite")
 _hittingArea = NodePath("HittingArea")
 _laneLabel = NodePath("HittingArea/CenterContainer/Label")
+_normalTexture = SubResource("GradientTexture2D_s1g5e")
+_pressedTexture = SubResource("GradientTexture2D_1o6g0")
+_normalHintTextColor = Color(1, 1, 1, 1)
+_pressedHintTextColor = Color(0.8, 0.8, 0.8, 1)
 
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane1"]
 points = PackedVector2Array(784, 1081)
@@ -139,6 +145,10 @@ KeyCode = "F"
 _laneLine = NodePath("LaneSprite")
 _hittingArea = NodePath("HittingArea")
 _laneLabel = NodePath("HittingArea/CenterContainer/Label")
+_normalTexture = SubResource("GradientTexture2D_s1g5e")
+_pressedTexture = SubResource("GradientTexture2D_1o6g0")
+_normalHintTextColor = Color(1, 1, 1, 1)
+_pressedHintTextColor = Color(0.8, 0.8, 0.8, 1)
 
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane2"]
 points = PackedVector2Array(784, 1081)
@@ -177,6 +187,10 @@ KeyCode = "J"
 _laneLine = NodePath("LaneSprite")
 _hittingArea = NodePath("HittingArea")
 _laneLabel = NodePath("HittingArea/CenterContainer/Label")
+_normalTexture = SubResource("GradientTexture2D_s1g5e")
+_pressedTexture = SubResource("GradientTexture2D_1o6g0")
+_normalHintTextColor = Color(1, 1, 1, 1)
+_pressedHintTextColor = Color(0.8, 0.8, 0.8, 1)
 
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane3"]
 points = PackedVector2Array(784, 1081)
@@ -215,6 +229,10 @@ KeyCode = "K"
 _laneLine = NodePath("LaneSprite")
 _hittingArea = NodePath("HittingArea")
 _laneLabel = NodePath("HittingArea/CenterContainer/Label")
+_normalTexture = SubResource("GradientTexture2D_s1g5e")
+_pressedTexture = SubResource("GradientTexture2D_1o6g0")
+_normalHintTextColor = Color(1, 1, 1, 1)
+_pressedHintTextColor = Color(0.8, 0.8, 0.8, 1)
 
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane4"]
 points = PackedVector2Array(784, 1081)
@@ -250,7 +268,7 @@ vertical_alignment = 1
 [node name="Notes" type="Node2D" parent="."]
 
 [node name="UI" type="Control" parent="."]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

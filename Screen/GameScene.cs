@@ -1,23 +1,44 @@
 using Godot;
 using System;
 
-public partial class GameScene : Control
+public partial class GameScene : Node2D
 {
-	[Export] private Node2D _lane1;
-	[Export] private Node2D _lane2;
-	[Export] private Node2D _lane3;
-	[Export] private Node2D _lane4;
+	[Export] private Lane _lane1;
+	[Export] private Lane _lane2;
+	[Export] private Lane _lane3;
+	[Export] private Lane _lane4;
 	[Export] private Button _pauseButton;
+	[Export] private TextureRect _background;
 
 	[Export] private float _laneSpacing = 0f;
 	[Export] private float _laneWidth = 100f;
 
 	public override void _Ready()
 	{
+		InitBackground();
 		InitLanesLocation();
 		_pauseButton.Pressed += OnPauseButtonPressed;
 	}
 
+public override void _UnhandledInput(InputEvent @event)
+{
+	if (@event.IsActionPressed("key_D")) { _lane1.OnKeyPressed();}
+	if (@event.IsActionPressed("key_F")) { _lane2.OnKeyPressed();}
+	if (@event.IsActionPressed("key_J")) { _lane3.OnKeyPressed();}
+	if (@event.IsActionPressed("key_K")) { _lane4.OnKeyPressed();}
+
+	if (@event.IsActionReleased("key_D")) { _lane1.OnKeyReleased(); }
+	if (@event.IsActionReleased("key_F")) { _lane2.OnKeyReleased(); }
+	if (@event.IsActionReleased("key_J")) { _lane3.OnKeyReleased(); }
+	if (@event.IsActionReleased("key_K")) { _lane4.OnKeyReleased(); }
+}
+
+	private void InitBackground()
+	{
+		Vector2 viewportSize = GetViewportRect().Size;
+		_background.Size = viewportSize;
+		_background.Position = Vector2.Zero;
+	}
 	private void InitLanesLocation()
 	{
 		Vector2 viewportSize = GetViewportRect().Size;
