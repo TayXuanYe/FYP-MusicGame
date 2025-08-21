@@ -18,10 +18,11 @@
 |:------:|:------|  
 |Get|Indicates that the main purpose of this function is to return a value|
 |On|This function is not called by you actively, but the system (or framework) will automatically call it when a specific event occurs.|
-|Validate|This function is used for justify the condition is valid or not and return an result object|
+|Validate|This function is used for verify that input data or configuration is legal|
 |Submit|This function handle the work submit requiest to the server or other services|
 |ChangeTo|This function is specific on change screen from one to another|
 |Init|Mark a function as an initialization function|
-
+|Check|This function used to check whether the current state or condition is met|
+|Spawn|This function used to generate or instantiate one or more new object|
 3. A function should not have more than one function or task. (Comply with the Single Responsibility Principle)
 

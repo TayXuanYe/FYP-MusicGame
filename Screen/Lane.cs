@@ -52,10 +52,30 @@ public partial class Lane : Node2D
 		_hittingArea.Texture = _pressedTexture;
 		_laneLabel.Modulate = _pressedHintTextColor;
 	}
-	
+
 	public void OnKeyReleased()
 	{
 		_hittingArea.Texture = _normalTexture;
 		_laneLabel.Modulate = _normalHintTextColor;
+	}
+
+	public void CheckNoteHit()
+	{
+
+	}
+
+	public void CheckNoteRelease()
+	{
+
+	}
+
+	public void SpawnTapNote()
+	{
+		// Logic to spawn a tap note
+	}
+
+	public void SpawnHoldNote()
+	{
+		// Logic to spawn a hold note
 	}
 }

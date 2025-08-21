@@ -265,8 +265,6 @@ label_settings = SubResource("LabelSettings_jaseg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Notes" type="Node2D" parent="."]
-
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
