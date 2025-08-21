@@ -95,12 +95,12 @@ texture = SubResource("GradientTexture1D_6wfee")
 
 [node name="Lanes" type="Node2D" parent="GameWorld"]
 
-[node name="Lane1" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("LaneLine", "HittingArea", "LaneLabel")]
+[node name="Lane1" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("_laneLine", "_hittingArea", "_laneLabel")]
 script = ExtResource("5_1o6g0")
 KeyCode = "D"
-LaneLine = NodePath("LaneSprite")
-HittingArea = NodePath("HittingArea")
-LaneLabel = NodePath("HittingArea/CenterContainer/Label")
+_laneLine = NodePath("LaneSprite")
+_hittingArea = NodePath("HittingArea")
+_laneLabel = NodePath("HittingArea/CenterContainer/Label")
 
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane1"]
 points = PackedVector2Array(784, 1081)
@@ -133,12 +133,12 @@ label_settings = SubResource("LabelSettings_1o6g0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Lane2" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("LaneLine", "HittingArea", "LaneLabel")]
+[node name="Lane2" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("_laneLine", "_hittingArea", "_laneLabel")]
 script = ExtResource("5_1o6g0")
 KeyCode = "F"
-LaneLine = NodePath("LaneSprite")
-HittingArea = NodePath("HittingArea")
-LaneLabel = NodePath("HittingArea/CenterContainer/Label")
+_laneLine = NodePath("LaneSprite")
+_hittingArea = NodePath("HittingArea")
+_laneLabel = NodePath("HittingArea/CenterContainer/Label")
 
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane2"]
 points = PackedVector2Array(784, 1081)
@@ -171,12 +171,12 @@ label_settings = SubResource("LabelSettings_s1g5e")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Lane3" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("LaneLine", "HittingArea", "LaneLabel")]
+[node name="Lane3" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("_laneLine", "_hittingArea", "_laneLabel")]
 script = ExtResource("5_1o6g0")
 KeyCode = "J"
-LaneLine = NodePath("LaneSprite")
-HittingArea = NodePath("HittingArea")
-LaneLabel = NodePath("HittingArea/CenterContainer/Label")
+_laneLine = NodePath("LaneSprite")
+_hittingArea = NodePath("HittingArea")
+_laneLabel = NodePath("HittingArea/CenterContainer/Label")
 
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane3"]
 points = PackedVector2Array(784, 1081)
@@ -209,12 +209,12 @@ label_settings = SubResource("LabelSettings_6img8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Lane4" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("LaneLine", "HittingArea", "LaneLabel")]
+[node name="Lane4" type="Node2D" parent="GameWorld/Lanes" node_paths=PackedStringArray("_laneLine", "_hittingArea", "_laneLabel")]
 script = ExtResource("5_1o6g0")
 KeyCode = "K"
-LaneLine = NodePath("LaneSprite")
-HittingArea = NodePath("HittingArea")
-LaneLabel = NodePath("HittingArea/CenterContainer/Label")
+_laneLine = NodePath("LaneSprite")
+_hittingArea = NodePath("HittingArea")
+_laneLabel = NodePath("HittingArea/CenterContainer/Label")
 
 [node name="LaneSprite" type="Line2D" parent="GameWorld/Lanes/Lane4"]
 points = PackedVector2Array(784, 1081)
