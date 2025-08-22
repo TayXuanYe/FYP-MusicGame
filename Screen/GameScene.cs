@@ -9,31 +9,40 @@ public partial class GameScene : Node2D
 	[Export] private Lane _lane4;
 	[Export] private Button _pauseButton;
 	[Export] private TextureRect _background;
+	[Export] private Control _uiContainer;
 	[Export] private Panel _navBarPanel;
+	[Export] private RichTextLabel _hitResultDisplayRichTextLabel;
 
 	[Export] private float _laneSpacing = 0f;
 	[Export] private float _laneWidth = 100f;
 
+
+	[Export] private VBoxContainer _centerContainer;
 	public override void _Ready()
 	{
 		InitBackground();
-		InitLanesLocation();
-		_navBarPanel.Size = new Vector2(GetViewportRect().Size.X, _navBarPanel.Size.Y);
+		InitLanesLayout();
+		InitUI();
 		_pauseButton.Pressed += OnPauseButtonPressed;
+
+		GD.Print(_uiContainer.Size);
+		GD.Print(_centerContainer.Size);
+		GD.Print(_hitResultDisplayRichTextLabel.Size);
+		GD.Print(_hitResultDisplayRichTextLabel.Position);
 	}
 
-public override void _UnhandledInput(InputEvent @event)
-{
-	if (@event.IsActionPressed("key_D")) { _lane1.OnKeyPressed();}
-	if (@event.IsActionPressed("key_F")) { _lane2.OnKeyPressed();}
-	if (@event.IsActionPressed("key_J")) { _lane3.OnKeyPressed();}
-	if (@event.IsActionPressed("key_K")) { _lane4.OnKeyPressed();}
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event.IsActionPressed("key_D")) { _lane1.OnKeyPressed(); }
+		if (@event.IsActionPressed("key_F")) { _lane2.OnKeyPressed(); }
+		if (@event.IsActionPressed("key_J")) { _lane3.OnKeyPressed(); }
+		if (@event.IsActionPressed("key_K")) { _lane4.OnKeyPressed(); }
 
-	if (@event.IsActionReleased("key_D")) { _lane1.OnKeyReleased(); }
-	if (@event.IsActionReleased("key_F")) { _lane2.OnKeyReleased(); }
-	if (@event.IsActionReleased("key_J")) { _lane3.OnKeyReleased(); }
-	if (@event.IsActionReleased("key_K")) { _lane4.OnKeyReleased(); }
-}
+		if (@event.IsActionReleased("key_D")) { _lane1.OnKeyReleased(); }
+		if (@event.IsActionReleased("key_F")) { _lane2.OnKeyReleased(); }
+		if (@event.IsActionReleased("key_J")) { _lane3.OnKeyReleased(); }
+		if (@event.IsActionReleased("key_K")) { _lane4.OnKeyReleased(); }
+	}
 
 	private void InitBackground()
 	{
@@ -41,7 +50,7 @@ public override void _UnhandledInput(InputEvent @event)
 		_background.Size = viewportSize;
 		_background.Position = Vector2.Zero;
 	}
-	private void InitLanesLocation()
+	private void InitLanesLayout()
 	{
 		Vector2 viewportSize = GetViewportRect().Size;
 		float centerX = viewportSize.X / 2;
@@ -60,9 +69,14 @@ public override void _UnhandledInput(InputEvent @event)
 		float lane4X = lane3X + _laneWidth + _laneSpacing;
 		_lane4.Position = new Vector2(lane4X, _lane4.Position.Y);
 	}
-	
+	private void InitUI()
+	{
+		_uiContainer.Size = GetViewportRect().Size;
+		// _navBarPanel.Size = new Vector2(GetViewportRect().Size.X, _navBarPanel.Size.Y);
+	}
 	private void OnPauseButtonPressed()
 	{
 		// Handle pause button pressed logic here
+		GD.Print("Pause button pressed");
 	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bkog4fxx41wlu"]
+[gd_scene load_steps=24 format=3 uid="uid://bkog4fxx41wlu"]
 
 [ext_resource type="Script" uid="uid://de5ksj6isa6si" path="res://Screen/GameScene.cs" id="1_51csq"]
 [ext_resource type="FontFile" uid="uid://cqsaqxed7sfuj" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_51csq"]
@@ -11,45 +11,6 @@ colors = PackedColorArray(0.247059, 0.156863, 0.517647, 1, 0.247059, 0.156863, 0
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6wfee"]
 gradient = SubResource("Gradient_rk1hp")
-
-[sub_resource type="Gradient" id="Gradient_s1g5e"]
-colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2jbio"]
-gradient = SubResource("Gradient_s1g5e")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6img8"]
-texture = SubResource("GradientTexture1D_2jbio")
-
-[sub_resource type="FontVariation" id="FontVariation_jaseg"]
-base_font = ExtResource("2_51csq")
-variation_embolden = 1.45
-
-[sub_resource type="LabelSettings" id="LabelSettings_51csq"]
-font_size = 14
-font_color = Color(1, 1, 1, 0.501961)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txcjb"]
-bg_color = Color(0, 0, 0, 0.196078)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-expand_margin_left = 12.0
-expand_margin_top = 12.0
-expand_margin_right = 12.0
-expand_margin_bottom = 12.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbae2"]
-bg_color = Color(0, 0, 0, 0)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-expand_margin_left = 12.0
-expand_margin_top = 12.0
-expand_margin_right = 12.0
-expand_margin_bottom = 12.0
 
 [sub_resource type="Gradient" id="Gradient_1o6g0"]
 colors = PackedColorArray(1, 1, 1, 0.0392157, 1, 1, 1, 0.392157)
@@ -74,7 +35,48 @@ fill_to = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jaseg"]
 
-[node name="GameScene" type="Node2D" node_paths=PackedStringArray("_lane1", "_lane2", "_lane3", "_lane4", "_pauseButton", "_background", "_navBarPanel")]
+[sub_resource type="Gradient" id="Gradient_s1g5e"]
+colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2jbio"]
+gradient = SubResource("Gradient_s1g5e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6img8"]
+texture = SubResource("GradientTexture1D_2jbio")
+
+[sub_resource type="FontVariation" id="FontVariation_jaseg"]
+base_font = ExtResource("2_51csq")
+variation_embolden = 1.45
+
+[sub_resource type="LabelSettings" id="LabelSettings_51csq"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fawv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txcjb"]
+bg_color = Color(0, 0, 0, 0.196078)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbae2"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("_lane1", "_lane2", "_lane3", "_lane4", "_pauseButton", "_background", "_uiContainer", "_navBarPanel", "_hitResultDisplayRichTextLabel", "_centerContainer")]
 script = ExtResource("1_51csq")
 _lane1 = NodePath("GameWorld/Lanes/Lane1")
 _lane2 = NodePath("GameWorld/Lanes/Lane2")
@@ -82,7 +84,10 @@ _lane3 = NodePath("GameWorld/Lanes/Lane3")
 _lane4 = NodePath("GameWorld/Lanes/Lane4")
 _pauseButton = NodePath("UI/Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3/PauseButton")
 _background = NodePath("Background")
+_uiContainer = NodePath("UI")
 _navBarPanel = NodePath("UI/Panel")
+_hitResultDisplayRichTextLabel = NodePath("UI/GameDisplayContainer/VBoxContainer/MarginContainer/HitResultDisplayRichTextLabel")
+_centerContainer = NodePath("UI/GameDisplayContainer/VBoxContainer")
 
 [node name="Background" type="TextureRect" parent="."]
 clip_contents = true
@@ -92,75 +97,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_6wfee")
-
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="UI"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 64.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_6img8")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/Panel"]
-layout_mode = 2
-offset_right = 1920.0
-offset_bottom = 64.0
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_right = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="ChartName" type="Label" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_jaseg")
-theme_override_font_sizes/font_size = 20
-text = "BeatMaster"
-horizontal_alignment = 1
-
-[node name="ChartData" type="Label" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "BeatMaster"
-label_settings = SubResource("LabelSettings_51csq")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_right = 24
-
-[node name="PauseButton" type="Button" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/focus = SubResource("StyleBoxFlat_txcjb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_txcjb")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_txcjb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_txcjb")
-theme_override_styles/normal = SubResource("StyleBoxFlat_dbae2")
-icon = ExtResource("4_51csq")
-icon_alignment = 1
 
 [node name="GameWorld" type="Node2D" parent="."]
 
@@ -317,3 +253,94 @@ layout_mode = 2
 label_settings = SubResource("LabelSettings_jaseg")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="GameDisplayContainer" type="CenterContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameDisplayContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/GameDisplayContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HitResultDisplayRichTextLabel" type="RichTextLabel" parent="UI/GameDisplayContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "test ing ya ?
+"
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_6img8")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Panel"]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 64.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ChartName" type="Label" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_jaseg")
+theme_override_font_sizes/font_size = 20
+text = "BeatMaster"
+horizontal_alignment = 1
+
+[node name="ChartData" type="Label" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "BeatMaster"
+label_settings = SubResource("LabelSettings_51csq")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+
+[node name="PauseButton" type="Button" parent="UI/Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fawv8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_txcjb")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_txcjb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_txcjb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dbae2")
+icon = ExtResource("4_51csq")
+icon_alignment = 1
