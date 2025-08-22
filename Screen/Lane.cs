@@ -23,6 +23,7 @@ public partial class Lane : Node2D
 	public float NoteSpeed { get; set; } = 200f;
 	public Queue<(double targetHittedTime, Color noteColor, string type, double durationTime)> NotesMetadataQueue { get; private set; }
 	private Queue<TapNote> _tapNotesQueue = new Queue<TapNote>();
+	private int _tapNoteIdCounter = 0;
 	private double _currentTime = 0;
 
 	public override void _Ready()
@@ -31,6 +32,15 @@ public partial class Lane : Node2D
 
 		// get the notes metadata queue
 		// NotesMetadataQueue = ChartManager.Instance.GetNotesMetadata(laneIndex);
+
+		//temp
+		NotesMetadataQueue = new Queue<(double, Color, string, double)>();
+		NotesMetadataQueue.Enqueue((5.0, Colors.Red, "Tap", 0));
+		NotesMetadataQueue.Enqueue((10.0, Colors.Blue, "Tap", 0));
+		NotesMetadataQueue.Enqueue((15.0, Colors.Green, "Tap", 0));
+		NotesMetadataQueue.Enqueue((20.0, Colors.Yellow, "Tap", 0));
+		NotesMetadataQueue.Enqueue((25.0, Colors.Purple, "Tap", 0));
+		NotesMetadataQueue.Enqueue((30.0, Colors.Orange, "Tap", 0));
 	}
 
 	private void InitLane()
@@ -62,32 +72,31 @@ public partial class Lane : Node2D
 		_laneLabel.LabelSettings.OutlineSize = 2;
 	}
 
-
 	public override void _Process(double delta)
 	{
 		_currentTime += delta;
 
-		// // spawn notes
-		// if (NotesMetadataQueue.Count > 0)
-		// {
-		// 	while (CalculateNoteSpawnTime(NotesMetadataQueue.Peek().targetHittedTime) <= _currentTime)
-		// 	{
-		// 		var noteMetadata = NotesMetadataQueue.Dequeue();
-		// 		if (noteMetadata.type == "Tap")
-		// 		{
-		// 			SpawnTapNote(noteMetadata.targetHittedTime, noteMetadata.noteColor);
-		// 		}
-		// 		else if (noteMetadata.type == "Hold")
-		// 		{
-		// 			SpawnHoldNote(noteMetadata.targetHittedTime, noteMetadata.durationTime, noteMetadata.noteColor);
-		// 		}
+		// spawn notes
+		if (NotesMetadataQueue.Count > 0)
+		{
+			while (CalculateNoteSpawnTime(NotesMetadataQueue.Peek().targetHittedTime) <= _currentTime)
+			{
+				var noteMetadata = NotesMetadataQueue.Dequeue();
+				if (noteMetadata.type == "Tap")
+				{
+					SpawnTapNote(noteMetadata.targetHittedTime, noteMetadata.noteColor);
+				}
+				else if (noteMetadata.type == "Hold")
+				{
+					SpawnHoldNote(noteMetadata.targetHittedTime, noteMetadata.durationTime, noteMetadata.noteColor);
+				}
 
-		// 		if (NotesMetadataQueue.Count == 0)
-		// 		{
-		// 			break;
-		// 		}
-		// 	}
-		// }
+				if (NotesMetadataQueue.Count == 0)
+				{
+					break;
+				}
+			}
+		}
 
 		// check for missed tap notes
 		if (_tapNotesQueue != null && _tapNotesQueue.Count > 0)
@@ -96,16 +105,14 @@ public partial class Lane : Node2D
 			{
 				var tapNote = _tapNotesQueue.Dequeue();
 				// Handle missed note logic here, e.g., play a sound or update score
-				tapNote.QueueFree(); // Remove the note from the scene
-
+				DestroyedTapNote(tapNote);
+				GD.Print($"Missed tap note in key {KeyCode}");
 				if (_tapNotesQueue.Count == 0)
 				{
 					break;
 				}
 			}
 		}
-		// test
-		SpawnTapNote(5.0, Colors.Red);
 	}
 
 	private double CalculateNoteSpawnTime(double targetHittedTime)
@@ -120,6 +127,7 @@ public partial class Lane : Node2D
 	{
 		_hittingArea.Texture = _pressedTexture;
 		_laneLabel.Modulate = _pressedHintTextColor;
+		CheckNoteHit();
 	}
 
 	public void OnKeyReleased()
@@ -128,7 +136,7 @@ public partial class Lane : Node2D
 		_laneLabel.Modulate = _normalHintTextColor;
 	}
 
-	public void CheckNoteHit()
+	private void CheckNoteHit()
 	{
 		if (_tapNotesQueue != null && _tapNotesQueue.Count > 0)
 		{
@@ -138,27 +146,35 @@ public partial class Lane : Node2D
 			if (hitResult.isTrigger)
 			{
 				// Handle the hit result, e.g., update score, play sound, etc.
-				GD.Print($"Hit Result: {hitResult.hitResult}, Hit Time: {hitResult.hitTime}, Time Difference: {hitResult.timeDifference}");
-				tapNote.QueueFree(); // Remove the note from the scene
 				_tapNotesQueue.Dequeue();
+				DestroyedTapNote(tapNote);
+				GD.Print($"Note hitted in key {KeyCode}, time difference: {hitResult.timeDifference}");
 			}
 		}
 	}
 
-	public void CheckNoteRelease()
+	private void CheckNoteRelease()
 	{
 
 	}
 
-	public void SpawnTapNote(double targetHittedTime, Color noteColor)
+	private void SpawnTapNote(double targetHittedTime, Color noteColor)
 	{
 		TapNote tapNote = _tapNoteScene.Instantiate<TapNote>();
-		tapNote.Initialize(NoteSpeed, _currentTime, noteColor, targetHittedTime);
+		tapNote.Initialize(NoteSpeed, _currentTime, noteColor, targetHittedTime, KeyCode + "_" + _tapNoteIdCounter);
+		_tapNoteIdCounter++;
 		AddChild(tapNote);
 		_tapNotesQueue.Enqueue(tapNote);
+		tapNote.Position = new Vector2(_laneWidth / 2, -30); // Set the initial position at the top of the lane
 	}
 
-	public void SpawnHoldNote(double targetHittedTime, double durationTime, Color noteColor)
+	private void DestroyedTapNote(TapNote tapNote)
+	{
+		GD.Print($"Destroyed tap note : Id={tapNote.Id}");
+		tapNote.Destroyed();
+	}
+
+	private void SpawnHoldNote(double targetHittedTime, double durationTime, Color noteColor)
 	{
 		// Logic to spawn a hold note
 	}
