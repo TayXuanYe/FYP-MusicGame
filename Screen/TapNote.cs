@@ -4,20 +4,14 @@ using System;
 public partial class TapNote : Area2D
 {
 	// unit px per second
-	[Export] private double _noteSpeed;
 	[Export] private Color _noteColor;
-	[Export] private double _goodTimeRange = 0.15f; // seconds
-	[Export] private double _greatTimeRange = 0.1f;
-	[Export] private double _perfectTimeRange = 0.05f;
-	[Export] private double _criticalPerfectTimeRange = 0.02f;
 	[Export] public double TargetHittedTime { get; private set; }
 	public string Id { get; private set; }
 	private double _currentTime;
 	private bool _isDestroyed = false;
 
-	public void Initialize(float noteSpeed, double currentTime, Color noteColor, double targetHittedTime, string id)
+	public void Initialize(double currentTime, Color noteColor, double targetHittedTime, string id)
 	{
-		_noteSpeed = noteSpeed;
 		_currentTime = currentTime;
 		_noteColor = noteColor;
 		TargetHittedTime = targetHittedTime;
@@ -42,7 +36,7 @@ public partial class TapNote : Area2D
 	private void MoveNote()
 	{
 		// Move the note downwards at the specified speed
-		Position += new Vector2(0, (float)(_noteSpeed * GetProcessDeltaTime()));
+		Position += new Vector2(0, (float)(GameSetting.Instance.NoteSpeed * GetProcessDeltaTime()));
 	}
 
 	public (bool isTrigger, string hitResult, double hitTime, double timeDifference) CheckNoteHit()
@@ -50,22 +44,22 @@ public partial class TapNote : Area2D
 		// timedifference be nagative if is too fast else positive
 		double timeDifference = _currentTime - TargetHittedTime;
 
-		if (Math.Abs(timeDifference) <= _criticalPerfectTimeRange)
+		if (Math.Abs(timeDifference) <= GameSetting.Instance.CriticalPerfectTimeRange)
 		{
 			PlayHitEffect("Critical Perfect");
 			return (true, "Critical Perfect", _currentTime, timeDifference);
 		}
-		else if (Math.Abs(timeDifference) <= _perfectTimeRange)
+		else if (Math.Abs(timeDifference) <= GameSetting.Instance.PerfectTimeRange)
 		{
 			PlayHitEffect("Perfect");
 			return (true, "Perfect", _currentTime, timeDifference);
 		}
-		else if (Math.Abs(timeDifference) <= _greatTimeRange)
+		else if (Math.Abs(timeDifference) <= GameSetting.Instance.GreatTimeRange)
 		{
 			PlayHitEffect("Great");
 			return (true, "Great", _currentTime, timeDifference);
 		}
-		else if (Math.Abs(timeDifference) <= _goodTimeRange)
+		else if (Math.Abs(timeDifference) <= GameSetting.Instance.GoodTimeRange)
 		{
 			PlayHitEffect("Good");
 			return (true, "Good", _currentTime, timeDifference);

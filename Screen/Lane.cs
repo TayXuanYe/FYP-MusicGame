@@ -20,11 +20,11 @@ public partial class Lane : Node2D
 	[Export] private Color _normalHintTextColor;
 	[Export] private Color _pressedHintTextColor;
 
-	public float NoteSpeed { get; set; } = 200f;
 	public Queue<(double targetHittedTime, Color noteColor, string type, double durationTime)> NotesMetadataQueue { get; private set; }
 	private Queue<TapNote> _tapNotesQueue = new Queue<TapNote>();
 	private int _tapNoteIdCounter = 0;
-	private double _currentTime = 0;
+	private double _currentTime = 0f;
+	private float _spawnNoteYPosition = -100f;
 
 	public override void _Ready()
 	{
@@ -101,12 +101,11 @@ public partial class Lane : Node2D
 		// check for missed tap notes
 		if (_tapNotesQueue != null && _tapNotesQueue.Count > 0)
 		{
-			while (_tapNotesQueue.Peek().TargetHittedTime + 0.15f < _currentTime)
+			while (_tapNotesQueue.Peek().TargetHittedTime + GameSetting.Instance.GoodTimeRange < _currentTime)
 			{
 				var tapNote = _tapNotesQueue.Dequeue();
 				// Handle missed note logic here, e.g., play a sound or update score
 				DestroyedTapNote(tapNote);
-				GD.Print($"Missed tap note in key {KeyCode}");
 				if (_tapNotesQueue.Count == 0)
 				{
 					break;
@@ -119,7 +118,8 @@ public partial class Lane : Node2D
 	{
 		// Calculate the time when the note should spawn based on the target hit time and the note speed
 		double laneHeight = GetViewportRect().Size.Y;
-		double spawnTime = targetHittedTime - ((laneHeight+100)/ NoteSpeed);
+		double distanceToTravel = laneHeight - _hittingAreaHeight - _spawnNoteYPosition;
+		double spawnTime = targetHittedTime - (distanceToTravel/ GameSetting.Instance.NoteSpeed);
 		return spawnTime;
 	}
 
@@ -148,7 +148,6 @@ public partial class Lane : Node2D
 				// Handle the hit result, e.g., update score, play sound, etc.
 				_tapNotesQueue.Dequeue();
 				DestroyedTapNote(tapNote);
-				GD.Print($"Note hitted in key {KeyCode}, time difference: {hitResult.timeDifference}");
 			}
 		}
 	}
@@ -161,16 +160,15 @@ public partial class Lane : Node2D
 	private void SpawnTapNote(double targetHittedTime, Color noteColor)
 	{
 		TapNote tapNote = _tapNoteScene.Instantiate<TapNote>();
-		tapNote.Initialize(NoteSpeed, _currentTime, noteColor, targetHittedTime, KeyCode + "_" + _tapNoteIdCounter);
+		tapNote.Initialize(_currentTime, noteColor, targetHittedTime, KeyCode + "_" + _tapNoteIdCounter);
 		_tapNoteIdCounter++;
 		AddChild(tapNote);
 		_tapNotesQueue.Enqueue(tapNote);
-		tapNote.Position = new Vector2(_laneWidth / 2, -30); // Set the initial position at the top of the lane
+		tapNote.Position = new Vector2(_laneWidth / 2, _spawnNoteYPosition); // Set the initial position at the top of the lane
 	}
 
 	private void DestroyedTapNote(TapNote tapNote)
 	{
-		GD.Print($"Destroyed tap note : Id={tapNote.Id}");
 		tapNote.Destroyed();
 	}
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=3 uid="uid://bkog4fxx41wlu"]
 
 [ext_resource type="Script" uid="uid://de5ksj6isa6si" path="res://Screen/GameScene.cs" id="1_51csq"]
-[ext_resource type="FontFile" uid="uid://cffa5bhb4g440" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_51csq"]
-[ext_resource type="Texture2D" uid="uid://dpopf7ownnkuw" path="res://Assets/Svg/pause.png" id="4_51csq"]
+[ext_resource type="FontFile" uid="uid://cqsaqxed7sfuj" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_51csq"]
+[ext_resource type="Texture2D" uid="uid://beu320420trob" path="res://Assets/Svg/pause.png" id="4_51csq"]
 [ext_resource type="Script" uid="uid://csjd4qjhh0bdp" path="res://Screen/Lane.cs" id="5_1o6g0"]
 [ext_resource type="PackedScene" uid="uid://cyhfbju4ae6ke" path="res://Screen/tap_note.tscn" id="5_fawv8"]
 
