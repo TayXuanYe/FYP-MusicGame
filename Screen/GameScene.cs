@@ -12,23 +12,19 @@ public partial class GameScene : Node2D
 	[Export] private Control _uiContainer;
 	[Export] private Panel _navBarPanel;
 	[Export] private RichTextLabel _hitResultDisplayRichTextLabel;
-
 	[Export] private float _laneSpacing = 0f;
 	[Export] private float _laneWidth = 100f;
 
-
-	[Export] private VBoxContainer _centerContainer;
 	public override void _Ready()
 	{
 		InitBackground();
 		InitLanesLayout();
 		InitUI();
 		_pauseButton.Pressed += OnPauseButtonPressed;
-
-		GD.Print(_uiContainer.Size);
-		GD.Print(_centerContainer.Size);
-		GD.Print(_hitResultDisplayRichTextLabel.Size);
-		GD.Print(_hitResultDisplayRichTextLabel.Position);
+		_lane1.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
+		_lane2.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
+		_lane3.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
+		_lane4.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -71,12 +67,36 @@ public partial class GameScene : Node2D
 	}
 	private void InitUI()
 	{
-		_uiContainer.Size = GetViewportRect().Size;
-		// _navBarPanel.Size = new Vector2(GetViewportRect().Size.X, _navBarPanel.Size.Y);
+		Vector2 viewportSize = GetViewportRect().Size;
+		_uiContainer.Size = viewportSize;
+
+		_hitResultDisplayRichTextLabel.Position = new Vector2((viewportSize.X - _hitResultDisplayRichTextLabel.Size.X) / 2, viewportSize.Y - 150);
 	}
 	private void OnPauseButtonPressed()
 	{
 		// Handle pause button pressed logic here
 		GD.Print("Pause button pressed");
+	}
+
+	public void DisplayHitResult(string result)
+	{
+		_hitResultDisplayRichTextLabel.Text = result;
+		_hitResultDisplayRichTextLabel.Visible = true;
+
+		var timer = new Timer();
+		timer.WaitTime = 1.0f; // Display for 1 second
+		timer.OneShot = true;
+		AddChild(timer);
+		timer.Timeout += () =>
+		{
+			_hitResultDisplayRichTextLabel.Visible = false;
+			timer.QueueFree();
+		};
+		timer.Start();
+	}
+
+	private void OnDisplayHiteResultSignalHandler(string result)
+	{
+		DisplayHitResult(result);
 	}
 }

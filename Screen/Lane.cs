@@ -26,6 +26,8 @@ public partial class Lane : Node2D
 	private double _currentTime = 0f;
 	private float _spawnNoteYPosition = -100f;
 
+	[Signal] public delegate void DisplayHitResultEventHandler(string resultText);
+
 	public override void _Ready()
 	{
 		InitLane();
@@ -46,8 +48,9 @@ public partial class Lane : Node2D
 	private void InitLane()
 	{
 		Vector2 viewportSize = GetViewportRect().Size;
-		_laneLine.Width = _laneLineWidth;
 
+		// Draw lane line
+		_laneLine.Width = _laneLineWidth;
 		Vector2 leftEndPoint = new Vector2(0, viewportSize.Y);
 		Vector2 leftHittingBoxPoint = new Vector2(0, viewportSize.Y - _hittingAreaHeight);
 		Vector2 rightHittingBoxPoint = new Vector2(_laneWidth, viewportSize.Y - _hittingAreaHeight);
@@ -62,10 +65,12 @@ public partial class Lane : Node2D
 		_laneLine.AddPoint(rightStartPoint);
 		_laneLine.AddPoint(rightEndPoint);
 
+		// Setup hitting area
 		_hittingArea.Size = new Vector2(_laneWidth, _hittingAreaHeight);
 		_hittingArea.Position = new Vector2(0, viewportSize.Y - _hittingAreaHeight);
 		_hittingArea.Texture = _normalTexture;
 
+		// Setup lane label
 		_laneLabel.Position = new Vector2(_laneWidth / 2, viewportSize.Y - _hittingAreaHeight / 2);
 		_laneLabel.Text = KeyCode;
 		_laneLabel.LabelSettings.FontSize = _fontSize;
@@ -146,6 +151,9 @@ public partial class Lane : Node2D
 			if (hitResult.isTrigger)
 			{
 				// Handle the hit result, e.g., update score, play sound, etc.
+				EmitSignal(SignalName.DisplayHitResult, hitResult.hitResult);
+
+
 				_tapNotesQueue.Dequeue();
 				DestroyedTapNote(tapNote);
 			}
