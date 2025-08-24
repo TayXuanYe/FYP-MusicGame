@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkog4fxx41wlu"]
+[gd_scene load_steps=24 format=3 uid="uid://bkog4fxx41wlu"]
 
 [ext_resource type="Script" uid="uid://de5ksj6isa6si" path="res://Screen/GameScene.cs" id="1_51csq"]
 [ext_resource type="FontFile" uid="uid://cqsaqxed7sfuj" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_51csq"]
@@ -34,9 +34,6 @@ fill_to = Vector2(0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_6img8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jaseg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fawv8"]
-bg_color = Color(2.5028e-06, 0.703446, 0.548687, 1)
 
 [sub_resource type="Gradient" id="Gradient_s1g5e"]
 colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
@@ -278,7 +275,6 @@ theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
-theme_override_styles/background = SubResource("StyleBoxFlat_fawv8")
 bbcode_enabled = true
 text = "
 "

@@ -15,6 +15,8 @@ public partial class GameScene : Node2D
 	[Export] private float _laneSpacing = 0f;
 	[Export] private float _laneWidth = 100f;
 
+	private Timer _displayTimer;
+
 	public override void _Ready()
 	{
 		InitBackground();
@@ -25,6 +27,12 @@ public partial class GameScene : Node2D
 		_lane2.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
 		_lane3.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
 		_lane4.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
+
+		_displayTimer = new Timer();
+		_displayTimer.OneShot = true;
+		_displayTimer.WaitTime = 1.0f;
+		_displayTimer.Timeout += OnDisplayTimerTimeout;
+		AddChild(_displayTimer);
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -80,23 +88,53 @@ public partial class GameScene : Node2D
 
 	public void DisplayHitResult(string result)
 	{
-		_hitResultDisplayRichTextLabel.Text = result;
-		_hitResultDisplayRichTextLabel.Visible = true;
+		Color textColor;
+		Color outlineColor;
 
-		var timer = new Timer();
-		timer.WaitTime = 1.0f; // Display for 1 second
-		timer.OneShot = true;
-		AddChild(timer);
-		timer.Timeout += () =>
+		switch (result)
 		{
-			_hitResultDisplayRichTextLabel.Visible = false;
-			timer.QueueFree();
-		};
-		timer.Start();
+			case "Critical Perfect":
+				textColor = GameSetting.Instance.CriticalPerfectTextColor;
+				outlineColor = GameSetting.Instance.CriticalPerfectTextOutlineColor;
+				break;
+			case "Perfect":
+				textColor = GameSetting.Instance.PerfectTextColor;
+				outlineColor = GameSetting.Instance.PerfectTextOutlineColor;
+				break;
+			case "Great":
+				textColor = GameSetting.Instance.GreatTextColor;
+				outlineColor = GameSetting.Instance.GreatTextOutlineColor;
+				break;
+			case "Good":
+				textColor = GameSetting.Instance.GoodTextColor;
+				outlineColor = GameSetting.Instance.GoodTextOutlineColor;
+				break;
+			case "Miss":
+				textColor = GameSetting.Instance.MissTextColor;
+				outlineColor = GameSetting.Instance.MissTextOutlineColor;
+				break;
+			default:
+				return;
+		}
+
+		_hitResultDisplayRichTextLabel.Clear();
+		_hitResultDisplayRichTextLabel.PushColor(textColor);
+		_hitResultDisplayRichTextLabel.PushOutlineColor(outlineColor);
+		_hitResultDisplayRichTextLabel.PushOutlineSize(GameSetting.Instance.OutlineSize);
+		_hitResultDisplayRichTextLabel.AppendText(result);
+		_hitResultDisplayRichTextLabel.PopAll();
+
+		_hitResultDisplayRichTextLabel.Visible = true;
+		_displayTimer.Start();
 	}
 
 	private void OnDisplayHiteResultSignalHandler(string result)
 	{
 		DisplayHitResult(result);
+	}
+	
+	private void OnDisplayTimerTimeout()
+	{
+		_hitResultDisplayRichTextLabel.Visible = false;
 	}
 }

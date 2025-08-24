@@ -110,6 +110,7 @@ public partial class Lane : Node2D
 			{
 				var tapNote = _tapNotesQueue.Dequeue();
 				// Handle missed note logic here, e.g., play a sound or update score
+				EmitSignal(SignalName.DisplayHitResult, "Miss");
 				DestroyedTapNote(tapNote);
 				if (_tapNotesQueue.Count == 0)
 				{
