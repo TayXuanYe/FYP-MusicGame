@@ -269,6 +269,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="HitResultDisplayRichTextLabel" type="RichTextLabel" parent="UI"]
+z_index = 100
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 offset_left = -50.0

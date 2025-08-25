@@ -45,10 +45,10 @@ public partial class HoldNote : Area2D
 			// change the color to bright when holding
 			_HoldShadow.Modulate = _noteColor with { A = 0.7f };
 		}
-		else
+		else if (_currentTime > TargetHittedTime)
 		{
-			// change the color more dark when not holding
-			_HoldShadow.Modulate = _noteColor with { A = 0.2f };
+			// change the color more dark when not holding and missing
+			_HoldShadow.Modulate = _noteColor with { A = 0.3f };
 		}
 
 	}
@@ -67,6 +67,7 @@ public partial class HoldNote : Area2D
 	public void OnNoteReleased()
 	{
 		_isHolding = false;
+		GD.Print($"Hold note released: Id={HoldNoteId}, Time={_currentTime}, HoldTime={_holdTime}");
 	}
 
 	public void Destroyed()

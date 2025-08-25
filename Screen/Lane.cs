@@ -164,6 +164,7 @@ public partial class Lane : Node2D
 	{
 		_hittingArea.Texture = _normalTexture;
 		_laneLabel.Modulate = _normalHintTextColor;
+		CheckNoteRelease();
 	}
 
 	private void CheckNoteHit()
