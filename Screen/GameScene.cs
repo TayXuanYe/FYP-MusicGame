@@ -120,7 +120,7 @@ public partial class GameScene : Node2D
 		_hitResultDisplayRichTextLabel.Clear();
 		_hitResultDisplayRichTextLabel.PushColor(textColor);
 		_hitResultDisplayRichTextLabel.PushOutlineColor(outlineColor);
-		_hitResultDisplayRichTextLabel.PushOutlineSize(GameSetting.Instance.OutlineSize);
+		_hitResultDisplayRichTextLabel.PushOutlineSize(GameSetting.Instance.HitResultTextOutlineSize);
 		_hitResultDisplayRichTextLabel.AppendText(result);
 		_hitResultDisplayRichTextLabel.PopAll();
 

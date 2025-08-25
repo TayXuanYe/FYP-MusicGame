@@ -23,7 +23,7 @@ public partial class GameSetting : Node
 	[Export] public Color GoodTextOutlineColor { get; set; } = new Color("#2fca4c");
 	[Export] public Color MissTextOutlineColor { get; set; } = new Color("#868686");
 
-	[Export] public int OutlineSize { get; set; } = 8;
+	[Export] public int HitResultTextOutlineSize { get; set; } = 8;
 
 	[Export] public AudioStream TapSoundEffect { get; set; } = GD.Load<AudioStream>("res://Assets/SoundEffect/SE_Tap.wav");
 
