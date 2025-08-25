@@ -67,7 +67,6 @@ public partial class HoldNote : Area2D
 	public void OnNoteReleased()
 	{
 		_isHolding = false;
-		GD.Print($"Hold note released: Id={HoldNoteId}, Time={_currentTime}, HoldTime={_holdTime}");
 	}
 
 	public void Destroyed()
