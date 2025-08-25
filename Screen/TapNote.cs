@@ -4,6 +4,7 @@ using System;
 public partial class TapNote : Area2D
 {
 	[Export] private Color _noteColor;
+	[Export] private Panel _notePanel;
 	[Export] public double TargetHittedTime { get; private set; }
 	public string Id { get; private set; }
 	private double _currentTime;
@@ -68,5 +69,10 @@ public partial class TapNote : Area2D
 		_isDestroyed = true;
 		Modulate = Colors.Transparent;
 		QueueFree();
+	}
+
+	public Vector2 GetNoteSize()
+	{
+		return _notePanel.Size;
 	}
 }

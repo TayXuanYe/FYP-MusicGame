@@ -3,110 +3,100 @@ using System;
 
 public partial class HoldNote : Area2D
 {
-	[Export] private Panel _TapNote;
 	[Export] private Panel _HoldShadow;
 
 	[Export] private Color _noteColor;
 	[Export] public double TargetHittedTime { get; private set; }
-	[Export] private double _holdDuration;
+	[Export] public double HoldDuration { get; private set; }
 	public string HoldNoteId { get; private set; }
-	public string TapNoteId { get; private set; }
 	private double _currentTime;
 	private bool _isDestroyed = false;
 	private bool _isHolding = false;
-	public bool IsTapNoteTriggered { get; private set; } = false;
 	private double _holdTime;
 	public float LengthOfShadow { get; private set; }
 
-	public void Initialize(double currentTime, Color noteColor, double targetHittedTime, double holdDuration, string holdNoteId, string tapNoteId)
+	public void Initialize(double currentTime, Color noteColor, double targetHittedTime, double holdDuration, string holdNoteId)
 	{
 		_currentTime = currentTime;
 		_noteColor = noteColor;
 		TargetHittedTime = targetHittedTime;
-		_holdDuration = holdDuration;
+		HoldDuration = holdDuration;
 		HoldNoteId = holdNoteId;
-		TapNoteId = tapNoteId;
 	}
 
 	public override void _Ready()
 	{
 		// Set the color of the note
-		_TapNote.Modulate = _noteColor;
 		_HoldShadow.Modulate = _noteColor with { A = 0.5f };
 
 		// calculate the length of the shadow based on the hold duration and note speed
-		LengthOfShadow = (float)(GameSetting.Instance.NoteSpeed * _holdDuration);
-		_HoldShadow.Size = new Vector2(_TapNote.Size.X, LengthOfShadow);
-
-		// set the position of tap to the bottom of the shadow
-		_TapNote.Position = new Vector2(_TapNote, LengthOfShadow);
+		LengthOfShadow = (float)(GameSetting.Instance.NoteSpeed * HoldDuration);
+		_HoldShadow.Size = new Vector2(_HoldShadow.Size.X, LengthOfShadow);
 	}
 
 	public override void _Process(double delta)
 	{
+		if (_isDestroyed) { return; }
 		_currentTime += delta;
-
-		if (!_isDestroyed)
+		MoveNote();
+		if (_isHolding)
 		{
-			MoveNote();
+			_holdTime += delta;
+			// change the color to bright when holding
+			_HoldShadow.Modulate = _noteColor with { A = 0.7f };
 		}
+		else
+		{
+			// change the color more dark when not holding
+			_HoldShadow.Modulate = _noteColor with { A = 0.2f };
+		}
+
 	}
 
 	private void MoveNote()
 	{
 		// Move the note downwards at the specified speed
 		Position += new Vector2(0, (float)(GameSetting.Instance.NoteSpeed * GetProcessDeltaTime()));
-
-		// // Tap note position fixed at the jugment line when it reaches the target hitted time and during the hold duration
-		// if (_currentTime >= TargetHittedTime && _currentTime <= TargetHittedTime + _holdDuration)
-		// {
-		// 	float screenHeight = GetViewportRect().Size.Y;
-		// 	_TapNote.GlobalPosition = new Vector2(GlobalPosition.X, screenHeight - 80 - _TapNote.Size.Y / 2);
-		// }
 	}
 
-	public (bool isTrigger, string hitResult, double hitTime, double timeDifference) CheckNoteHit()
+	public void OnNotePressed()
 	{
-		if (IsTapNoteTriggered)
-		{
-			return (false, null, 0, 0);
-		}
-
-		// timedifference be nagative if is too fast else positive
-		double timeDifference = _currentTime - TargetHittedTime;
-
-		if (Math.Abs(timeDifference) <= GameSetting.Instance.CriticalPerfectTimeRange)
-		{
-			IsTapNoteTriggered = true;
-			return (true, "Critical Perfect", _currentTime, timeDifference);
-		}
-		else if (Math.Abs(timeDifference) <= GameSetting.Instance.PerfectTimeRange)
-		{
-			IsTapNoteTriggered = true;
-			return (true, "Perfect", _currentTime, timeDifference);
-		}
-		else if (Math.Abs(timeDifference) <= GameSetting.Instance.GreatTimeRange)
-		{
-			IsTapNoteTriggered = true;
-			return (true, "Great", _currentTime, timeDifference);
-		}
-		else if (Math.Abs(timeDifference) <= GameSetting.Instance.GoodTimeRange)
-		{
-			IsTapNoteTriggered = true;
-			return (true, "Good", _currentTime, timeDifference);
-		}
-
-		return (false, null, 0, 0);
+		_isHolding = true;
 	}
 
-	public void CheckNoteRelease()
+	public void OnNoteReleased()
 	{
-
+		_isHolding = false;
 	}
-	
+
 	public void Destroyed()
 	{
 		_isDestroyed = true;
 		QueueFree();
+	}
+	
+	public (string hitResult, double holdTime, double holdRatio) GetHoldResult()
+	{
+		double holdRatio = _holdTime / HoldDuration;
+		if (holdRatio >= GameSetting.Instance.CriticalPerfectHoldDurationRatio)
+		{
+			return ("Critical Perfect", _holdTime, holdRatio);
+		}
+		else if (holdRatio >= GameSetting.Instance.PerfectHoldDurationRatio)
+		{
+			return ("Perfect", _holdTime, holdRatio);
+		}
+		else if (holdRatio >= GameSetting.Instance.GreatHoldDurationRatio)
+		{
+			return ("Great", _holdTime, holdRatio);
+		}
+		else if (holdRatio >= GameSetting.Instance.GoodHoldDurationRatio)
+		{
+			return ("Good", _holdTime, holdRatio);
+		}
+		else
+		{
+			return ("Miss", _holdTime, holdRatio);
+		}
 	}
 }

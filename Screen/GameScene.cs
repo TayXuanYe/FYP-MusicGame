@@ -23,10 +23,10 @@ public partial class GameScene : Node2D
 		InitLanesLayout();
 		InitUI();
 		_pauseButton.Pressed += OnPauseButtonPressed;
-		_lane1.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
-		_lane2.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
-		_lane3.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
-		_lane4.Connect(Lane.SignalName.DisplayHitResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
+		_lane1.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
+		_lane2.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
+		_lane3.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
+		_lane4.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
 
 		_displayTimer = new Timer();
 		_displayTimer.OneShot = true;

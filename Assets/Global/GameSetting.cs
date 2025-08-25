@@ -5,12 +5,19 @@ public partial class GameSetting : Node
 {
 	// unit px per second
 	[Export] public float NoteSpeed { get; set; } = 800f;
+
+	// should be in config not game setting future enhancement begin
 	// unit second
 	[Export] public double GoodTimeRange { get; set; } = 0.15f;
 	[Export] public double GreatTimeRange { get; set; } = 0.1f;
 	[Export] public double PerfectTimeRange { get; set; } = 0.05f;
 	[Export] public double CriticalPerfectTimeRange { get; set; } = 0.02f;
-
+	
+	[Export] public double GoodHoldDurationRatio { get; set; } = 0.5f;
+	[Export] public double GreatHoldDurationRatio { get; set; } = 0.7f;
+	[Export] public double PerfectHoldDurationRatio { get; set; } = 0.8f;
+	[Export] public double CriticalPerfectHoldDurationRatio { get; set; } = 0.9f;
+	// end
 	[Export] public Color CriticalPerfectTextColor { get; set; } = Colors.White;
 	[Export] public Color PerfectTextColor { get; set; } = Colors.White;
 	[Export] public Color GreatTextColor { get; set; } = Colors.White;
