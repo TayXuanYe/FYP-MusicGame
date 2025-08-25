@@ -30,7 +30,7 @@ public partial class GameScene : Node2D
 
 		_displayTimer = new Timer();
 		_displayTimer.OneShot = true;
-		_displayTimer.WaitTime = 1.0f;
+		_displayTimer.WaitTime = 0.5f;
 		_displayTimer.Timeout += OnDisplayTimerTimeout;
 		AddChild(_displayTimer);
 	}

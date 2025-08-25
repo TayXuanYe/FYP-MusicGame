@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SceneManager="*res://Assets/Manager/SceneManager.cs"
 UserDataManager="*res://Assets/Manager/UserDataManager.cs"
 GameSetting="*res://Assets/Global/GameSetting.cs"
+AudioManager="*res://Assets/Manager/AudioManager.cs"
 
 [display]
 

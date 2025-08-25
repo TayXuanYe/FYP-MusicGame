@@ -109,7 +109,8 @@ public partial class Lane : Node2D
 			while (_tapNotesQueue.Peek().TargetHittedTime + GameSetting.Instance.GoodTimeRange < _currentTime)
 			{
 				var tapNote = _tapNotesQueue.Dequeue();
-				// Handle missed note logic here, e.g., play a sound or update score
+
+				// Handle missed note logic here
 				EmitSignal(SignalName.DisplayHitResult, "Miss");
 				DestroyedTapNote(tapNote);
 				if (_tapNotesQueue.Count == 0)
@@ -151,9 +152,9 @@ public partial class Lane : Node2D
 
 			if (hitResult.isTrigger)
 			{
-				// Handle the hit result, e.g., update score, play sound, etc.
+				// Handle the hit result
 				EmitSignal(SignalName.DisplayHitResult, hitResult.hitResult);
-
+				AudioManager.Instance.PlaySound(GameSetting.Instance.TapSoundEffect);
 
 				_tapNotesQueue.Dequeue();
 				DestroyedTapNote(tapNote);
