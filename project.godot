@@ -19,12 +19,14 @@ config/icon="res://icon.svg"
 
 SceneManager="*res://Assets/Manager/SceneManager.cs"
 UserDataManager="*res://Assets/Manager/UserDataManager.cs"
+GameSetting="*res://Assets/Global/GameSetting.cs"
+AudioManager="*res://Assets/Manager/AudioManager.cs"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [dotnet]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyhfbju4ae6ke"]
+
+[ext_resource type="Script" uid="uid://iqb23fp81lyb" path="res://Screen/TapNote.cs" id="1_38mdf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4qcn"]
+size = Vector2(80, 40)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4qcn"]
+bg_color = Color(0.835294, 0.301961, 0.729412, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.835294, 0.301961, 0.729412, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color(1, 1, 1, 0.333333)
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("_notePanel")]
+script = ExtResource("1_38mdf")
+_notePanel = NodePath("Panel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t4qcn")
+
+[node name="Panel" type="Panel" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(80, 40)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t4qcn")

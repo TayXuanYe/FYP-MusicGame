@@ -24,5 +24,6 @@
 |Init|Mark a function as an initialization function|
 |Check|This function used to check whether the current state or condition is met|
 |Spawn|This function used to generate or instantiate one or more new object|
+|Play|This function is used to start or execute an action, animation, sound or effect|
 3. A function should not have more than one function or task. (Comply with the Single Responsibility Principle)
 
