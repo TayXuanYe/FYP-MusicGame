@@ -19,7 +19,6 @@ public partial class PauseScene : Control
 		// Resume the game
 		GetTree().Paused = false;
 		Visible = false;
-		GD.Print("Resume button pressed, game resumed.");
 	}
 
 	private void OnRetryButtonPressed()
@@ -31,8 +30,6 @@ public partial class PauseScene : Control
 	
 	private void OnQuitButtonPressed()
 	{
-		// Go back to the main menu scene
-		GetTree().Paused = false;
-		//SceneManager.Instance.GoToMainMenuScene();
+		SceneManager.Instance.GoToMainMenuScene();
 	}
 }

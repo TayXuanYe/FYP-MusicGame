@@ -1,12 +1,12 @@
 [gd_scene load_steps=26 format=3 uid="uid://bkog4fxx41wlu"]
 
-[ext_resource type="Script" uid="uid://de5ksj6isa6si" path="res://Screen/GameScene.cs" id="1_51csq"]
+[ext_resource type="Script" uid="uid://de5ksj6isa6si" path="res://Scene/GameScene.cs" id="1_51csq"]
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_51csq"]
 [ext_resource type="Texture2D" uid="uid://wnp7yu2jndh5" path="res://Assets/Svg/pause.png" id="4_51csq"]
-[ext_resource type="PackedScene" uid="uid://br6rabwgqmebg" path="res://Screen/hold_note.tscn" id="4_d5xka"]
-[ext_resource type="Script" uid="uid://csjd4qjhh0bdp" path="res://Screen/Lane.cs" id="5_1o6g0"]
-[ext_resource type="PackedScene" uid="uid://cyhfbju4ae6ke" path="res://Screen/tap_note.tscn" id="5_fawv8"]
-[ext_resource type="PackedScene" uid="uid://b3d07lgtjo68s" path="res://Screen/pause_scene.tscn" id="7_eitg6"]
+[ext_resource type="PackedScene" uid="uid://br6rabwgqmebg" path="res://Scene/hold_note.tscn" id="4_d5xka"]
+[ext_resource type="Script" uid="uid://csjd4qjhh0bdp" path="res://Scene/Lane.cs" id="5_1o6g0"]
+[ext_resource type="PackedScene" uid="uid://cyhfbju4ae6ke" path="res://Scene/tap_note.tscn" id="5_fawv8"]
+[ext_resource type="PackedScene" uid="uid://b3d07lgtjo68s" path="res://Scene/pause_scene.tscn" id="7_eitg6"]
 
 [sub_resource type="Gradient" id="Gradient_rk1hp"]
 colors = PackedColorArray(0.247059, 0.156863, 0.517647, 1, 0.247059, 0.156863, 0.517647, 1)

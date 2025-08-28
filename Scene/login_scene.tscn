@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="1_oj103"]
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="1_sq1fn"]
-[ext_resource type="Script" uid="uid://b0vrfndg2nxkb" path="res://Screen/LoginScreen.cs" id="1_y4u5i"]
+[ext_resource type="Script" uid="uid://b0vrfndg2nxkb" path="res://Scene/LoginScene.cs" id="1_y4u5i"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://b3d07lgtjo68s"]
 
-[ext_resource type="Script" uid="uid://db7b7v8hxpqme" path="res://Screen/PauseScene.cs" id="1_7wpob"]
-[ext_resource type="Script" uid="uid://chm242uo5k36j" path="res://Screen/PauseSceneCustomeButton.cs" id="2_edd15"]
+[ext_resource type="Script" uid="uid://db7b7v8hxpqme" path="res://Scene/PauseScene.cs" id="1_7wpob"]
+[ext_resource type="Script" uid="uid://chm242uo5k36j" path="res://Scene/PauseSceneCustomeButton.cs" id="2_edd15"]
 
 [sub_resource type="Gradient" id="Gradient_qv1gj"]
 colors = PackedColorArray(0, 0, 0, 0.784314, 0, 0, 0, 0.784314)

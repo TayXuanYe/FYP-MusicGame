@@ -118,6 +118,6 @@ public partial class LoginScreen : Control
 
 	private void OnCreateAccountLinkButtonPressed()
 	{
-		SceneManager.Instance.ChangeToRegisterScreen();
+		SceneManager.Instance.ChangeToRegisterScene();
 	}
 }

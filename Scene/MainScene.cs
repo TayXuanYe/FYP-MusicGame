@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MainScreen : Control
+public partial class MainScene : Control
 {
 	[Export] private Label _usernameLabel;
 	[Export] private Button _playGameButton;
@@ -14,7 +14,7 @@ public partial class MainScreen : Control
 	{
 		if (!UserDataManager.Instance.CurrentUser.IsLoggedIn)
 		{
-			SceneManager.Instance.ChangeToLoginScreen();
+			SceneManager.Instance.ChangeToLoginScene();
 			return;
 		}
 		
@@ -49,6 +49,6 @@ public partial class MainScreen : Control
 	private void OnLogoutButtonPressed()
 	{
 		UserDataManager.Instance.CurrentUser.IsLoggedIn = false;
-		SceneManager.Instance.ChangeToLoginScreen();
+		SceneManager.Instance.ChangeToLoginScene();
 	}
 }
