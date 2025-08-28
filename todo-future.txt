@@ -12,3 +12,4 @@
 2. OnGameHistoryButtonPressed
 3. OnSettingButtonPressed
 4. OnReportBugButtonPressed
+5. Logout button not working (cant press)
