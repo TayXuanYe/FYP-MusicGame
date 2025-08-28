@@ -14,6 +14,7 @@ public partial class GameScene : Node2D
 	[Export] private RichTextLabel _hitResultDisplayRichTextLabel;
 	[Export] private float _laneSpacing = 0f;
 	[Export] private float _laneWidth = 100f;
+	[Export] private PauseScene _pauseScene;
 
 	private Timer _displayTimer;
 
@@ -82,8 +83,8 @@ public partial class GameScene : Node2D
 	}
 	private void OnPauseButtonPressed()
 	{
-		// Handle pause button pressed logic here
-		GD.Print("Pause button pressed");
+		_pauseScene.Visible = true;
+		GetTree().Paused = true;
 	}
 
 	public void DisplayHitResult(string result)
