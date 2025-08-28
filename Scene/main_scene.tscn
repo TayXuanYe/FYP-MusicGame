@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d0k21vq5nx2gk"]
+[gd_scene load_steps=24 format=3 uid="uid://d0k21vq5nx2gk"]
 
 [ext_resource type="Script" uid="uid://c7bsjo6ew3g14" path="res://Scene/MainScene.cs" id="1_72i6h"]
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="2_i7nbl"]
@@ -28,6 +28,8 @@ texture = SubResource("GradientTexture1D_72i6h")
 [sub_resource type="FontVariation" id="FontVariation_0241h"]
 base_font = ExtResource("3_phuym")
 variation_embolden = 1.45
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k2rys"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7nbl"]
 bg_color = Color(0, 0, 0, 0.196078)
@@ -82,12 +84,14 @@ expand_margin_bottom = 4.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d1wiv"]
 
 [node name="MainScreen" type="Control" node_paths=PackedStringArray("_usernameLabel", "_playGameButton", "_gameHistoryButton", "_settingButton", "_reportBugButton", "_logoutButton")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_72i6h")
 _usernameLabel = NodePath("Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer/UserNameLabel")
 _playGameButton = NodePath("CenterContainer/VBoxContainer/MarginContainer/PlayGameButton")
@@ -104,15 +108,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_oj103")
 metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="."]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 64.0
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0241h")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
@@ -120,15 +127,18 @@ layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 64.0
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_right = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -156,10 +166,12 @@ horizontal_alignment = 1
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer"]
 layout_mode = 2
@@ -181,6 +193,7 @@ text = "!"
 
 [node name="MarginContainer3" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
 
@@ -188,7 +201,7 @@ theme_override_constants/margin_right = 24
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/focus = SubResource("StyleBoxFlat_i7nbl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k2rys")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i7nbl")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_i7nbl")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_i7nbl")
