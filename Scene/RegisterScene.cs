@@ -2,7 +2,7 @@ using Godot;
 using System;
 using BCrypt.Net;
 
-public partial class RegisterScreen : Control
+public partial class RegisterScene : Control
 {
 	[Export] private HttpRequest _httpRequest;
 	[Export] private LineEdit _usernameLineEdit;
@@ -155,6 +155,6 @@ public partial class RegisterScreen : Control
 
 	private void OnSignInLinkButtonPressed()
 	{
-		SceneManager.Instance.ChangeToLoginScreen();
+		SceneManager.Instance.ChangeToLoginScene();
 	}
 }

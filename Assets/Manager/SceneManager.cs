@@ -4,40 +4,55 @@ using System;
 public partial class SceneManager : Node
 {
 	private static SceneManager _instance;
-    public static SceneManager Instance => _instance;
-	
-	private PackedScene _loginScreen;
-	private PackedScene _registerScreen;
+	public static SceneManager Instance => _instance;
+
+	private PackedScene _loginScene;
+	private PackedScene _registerScene;
+	private PackedScene _mainMenuScene;
 
 	public override void _Ready()
 	{
 		_instance = this;
 
-		_loginScreen = GD.Load<PackedScene>("res://Screen/login_screen.tscn");
-		_registerScreen = GD.Load<PackedScene>("res://Screen/register_screen.tscn");
+		_loginScene = GD.Load<PackedScene>("res://Scene/login_scene.tscn");
+		_registerScene = GD.Load<PackedScene>("res://Scene/register_scene.tscn");
+		_mainMenuScene = GD.Load<PackedScene>("res://Scene/main_scene.tscn");
 	}
 
-	public void ChangeToLoginScreen()
+	public void ChangeToLoginScene()
 	{
-		if (_loginScreen != null)
+		if (_loginScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_loginScreen);
+			GetTree().ChangeSceneToPacked(_loginScene);
 		}
 		else
 		{
-			GD.PrintErr("LoginScreen is not loaded!");
+			GD.PrintErr("LoginScene is not loaded!");
 		}
 	}
 
-	public void ChangeToRegisterScreen()
+	public void ChangeToRegisterScene()
 	{
-		if (_registerScreen != null)
+		if (_registerScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_registerScreen);
+			GetTree().ChangeSceneToPacked(_registerScene);
 		}
 		else
 		{
-			GD.PrintErr("RegisterScreen is not loaded!");
+			GD.PrintErr("RegisterScene is not loaded!");
+		}
+	}
+	
+	public void GoToMainMenuScene()
+	{
+		if (_mainMenuScene != null)
+		{
+			GetTree().ChangeSceneToPacked(_mainMenuScene);
+			GD.Print("Changed to MainMenuScene");
+		}
+		else
+		{
+			GD.PrintErr("MainMenuScene is not loaded!");
 		}
 	}
 }

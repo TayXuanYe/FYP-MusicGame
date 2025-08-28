@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyhfbju4ae6ke"]
 
-[ext_resource type="Script" uid="uid://iqb23fp81lyb" path="res://Screen/TapNote.cs" id="1_38mdf"]
+[ext_resource type="Script" uid="uid://iqb23fp81lyb" path="res://Scene/TapNote.cs" id="1_38mdf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4qcn"]
 size = Vector2(80, 40)

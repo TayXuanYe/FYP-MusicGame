@@ -1,0 +1,214 @@
+[gd_scene load_steps=21 format=3 uid="uid://b3d07lgtjo68s"]
+
+[ext_resource type="Script" uid="uid://db7b7v8hxpqme" path="res://Scene/PauseScene.cs" id="1_7wpob"]
+[ext_resource type="Script" uid="uid://chm242uo5k36j" path="res://Scene/PauseSceneCustomeButton.cs" id="2_edd15"]
+
+[sub_resource type="Gradient" id="Gradient_qv1gj"]
+colors = PackedColorArray(0, 0, 0, 0.784314, 0, 0, 0, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_srgev"]
+gradient = SubResource("Gradient_qv1gj")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_qv1gj"]
+spacing_glyph = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_qv1gj"]
+font = SubResource("FontVariation_qv1gj")
+font_size = 32
+outline_size = 2
+shadow_size = 12
+shadow_color = Color(1, 1, 1, 0.8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qv1gj"]
+bg_color = Color(0.117647, 0.0862745, 0.0862745, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.388235, 0.294118, 0.294118, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qv1gj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_srgev"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydww7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v5v1j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_citg0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6easy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aq67g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_orwpg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v1cgv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uv4x6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ien5b"]
+
+[sub_resource type="FontVariation" id="FontVariation_srgev"]
+spacing_glyph = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_ydww7"]
+font = SubResource("FontVariation_srgev")
+font_size = 32
+outline_size = 6
+shadow_size = 6
+shadow_color = Color(1, 1, 1, 0.8)
+
+[node name="PauseScene" type="Control" node_paths=PackedStringArray("_resumeButton", "_retryButton", "_quitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7wpob")
+_resumeButton = NodePath("CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/ResumeButton")
+_retryButton = NodePath("CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/RetryButton")
+_quitButton = NodePath("CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer3/QuitButton")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_srgev")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_qv1gj")
+vertical_alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qv1gj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("_buttonLabel")]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qv1gj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_srgev")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ydww7")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v5v1j")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_citg0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6easy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_aq67g")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_orwpg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_v1cgv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_uv4x6")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ien5b")
+script = ExtResource("2_edd15")
+_buttonLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/ResumeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESUME"
+label_settings = SubResource("LabelSettings_ydww7")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer2" node_paths=PackedStringArray("_buttonLabel")]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qv1gj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_srgev")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ydww7")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v5v1j")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_citg0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6easy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_aq67g")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_orwpg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_v1cgv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_uv4x6")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ien5b")
+script = ExtResource("2_edd15")
+_buttonLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/RetryButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RETRY"
+label_settings = SubResource("LabelSettings_ydww7")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 60
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer3" node_paths=PackedStringArray("_buttonLabel")]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qv1gj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_srgev")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ydww7")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v5v1j")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_citg0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6easy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_aq67g")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_orwpg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_v1cgv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_uv4x6")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ien5b")
+script = ExtResource("2_edd15")
+_buttonLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer3/QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+label_settings = SubResource("LabelSettings_ydww7")
+horizontal_alignment = 1
+vertical_alignment = 2

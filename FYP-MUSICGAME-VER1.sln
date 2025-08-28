@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FYP-MUSICGAME-VER1", "FYP-MUSICGAME-VER1.csproj", "{555C034B-DFE3-4CA9-8222-67C8B59CE0EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FYP-MUSICGAME-VER1", "FYP-MUSICGAME-VER1.csproj", "{ECA65F02-3DE3-4760-9919-866431D1DCEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{555C034B-DFE3-4CA9-8222-67C8B59CE0EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{555C034B-DFE3-4CA9-8222-67C8B59CE0EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{555C034B-DFE3-4CA9-8222-67C8B59CE0EB}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{555C034B-DFE3-4CA9-8222-67C8B59CE0EB}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{555C034B-DFE3-4CA9-8222-67C8B59CE0EB}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{555C034B-DFE3-4CA9-8222-67C8B59CE0EB}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{ECA65F02-3DE3-4760-9919-866431D1DCEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA65F02-3DE3-4760-9919-866431D1DCEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA65F02-3DE3-4760-9919-866431D1DCEA}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{ECA65F02-3DE3-4760-9919-866431D1DCEA}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{ECA65F02-3DE3-4760-9919-866431D1DCEA}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{ECA65F02-3DE3-4760-9919-866431D1DCEA}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal
