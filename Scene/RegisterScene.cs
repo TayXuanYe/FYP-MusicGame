@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using BCrypt.Net;
+using System.Text.Json;
 
 public partial class RegisterScene : Control
 {
@@ -13,7 +14,7 @@ public partial class RegisterScene : Control
 	[Export] private Label _passwordErrorLabel;
 	[Export] private Button _registerButton;
 	[Export] private LinkButton _signInLinkButton;
-
+	private bool _isRequestSend = false;
 
 	public override void _Ready()
 	{
@@ -87,8 +88,8 @@ public partial class RegisterScene : Control
 
 	private void SubmitRegistrationToServer(string username, string email, string password)
 	{
-		// temp login url haven‘t build backend
-		string loginUrl = "https://your-server-api.com/login";
+		if (_isRequestSend) { return; }
+		string registerUrl = ApiClient.Instance.BuildUrl("users");
 
 		// prepare headers for the request
 		var headers = new string[] { "Content-Type: application/json" };
@@ -97,17 +98,36 @@ public partial class RegisterScene : Control
 		var data = new Godot.Collections.Dictionary
 		{
 			{"username", username},
-			{"password", password}
+			{"password", password},
+			{"email", email}
 		};
 		string body = Json.Stringify(data);
 
 		// submit request
-		_httpRequest.Request(loginUrl, headers, HttpClient.Method.Post, body);
+		_httpRequest.Request(registerUrl, headers, HttpClient.Method.Post, body);
+		_isRequestSend = true;
 	}
 
 	private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
 	{
-		// handle the response from the server
+		GD.Print("Request receive--temp");
+		GD.Print(responseCode);
+		_isRequestSend = false;
+
+		if (responseCode == 201)
+		{
+			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
+			GD.Print($"Response body: {jsonResponse}");
+
+			UserDataManager.Instance.CurrentUser = JsonSerializer.Deserialize<UserData>(jsonResponse);
+
+			SceneManager.Instance.GoToMainMenuScene();
+		}
+		else
+		{
+			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
+			GD.Print($"Response body: {jsonResponse}");
+		}
 	}
 
 	private void OnRegisterButtonPressed()
@@ -149,8 +169,7 @@ public partial class RegisterScene : Control
 			return;
 		}
 
-		string hashPassword = BCrypt.Net.BCrypt.HashPassword(password);
-		SubmitRegistrationToServer(username, email, hashPassword);
+		SubmitRegistrationToServer(username, email, password);
 	}
 
 	private void OnSignInLinkButtonPressed()

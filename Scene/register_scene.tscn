@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://de87jpjxuo2nk"]
+[gd_scene load_steps=14 format=3 uid="uid://de87jpjxuo2nk"]
 
 [ext_resource type="Script" uid="uid://dikflk4r6gn46" path="res://Scene/RegisterScene.cs" id="1_hqhqj"]
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="2_nng06"]
@@ -32,6 +32,8 @@ base_font = ExtResource("3_xvvmh")
 font = SubResource("FontVariation_85sry")
 font_size = 14
 outline_size = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqfvw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85sry"]
 bg_color = Color(0.614033, 0.121409, 0.597445, 1)
@@ -193,7 +195,6 @@ label_settings = SubResource("LabelSettings_354gg")
 layout_mode = 2
 placeholder_text = "Enter your email address"
 max_length = 32
-secret = true
 
 [node name="EmailErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer"]
 visible = false
@@ -242,7 +243,7 @@ theme_override_constants/margin_top = 24
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 mouse_filter = 1
-theme_override_styles/focus = SubResource("StyleBoxFlat_85sry")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqfvw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_85sry")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_85sry")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_85sry")
@@ -281,6 +282,6 @@ text = "Sign in"
 underline = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-timeout = 10.0
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="OnHttpRequestCompleted"]
