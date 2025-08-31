@@ -128,7 +128,6 @@ public partial class RegisterScene : Control
 			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
 			GD.Print($"Response body: {jsonResponse}");
 		}
-
 	}
 
 	private void OnRegisterButtonPressed()
