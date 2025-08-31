@@ -123,10 +123,18 @@ public partial class RegisterScene : Control
 
 			SceneManager.Instance.GoToMainMenuScene();
 		}
-		else
+		else if (responseCode >= 400)
 		{
 			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
-			GD.Print($"Response body: {jsonResponse}");
+
+			if (jsonResponse.Contains("email", StringComparison.OrdinalIgnoreCase))
+			{
+				_emailErrorLabel.Text = jsonResponse;
+			}
+			if (jsonResponse.Contains("username", StringComparison.OrdinalIgnoreCase))
+			{
+				_usernameErrorLabel.Text = jsonResponse;
+			}
 		}
 	}
 
