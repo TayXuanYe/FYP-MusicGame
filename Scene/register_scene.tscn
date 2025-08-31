@@ -193,7 +193,6 @@ label_settings = SubResource("LabelSettings_354gg")
 layout_mode = 2
 placeholder_text = "Enter your email address"
 max_length = 32
-secret = true
 
 [node name="EmailErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer5/VBoxContainer"]
 visible = false
@@ -281,6 +280,6 @@ text = "Sign in"
 underline = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-timeout = 10.0
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="OnHttpRequestCompleted"]
