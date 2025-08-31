@@ -88,7 +88,7 @@ public partial class RegisterScene : Control
 	private void SubmitRegistrationToServer(string username, string email, string password)
 	{
 		// temp login url haven‘t build backend
-		string loginUrl = "https://your-server-api.com/login";
+		string loginUrl = "https://localhost:8081/api/user/CreateUser";
 
 		// prepare headers for the request
 		var headers = new string[] { "Content-Type: application/json" };
