@@ -48,7 +48,7 @@ public partial class MainScene : Control
 
 	private void OnLogoutButtonPressed()
 	{
-		UserDataManager.Instance.CurrentUser.IsLoggedIn = false;
+		UserDataManager.Instance.CurrentUser.IsLogin = false;
 		SceneManager.Instance.ChangeToLoginScene();
 	}
 }

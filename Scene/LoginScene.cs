@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using BCrypt.Net;
-
+using System.Text.Json;
 public partial class LoginScene : Control
 {
 	[Export] private HttpRequest _httpRequest;
@@ -55,15 +55,16 @@ public partial class LoginScene : Control
 		
 		return ValidationResult.Success();
 	}
-	
+
+	private bool _isRequestSend = false;
 	private void SubmitLoginToServer(string username, string password)
 	{
-		// temp login url haven‘t build backend
-		string loginUrl = "https://your-server-api.com/login";
-		
+		if (_isRequestSend) { return; }
+		string loginUrl = ApiClient.Instance.BuildUrl("users/login");
+
 		// prepare headers for the request
 		var headers = new string[] { "Content-Type: application/json" };
-		
+
 		// prepare body for the request
 		var data = new Godot.Collections.Dictionary
 		{
@@ -71,14 +72,39 @@ public partial class LoginScene : Control
 			{"password", password}
 		};
 		string body = Json.Stringify(data);
-		
+
 		// submit request
 		_httpRequest.Request(loginUrl, headers, HttpClient.Method.Post, body);
 	}
 	
 	private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
 	{
-		// handle the response from the server
+		GD.Print("Request receive--temp");
+		GD.Print(responseCode);
+		_isRequestSend = false;
+
+		if (responseCode == 200)
+		{
+			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
+			GD.Print($"Response body: {jsonResponse}");
+
+			UserDataManager.Instance.CurrentUser = JsonSerializer.Deserialize<UserData>(jsonResponse);
+
+			SceneManager.Instance.GoToMainMenuScene();
+		}
+		else if (responseCode >= 400)
+		{
+			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
+
+			if (jsonResponse.Contains("password", StringComparison.OrdinalIgnoreCase))
+			{
+				_passwordErrorLabel.Text = jsonResponse;
+			}
+			if (jsonResponse.Contains("user", StringComparison.OrdinalIgnoreCase))
+			{
+				_usernameErrorLabel.Text = jsonResponse;
+			}
+		}
 	}
 	
 	private void OnLoginButtonPressed()
@@ -112,8 +138,7 @@ public partial class LoginScene : Control
 			return;
 		}
 		
-		string hashPassword = BCrypt.Net.BCrypt.HashPassword(password);;
-		SubmitLoginToServer(username, hashPassword);
+		SubmitLoginToServer(username, password);
 	}
 
 	private void OnCreateAccountLinkButtonPressed()
