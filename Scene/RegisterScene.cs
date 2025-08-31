@@ -89,7 +89,7 @@ public partial class RegisterScene : Control
 	private void SubmitRegistrationToServer(string username, string email, string password)
 	{
 		if (_isRequestSend) { return; }
-		string registerUrl = ApiClient.Instance.BuildUrl("users");
+		string registerUrl = ApiClient.Instance.BuildUrl("users/register");
 
 		// prepare headers for the request
 		var headers = new string[] { "Content-Type: application/json" };
