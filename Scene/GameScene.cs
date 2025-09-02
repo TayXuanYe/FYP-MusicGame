@@ -24,10 +24,10 @@ public partial class GameScene : Node2D
 		InitLanesLayout();
 		InitUI();
 		_pauseButton.Pressed += OnPauseButtonPressed;
-		_lane1.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
-		_lane2.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
-		_lane3.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
-		_lane4.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHiteResultSignalHandler)));
+		_lane1.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
+		_lane2.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
+		_lane3.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
+		_lane4.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
 
 		_displayTimer = new Timer();
 		_displayTimer.OneShot = true;
@@ -129,7 +129,7 @@ public partial class GameScene : Node2D
 		_displayTimer.Start();
 	}
 
-	private void OnDisplayHiteResultSignalHandler(string result)
+	private void OnDisplayHitResultSignalHandler(string result)
 	{
 		DisplayHitResult(result);
 	}

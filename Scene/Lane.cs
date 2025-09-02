@@ -21,7 +21,7 @@ public partial class Lane : Node2D
 	[Export] private Color _normalHintTextColor;
 	[Export] private Color _pressedHintTextColor;
 
-	public Queue<(double targetHittedTime, Color noteColor, string type, double durationTime)> NotesMetadataQueue { get; private set; }
+	public Queue<(double targetHitTime, Color noteColor, string type, double durationTime)> NotesMetadataQueue { get; private set; }
 	private Queue<TapNote> _tapNotesQueue = new Queue<TapNote>();
 	private Queue<HoldNote> _holdNotesQueue = new Queue<HoldNote>();
 	private int _tapNoteIdCounter = 0;
@@ -87,16 +87,16 @@ public partial class Lane : Node2D
 		// spawn notes
 		if (NotesMetadataQueue.Count > 0)
 		{
-			while (CalculateNoteSpawnTime(NotesMetadataQueue.Peek().targetHittedTime) <= _currentTime)
+			while (CalculateNoteSpawnTime(NotesMetadataQueue.Peek().targetHitTime) <= _currentTime)
 			{
 				var noteMetadata = NotesMetadataQueue.Dequeue();
 				if (noteMetadata.type == "Tap")
 				{
-					SpawnTapNote(noteMetadata.targetHittedTime, noteMetadata.noteColor);
+					SpawnTapNote(noteMetadata.targetHitTime, noteMetadata.noteColor);
 				}
 				else if (noteMetadata.type == "Hold")
 				{
-					SpawnHoldNote(noteMetadata.targetHittedTime, noteMetadata.durationTime, noteMetadata.noteColor);
+					SpawnHoldNote(noteMetadata.targetHitTime, noteMetadata.durationTime, noteMetadata.noteColor);
 				}
 
 				if (NotesMetadataQueue.Count == 0)
@@ -109,7 +109,7 @@ public partial class Lane : Node2D
 		// check for missed tap notes
 		if (_tapNotesQueue != null && _tapNotesQueue.Count > 0)
 		{
-			while (_tapNotesQueue.Peek().TargetHittedTime + GameSetting.Instance.GoodTimeRange < _currentTime)
+			while (_tapNotesQueue.Peek().TargetHitTime + GameSetting.Instance.GoodTimeRange < _currentTime)
 			{
 				var tapNote = _tapNotesQueue.Dequeue();
 
@@ -127,7 +127,7 @@ public partial class Lane : Node2D
 		if (_holdNotesQueue != null && _holdNotesQueue.Count > 0)
 		{
 			var peekedHoldNote = _holdNotesQueue.Peek();
-			while (peekedHoldNote.TargetHittedTime + peekedHoldNote.HoldDuration < _currentTime)
+			while (peekedHoldNote.TargetHitTime + peekedHoldNote.HoldDuration < _currentTime)
 			{
 				var holdNote = _holdNotesQueue.Dequeue();
 				var holdNoteResult = holdNote.GetHoldResult();
@@ -144,12 +144,12 @@ public partial class Lane : Node2D
 		}
 	}
 
-	private double CalculateNoteSpawnTime(double targetHittedTime)
+	private double CalculateNoteSpawnTime(double targetHitTime)
 	{
 		// Calculate the time when the note should spawn based on the target hit time and the note speed
 		double laneHeight = GetViewportRect().Size.Y;
 		double distanceToTravel = laneHeight - _hittingAreaHeight - _spawnNoteYPosition;
-		double spawnTime = targetHittedTime - (distanceToTravel / GameSetting.Instance.NoteSpeed);
+		double spawnTime = targetHitTime - (distanceToTravel / GameSetting.Instance.NoteSpeed);
 		return spawnTime;
 	}
 
@@ -204,11 +204,11 @@ public partial class Lane : Node2D
 		}
 	}
 
-	private void SpawnTapNote(double targetHittedTime, Color noteColor)
+	private void SpawnTapNote(double targetHitTime, Color noteColor)
 	{
 		TapNote tapNote = _tapNoteScene.Instantiate<TapNote>();
 		string tapNoteId = KeyCode + "_Tap_" + _tapNoteIdCounter;
-		tapNote.Initialize(_currentTime, noteColor, targetHittedTime, tapNoteId);
+		tapNote.Initialize(_currentTime, noteColor, targetHitTime, tapNoteId);
 		_tapNoteIdCounter++;
 		AddChild(tapNote);
 		_tapNotesQueue.Enqueue(tapNote);
@@ -222,17 +222,17 @@ public partial class Lane : Node2D
 		tapNote.Destroyed();
 	}
 
-	private void SpawnHoldNote(double targetHittedTime, double durationTime, Color noteColor)
+	private void SpawnHoldNote(double targetHitTime, double durationTime, Color noteColor)
 	{
 		HoldNote holdNote = _holdNoteScene.Instantiate<HoldNote>();
 		string holdNoteId = KeyCode + "_Hold_" + _holdNoteIdCounter;
-		holdNote.Initialize(_currentTime, noteColor, targetHittedTime, durationTime, holdNoteId);
+		holdNote.Initialize(_currentTime, noteColor, targetHitTime, durationTime, holdNoteId);
 		_holdNoteIdCounter++;
 		AddChild(holdNote);
 		_holdNotesQueue.Enqueue(holdNote);
 		holdNote.Position = new Vector2(_laneWidth / 2, _spawnNoteYPosition - holdNote.LengthOfShadow + 20);
 
-		SpawnTapNote(targetHittedTime, noteColor);
+		SpawnTapNote(targetHitTime, noteColor);
 	}
 	
 	private void DestroyedHoldNote(HoldNote holdNote)

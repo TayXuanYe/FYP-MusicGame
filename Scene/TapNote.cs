@@ -5,7 +5,7 @@ public partial class TapNote : Area2D
 {
 	[Export] private Color _noteColor;
 	[Export] private Panel _notePanel;
-	[Export] public double TargetHittedTime { get; private set; }
+	[Export] public double TargetHitTime { get; private set; }
 	public string Id { get; private set; }
 	private double _currentTime;
 	private bool _isDestroyed = false;
@@ -14,7 +14,7 @@ public partial class TapNote : Area2D
 	{
 		_currentTime = currentTime;
 		_noteColor = noteColor;
-		TargetHittedTime = targetHittedTime;
+		TargetHitTime = targetHittedTime;
 		Id = id;
 	}
 
@@ -42,7 +42,7 @@ public partial class TapNote : Area2D
 	public (bool isTrigger, string hitResult, double hitTime, double timeDifference) CheckNoteHit()
 	{
 		// timedifference be nagative if is too fast else positive
-		double timeDifference = _currentTime - TargetHittedTime;
+		double timeDifference = _currentTime - TargetHitTime;
 
 		if (Math.Abs(timeDifference) <= GameSetting.Instance.CriticalPerfectTimeRange)
 		{
