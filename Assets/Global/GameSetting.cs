@@ -6,7 +6,6 @@ public partial class GameSetting : Node
 	// unit px per second
 	[Export] public float NoteSpeed { get; set; } = 800f;
 
-	// should be in config not game setting future enhancement begin
 	// unit second
 	[Export] public double GoodTimeRange { get; set; } = 0.15f;
 	[Export] public double GreatTimeRange { get; set; } = 0.1f;
@@ -17,7 +16,7 @@ public partial class GameSetting : Node
 	[Export] public double GreatHoldDurationRatio { get; set; } = 0.7f;
 	[Export] public double PerfectHoldDurationRatio { get; set; } = 0.8f;
 	[Export] public double CriticalPerfectHoldDurationRatio { get; set; } = 0.9f;
-	// end
+
 	[Export] public Color CriticalPerfectTextColor { get; set; } = Colors.White;
 	[Export] public Color PerfectTextColor { get; set; } = Colors.White;
 	[Export] public Color GreatTextColor { get; set; } = Colors.White;
@@ -29,6 +28,11 @@ public partial class GameSetting : Node
 	[Export] public Color GreatTextOutlineColor { get; set; } = new Color("#f75ea3");
 	[Export] public Color GoodTextOutlineColor { get; set; } = new Color("#2fca4c");
 	[Export] public Color MissTextOutlineColor { get; set; } = new Color("#868686");
+
+	[Export] public Color MasterLevelThermColor { get; set; } = new Color("#9f51dc");
+	[Export] public Color ExpertLevelThermColor { get; set; } = new Color("#ff7b7b");
+	[Export] public Color AdvanceLevelThermColor { get; set; } = new Color("#f6b309");
+	[Export] public Color BasicLevelThermColor { get; set; } = new Color("#81d955");
 
 	[Export] public int HitResultTextOutlineSize { get; set; } = 8;
 

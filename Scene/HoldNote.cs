@@ -6,7 +6,7 @@ public partial class HoldNote : Area2D
 	[Export] private Panel _HoldShadow;
 
 	[Export] private Color _noteColor;
-	[Export] public double TargetHittedTime { get; private set; }
+	[Export] public double TargetHitTime { get; private set; }
 	[Export] public double HoldDuration { get; private set; }
 	public string HoldNoteId { get; private set; }
 	private double _currentTime;
@@ -19,7 +19,7 @@ public partial class HoldNote : Area2D
 	{
 		_currentTime = currentTime;
 		_noteColor = noteColor;
-		TargetHittedTime = targetHittedTime;
+		TargetHitTime = targetHittedTime;
 		HoldDuration = holdDuration;
 		HoldNoteId = holdNoteId;
 	}
@@ -45,7 +45,7 @@ public partial class HoldNote : Area2D
 			// change the color to bright when holding
 			_HoldShadow.Modulate = _noteColor with { A = 0.7f };
 		}
-		else if (_currentTime > TargetHittedTime)
+		else if (_currentTime > TargetHitTime)
 		{
 			// change the color more dark when not holding and missing
 			_HoldShadow.Modulate = _noteColor with { A = 0.3f };
