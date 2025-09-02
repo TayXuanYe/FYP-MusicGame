@@ -12,12 +12,12 @@ public partial class MainScene : Control
 
 	public override void _Ready()
 	{
-		//if (!UserDataManager.Instance.CurrentUser.IsLoggedIn)
-		//{
-			//SceneManager.Instance.ChangeToLoginScene();
-			//return;
-		//}
-		
+		if (!UserDataManager.Instance.CurrentUser.IsLogin)
+		{
+			SceneManager.Instance.ChangeToLoginScene();
+			return;
+		}
+
 		_playGameButton.Pressed += OnPlayGameButtonPressed;
 		_gameHistoryButton.Pressed += OnGameHistoryButtonPressed;
 		_settingButton.Pressed += OnSettingButtonPressed;

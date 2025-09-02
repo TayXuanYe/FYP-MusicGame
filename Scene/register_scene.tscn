@@ -283,5 +283,5 @@ underline = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="OnHttpRequestCompleted"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
