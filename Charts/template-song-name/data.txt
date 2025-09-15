@@ -1,3 +1,11 @@
+[Data]
+ChartId:1
+SongId:1
+Artist:Artist
+Difficulty:Basic
+Level:10.0
+Designer:Designer
+
 [Lane1]
 21.784,Tap,#f651a7,0
 22.843,Tap,#f651a7,0
