@@ -28,7 +28,7 @@ public partial class MainScene : Control
 
 	private void OnPlayGameButtonPressed()
 	{
-		// Handle play game button pressed
+		SignalManager.Instance.EmitProgressStarted();
 	}
 
 	private void OnGameHistoryButtonPressed()
