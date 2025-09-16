@@ -90,7 +90,7 @@ public partial class LoginScene : Control
 
 			UserDataManager.Instance.CurrentUser = JsonSerializer.Deserialize<UserData>(jsonResponse);
 
-			SceneManager.Instance.GoToMainMenuScene();
+			SceneManager.Instance.ChangeToMainMenuScene();
 		}
 		else if (responseCode >= 400)
 		{

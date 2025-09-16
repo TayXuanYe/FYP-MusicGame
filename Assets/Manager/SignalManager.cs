@@ -6,13 +6,13 @@ public partial class SignalManager : Node
     public static SignalManager Instance { get; private set; }
 
     [Signal]
-    public delegate void ResetProgressEventHandler();
-
-    [Signal]
     public delegate void ProgressStartedEventHandler();
 
     [Signal]
     public delegate void CurrentProgressEndedEventHandler();
+
+    [Signal]
+    public delegate void ChartDataLoadedReadyEventHandler();
 
     public override void _Ready()
     {
@@ -24,11 +24,6 @@ public partial class SignalManager : Node
         Instance = this;
     }
 
-    public void EmitResetProgress()
-    {
-        EmitSignal(SignalName.ResetProgress);
-    }
-
     public void EmitProgressStarted()
     {
         EmitSignal(SignalName.ProgressStarted);
@@ -37,5 +32,10 @@ public partial class SignalManager : Node
     public void EmitCurrentProgressEnded()
     {
         EmitSignal(SignalName.CurrentProgressEnded);
+    }
+
+    public void EmitChartDataLoadedReady()
+    {
+        EmitSignal(SignalName.ChartDataLoadedReady);
     }
 }
