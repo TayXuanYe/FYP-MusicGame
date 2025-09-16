@@ -144,6 +144,15 @@ public partial class ChartManager : Node
         LoadLaneNotes(filePath, "Lane2", chartData.Lane2NotesMetadataQueue);
         LoadLaneNotes(filePath, "Lane3", chartData.Lane3NotesMetadataQueue);
         LoadLaneNotes(filePath, "Lane4", chartData.Lane4NotesMetadataQueue);
+
+        // load music
+        var musicPath = Path.GetDirectoryName(filePath) + "/music.ogg";
+        var musicResource = GD.Load<AudioStream>(musicPath);
+        if (musicResource == null)
+        {
+            GD.PrintErr($"Failed to load music at path: {musicPath}");
+        }
+        chartData.music = musicResource;
         return chartData;
     }
 

@@ -21,12 +21,12 @@ public partial class SignalManager : Node
         Instance = this;
     }
 
-    public void EmitCurrentProgressEnded()
+    public void EmitCurrentProgressEndedSignal()
     {
         EmitSignal(SignalName.CurrentProgressEnded);
     }
 
-    public void EmitChartDataLoadedReady(int currentPlayCount, int targetPlayCount)
+    public void EmitChartDataLoadedReadySignal(int currentPlayCount, int targetPlayCount)
     {
         EmitSignal(SignalName.ChartDataLoadedReady, currentPlayCount, targetPlayCount);
     }

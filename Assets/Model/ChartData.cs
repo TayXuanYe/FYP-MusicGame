@@ -13,4 +13,5 @@ public class ChartData
 	public Queue<(double targetHitTime, Color noteColor, string type, double durationTime)> Lane3NotesMetadataQueue { get; set; }
 	public Queue<(double targetHitTime, Color noteColor, string type, double durationTime)> Lane4NotesMetadataQueue { get; set; }
 	public string filePath { get; set; }
+	public AudioStream music { get; set; }
 }

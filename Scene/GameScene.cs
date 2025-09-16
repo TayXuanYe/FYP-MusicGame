@@ -18,6 +18,7 @@ public partial class GameScene : Node2D
 	[Export] private PauseScene _pauseScene;
 
 	private Timer _displayTimer;
+	private AudioStreamPlayer _musicPlayer;
 
 	public override void _Ready()
 	{
@@ -40,6 +41,17 @@ public partial class GameScene : Node2D
 		_displayTimer.WaitTime = 0.5f;
 		_displayTimer.Timeout += OnDisplayTimerTimeout;
 		AddChild(_displayTimer);
+
+		_musicPlayer = new AudioStreamPlayer();
+		_musicPlayer.Stream = GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].music;
+		AddChild(_musicPlayer);
+		_musicPlayer.Play();
+		_musicPlayer.Finished += OnMusicFinished;
+	}
+
+	private void OnMusicFinished()
+	{
+		SignalManager.Instance.EmitCurrentProgressEndedSignal();
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
