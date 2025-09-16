@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwfhnff1prpe6"]
+
+[ext_resource type="Script" uid="uid://cwvukr8q1vscp" path="res://Scene/LoadingScene.cs" id="1_124xp"]
+
+[sub_resource type="Gradient" id="Gradient_124xp"]
+colors = PackedColorArray(0.2, 0.2, 0.2, 1, 0.2, 0.2, 0.2, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iyffp"]
+gradient = SubResource("Gradient_124xp")
+
+[sub_resource type="LabelSettings" id="LabelSettings_124xp"]
+font_size = 96
+
+[sub_resource type="LabelSettings" id="LabelSettings_iyffp"]
+font_size = 32
+
+[node name="LoadingScene" type="Control" node_paths=PackedStringArray("_trackCountLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_124xp")
+_trackCountLabel = NodePath("CenterContainer/VBoxContainer/TrackLabel")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_iyffp")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="TrackLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "TRACK 1"
+label_settings = SubResource("LabelSettings_124xp")
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Loading ..."
+label_settings = SubResource("LabelSettings_iyffp")
+horizontal_alignment = 1

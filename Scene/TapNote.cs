@@ -39,29 +39,29 @@ public partial class TapNote : Area2D
 		Position += new Vector2(0, (float)(GameSetting.Instance.NoteSpeed * GetProcessDeltaTime()));
 	}
 
-	public (bool isTrigger, string hitResult, double hitTime, double timeDifference) CheckNoteHit()
+	public (bool isTrigger, string hitResult, double hitTime, double timeDifference, double targetHittedTime) CheckNoteHit()
 	{
-		// timedifference be nagative if is too fast else positive
+		// time difference be nagative if is too fast else positive
 		double timeDifference = _currentTime - TargetHitTime;
 
 		if (Math.Abs(timeDifference) <= GameSetting.Instance.CriticalPerfectTimeRange)
 		{
-			return (true, "Critical Perfect", _currentTime, timeDifference);
+			return (true, "Critical Perfect", _currentTime, timeDifference, TargetHitTime);
 		}
 		else if (Math.Abs(timeDifference) <= GameSetting.Instance.PerfectTimeRange)
 		{
-			return (true, "Perfect", _currentTime, timeDifference);
+			return (true, "Perfect", _currentTime, timeDifference, TargetHitTime);
 		}
 		else if (Math.Abs(timeDifference) <= GameSetting.Instance.GreatTimeRange)
 		{
-			return (true, "Great", _currentTime, timeDifference);
+			return (true, "Great", _currentTime, timeDifference, TargetHitTime);
 		}
 		else if (Math.Abs(timeDifference) <= GameSetting.Instance.GoodTimeRange)
 		{
-			return (true, "Good", _currentTime, timeDifference);
+			return (true, "Good", _currentTime, timeDifference, TargetHitTime);
 		}
 
-		return (false, null, 0, 0);
+		return (false, null, 0, 0, 0);
 	}
 
 	public void Destroyed()

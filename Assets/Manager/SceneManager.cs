@@ -9,6 +9,8 @@ public partial class SceneManager : Node
 	private PackedScene _loginScene;
 	private PackedScene _registerScene;
 	private PackedScene _mainMenuScene;
+	private PackedScene _gameScene;
+	private PackedScene _loadingScene;
 
 	public override void _Ready()
 	{
@@ -17,6 +19,8 @@ public partial class SceneManager : Node
 		_loginScene = GD.Load<PackedScene>("res://Scene/login_scene.tscn");
 		_registerScene = GD.Load<PackedScene>("res://Scene/register_scene.tscn");
 		_mainMenuScene = GD.Load<PackedScene>("res://Scene/main_scene.tscn");
+		_gameScene = GD.Load<PackedScene>("res://Scene/game_scene.tscn");
+		_loadingScene = GD.Load<PackedScene>("res://Scene/loading_scene.tscn");
 	}
 
 	public void ChangeToLoginScene()
@@ -42,17 +46,40 @@ public partial class SceneManager : Node
 			GD.PrintErr("RegisterScene is not loaded!");
 		}
 	}
-	
-	public void GoToMainMenuScene()
+
+	public void ChangeToMainMenuScene()
 	{
 		if (_mainMenuScene != null)
 		{
 			GetTree().ChangeSceneToPacked(_mainMenuScene);
-			GD.Print("Changed to MainMenuScene");
 		}
 		else
 		{
 			GD.PrintErr("MainMenuScene is not loaded!");
+		}
+	}
+
+	public void ChangeToGameScene()
+	{
+		if (_gameScene != null)
+		{
+			GetTree().ChangeSceneToPacked(_gameScene);
+		}
+		else
+		{
+			GD.PrintErr("GameScene is not loaded!");
+		}
+	}
+	
+	public void ChangeToLoadingScene()
+	{
+		if (_loadingScene != null)
+		{
+			GetTree().ChangeSceneToPacked(_loadingScene);
+		}
+		else
+		{
+			GD.PrintErr("LoadingScene is not loaded!");
 		}
 	}
 }

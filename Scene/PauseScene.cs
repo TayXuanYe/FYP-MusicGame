@@ -30,6 +30,6 @@ public partial class PauseScene : Control
 	
 	private void OnQuitButtonPressed()
 	{
-		SceneManager.Instance.GoToMainMenuScene();
+		SceneManager.Instance.ChangeToMainMenuScene();
 	}
 }
