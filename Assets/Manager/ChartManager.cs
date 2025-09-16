@@ -93,6 +93,7 @@ public partial class ChartManager : Node
         return sectionLines;
     }
 
+    string[] supportedFormats = { ".ogg", ".wav", ".mp3" };
     public ChartData LoadChart(int chartId)
     {
         if (!ChartsIdIndex.ContainsKey(chartId))
@@ -146,13 +147,20 @@ public partial class ChartManager : Node
         LoadLaneNotes(filePath, "Lane4", chartData.Lane4NotesMetadataQueue);
 
         // load music
-        var musicPath = Path.GetDirectoryName(filePath) + "/music.ogg";
-        var musicResource = GD.Load<AudioStream>(musicPath);
-        if (musicResource == null)
+        foreach (var format in supportedFormats)
         {
-            GD.PrintErr($"Failed to load music at path: {musicPath}");
+            var musicPath = Path.GetDirectoryName(filePath) + $"/music{format}";
+            if (File.Exists(musicPath))
+            {
+                var musicResource = GD.Load<AudioStream>(musicPath);
+                if (musicResource == null)
+                {
+                    GD.PrintErr($"Failed to load music at path: {musicPath}");
+                }
+                chartData.music = musicResource;
+                break;
+            }
         }
-        chartData.music = musicResource;
         return chartData;
     }
 
