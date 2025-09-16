@@ -7,10 +7,12 @@ public class ProcessResult
     public string NoteType { get; set; }
     public string HitResult { get; set; }
     public double HitTime { get; set; }
-    public double TimeDifference { get; set; }
+    public double TimeDifference { get; set; } // Only for Tap notes
     public double TargetHitTime { get; set; }
     public double SystemTime { get; set; }
     public double DurationTime { get; set; } // Only for Hold notes
+    public double HoldTotalTime { get; set; } // Only for Hold notes
+    public double HoldTimeRatio => DurationTime > 0 ? HoldTotalTime / DurationTime : 0; // Only for Hold notes
     protected ProcessResult() { }
     public static ProcessResult CreateTapNoteResult(int laneIndex, string hitResult, double hitTime, double timeDifference, double targetHitTime, double systemTime)
     {
@@ -27,7 +29,7 @@ public class ProcessResult
         };
     }
 
-    public static ProcessResult CreateHoldNoteResult(int laneIndex, string hitResult, double hitTime, double timeDifference, double targetHitTime, double systemTime, double durationTime)
+    public static ProcessResult CreateHoldNoteResult(int laneIndex, string hitResult, double hitTime, double targetHitTime, double systemTime, double durationTime, double holdTotalTime)
     {
         return new ProcessResult
         {
@@ -35,10 +37,10 @@ public class ProcessResult
             NoteType = "Hold",
             HitResult = hitResult,
             HitTime = hitTime,
-            TimeDifference = timeDifference,
             TargetHitTime = targetHitTime,
             SystemTime = systemTime,
-            DurationTime = durationTime
+            DurationTime = durationTime,
+            HoldTotalTime = holdTotalTime
         };
     }
 

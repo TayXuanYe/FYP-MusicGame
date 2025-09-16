@@ -6,6 +6,7 @@ public partial class GameProgressManger : Node
 {
 	public static GameProgressManger Instance { get; private set; }
 	public List<ChartData> CurrentCharts { get; set; } = new();
+	public Dictionary<int, List<ProcessResult>> RawUserInputData { get; set; } = new();
 	public int TargetPlayCount { get; private set; } = 4;
 	public int CurrentPlayCount { get; private set; } = 0;
 	float level = 5.0f; // example level
@@ -24,8 +25,13 @@ public partial class GameProgressManger : Node
 	// Signal progress started
 	public void StartProgress()
 	{
-		// init current play count
+		// reset current progress data
+		CurrentCharts.Clear();
+		RawUserInputData.Clear();
 		CurrentPlayCount = 0;
+
+		// init raw user input data dictionary
+		RawUserInputData.Add(CurrentPlayCount, new List<ProcessResult>());
 
 		if (level != 0f)
 		{
@@ -52,7 +58,7 @@ public partial class GameProgressManger : Node
 		if (CurrentPlayCount >= TargetPlayCount)
 		{
 			// All charts completed, show result page
-			
+
 			// Clear current charts for next session
 			CurrentCharts.Clear();
 		}
@@ -61,4 +67,6 @@ public partial class GameProgressManger : Node
 			SceneManager.Instance.ChangeToLoadingScene();
 		}
 	}
+	
+	
 }
