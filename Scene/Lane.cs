@@ -21,7 +21,7 @@ public partial class Lane : Node2D
 	[Export] private Color _normalHintTextColor;
 	[Export] private Color _pressedHintTextColor;
 
-	public Queue<(double targetHitTime, Color noteColor, string type, double durationTime)> NotesMetadataQueue { get; private set; }
+	public Queue<(double targetHitTime, Color noteColor, string type, double durationTime)> NotesMetadataQueue { get; set; }
 	private Queue<TapNote> _tapNotesQueue = new Queue<TapNote>();
 	private Queue<HoldNote> _holdNotesQueue = new Queue<HoldNote>();
 	private int _tapNoteIdCounter = 0;
@@ -34,18 +34,6 @@ public partial class Lane : Node2D
 	public override void _Ready()
 	{
 		InitLane();
-
-		// get the notes metadata queue
-		// NotesMetadataQueue = ChartManager.Instance.GetNotesMetadata(laneIndex);
-
-		//temp
-		NotesMetadataQueue = new Queue<(double, Color, string, double)>();
-		NotesMetadataQueue.Enqueue((5.0, Colors.Red, "Hold", 1));
-		NotesMetadataQueue.Enqueue((10.0, Colors.Blue, "Hold", 5));
-		NotesMetadataQueue.Enqueue((20.0, Colors.Green, "Hold", 5));
-		NotesMetadataQueue.Enqueue((23.0, Colors.Yellow, "Tap", 0));
-		NotesMetadataQueue.Enqueue((25.0, Colors.Purple, "Tap", 0));
-		NotesMetadataQueue.Enqueue((30.0, Colors.Orange, "Tap", 0));
 	}
 
 	private void InitLane()

@@ -12,7 +12,7 @@ public partial class SignalManager : Node
     public delegate void CurrentProgressEndedEventHandler();
 
     [Signal]
-    public delegate void ChartDataLoadedReadyEventHandler();
+    public delegate void ChartDataLoadedReadyEventHandler(int currentPlayCount, int targetPlayCount);
 
     public override void _Ready()
     {
@@ -34,8 +34,8 @@ public partial class SignalManager : Node
         EmitSignal(SignalName.CurrentProgressEnded);
     }
 
-    public void EmitChartDataLoadedReady()
+    public void EmitChartDataLoadedReady(int currentPlayCount, int targetPlayCount)
     {
-        EmitSignal(SignalName.ChartDataLoadedReady);
+        EmitSignal(SignalName.ChartDataLoadedReady, currentPlayCount, targetPlayCount);
     }
 }

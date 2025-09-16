@@ -1,5 +1,6 @@
 using Godot;
-using System;
+using System.Collections.Generic;
+
 
 public partial class GameScene : Node2D
 {
@@ -28,6 +29,11 @@ public partial class GameScene : Node2D
 		_lane2.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
 		_lane3.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
 		_lane4.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
+
+		_lane1.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].Lane1NotesMetadataQueue);
+		_lane2.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].Lane2NotesMetadataQueue);
+		_lane3.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].Lane3NotesMetadataQueue);
+		_lane4.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].Lane4NotesMetadataQueue);
 
 		_displayTimer = new Timer();
 		_displayTimer.OneShot = true;

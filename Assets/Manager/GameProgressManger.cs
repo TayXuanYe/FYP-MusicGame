@@ -6,8 +6,8 @@ public partial class GameProgressManger : Node
 {
     public static GameProgressManger Instance { get; private set; }
     public List<ChartData> CurrentCharts { get; set; } = new();
-    private int _targetPlayCount = 4;
-    public int CurrentPlayCount = 0;
+    public int TargetPlayCount { get; private set; } = 4;
+    public int CurrentPlayCount { get; private set; } = 0;
     float level = 5.0f; // example level
     public override void _Ready()
     {
@@ -19,6 +19,7 @@ public partial class GameProgressManger : Node
         Instance = this;
         // Connect to SignalManager signals
         SignalManager.Instance.ProgressStarted += OnProgressStartedSignalReceived;
+        SignalManager.Instance.CurrentProgressEnded += OnCurrentProgressEndSignalReceived;
     }
 
     // Signal progress started
@@ -29,7 +30,7 @@ public partial class GameProgressManger : Node
 
         if (level != 0f)
         {
-            List<int> chartIds = ChartManager.Instance.GetChartIdsByLevel(level, _targetPlayCount);
+            List<int> chartIds = ChartManager.Instance.GetChartIdsByLevel(level, TargetPlayCount);
             foreach (var chartId in chartIds)
             {
                 ChartData chartData = ChartManager.Instance.LoadChart(chartId);
@@ -38,19 +39,17 @@ public partial class GameProgressManger : Node
                     CurrentCharts.Add(chartData);
                 }
             }
-            _targetPlayCount = CurrentCharts.Count;
+            TargetPlayCount = CurrentCharts.Count;
         }
 
-        SceneManager.Instance.ChangeToGameScene();
-        // emit ready signal
-        SignalManager.Instance.EmitChartDataLoadedReady();
+        SceneManager.Instance.ChangeToLoadingScene();
     }
 
     // Call this method when a chart is completed
     public void OnCurrentProgressEndSignalReceived()
     {
         CurrentPlayCount++;
-        if (CurrentPlayCount >= _targetPlayCount)
+        if (CurrentPlayCount >= TargetPlayCount)
         {
             // All charts completed, show result page
             
@@ -59,7 +58,7 @@ public partial class GameProgressManger : Node
         }
         else
         {
-            SceneManager.Instance.ChangeToGameScene();
+            SceneManager.Instance.ChangeToLoadingScene();
         }
     }
 }
