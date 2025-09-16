@@ -1,5 +1,5 @@
 [Data]
-ChartId:1
+ChartId:2
 SongId:1
 Artist:Artist
 Difficulty:Basic

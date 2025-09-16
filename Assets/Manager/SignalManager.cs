@@ -6,9 +6,6 @@ public partial class SignalManager : Node
     public static SignalManager Instance { get; private set; }
 
     [Signal]
-    public delegate void ProgressStartedEventHandler();
-
-    [Signal]
     public delegate void CurrentProgressEndedEventHandler();
 
     [Signal]
@@ -22,11 +19,6 @@ public partial class SignalManager : Node
             return;
         }
         Instance = this;
-    }
-
-    public void EmitProgressStarted()
-    {
-        EmitSignal(SignalName.ProgressStarted);
     }
 
     public void EmitCurrentProgressEnded()

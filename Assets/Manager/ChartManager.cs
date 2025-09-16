@@ -18,6 +18,7 @@ public partial class ChartManager : Node
     // load chart data from Charts folder
     private void LoadChartIndex()
     {
+        GD.Print("Loading chart index...");
         string relativePath = "res://Charts/";
         string rootDirectory = ProjectSettings.GlobalizePath(relativePath);
 
@@ -25,16 +26,19 @@ public partial class ChartManager : Node
         {
             foreach (string filePath in Directory.EnumerateFiles(rootDirectory, "data.txt", SearchOption.AllDirectories))
             {
+                GD.Print($"Loading chart data from: {filePath}");
                 var chartsData = ParseDataSection(filePath, "Data");
+                int chartId = -1;
                 foreach (string line in chartsData)
                 {
                     string[] parts = line.Split(':');
                     string key = parts[0].Trim();
                     string value = parts[1].Trim();
+                    GD.Print($"Parsed line - Key: {key}, Value: {value}");
                     switch (key)
                     {
                         case "ChartId":
-                            int chartId = int.Parse(value);
+                            chartId = int.Parse(value);
                             ChartsIdIndex[chartId] = filePath;
                             break;
                         case "Level":
@@ -43,7 +47,7 @@ public partial class ChartManager : Node
                             {
                                 LevelToChartIdsIndex[level] = new List<int>();
                             }
-                            LevelToChartIdsIndex[level].Add(int.Parse(parts[0].Trim()));
+                            LevelToChartIdsIndex[level].Add(chartId);
                             break;
                         default:
                             break;
@@ -156,8 +160,8 @@ public partial class ChartManager : Node
             }
 
             double targetHitTime = double.Parse(parts[0].Trim());
-            Color noteColor = new Color(parts[1].Trim());
-            string type = parts[2].Trim();
+            string type = parts[1].Trim();
+            Color noteColor = new Color(parts[2].Trim());
             double durationTime = double.Parse(parts[3].Trim());
 
             var noteMetadata = (targetHitTime, noteColor, type, durationTime);
@@ -194,6 +198,7 @@ public partial class ChartManager : Node
         // using bfs to find closest levels
         while (result.Count < amount && (leftIndex >= 0 || rightIndex < allLevels.Count))
         {
+            GD.Print($"Current result count: {result.Count}, LeftIndex: {leftIndex}, RightIndex: {rightIndex}");
             bool movedLeft = false;
             bool movedRight = false;
             

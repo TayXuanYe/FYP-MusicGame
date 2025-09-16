@@ -12,11 +12,11 @@ public partial class MainScene : Control
 
 	public override void _Ready()
 	{
-		if (!UserDataManager.Instance.CurrentUser.IsLogin)
-		{
-			SceneManager.Instance.ChangeToLoginScene();
-			return;
-		}
+		//if (!UserDataManager.Instance.CurrentUser.IsLogin)
+		//{
+			//SceneManager.Instance.ChangeToLoginScene();
+			//return;
+		//}
 
 		_playGameButton.Pressed += OnPlayGameButtonPressed;
 		_gameHistoryButton.Pressed += OnGameHistoryButtonPressed;
@@ -28,7 +28,7 @@ public partial class MainScene : Control
 
 	private void OnPlayGameButtonPressed()
 	{
-		SignalManager.Instance.EmitProgressStarted();
+		GameProgressManger.Instance.StartProgress();
 	}
 
 	private void OnGameHistoryButtonPressed()

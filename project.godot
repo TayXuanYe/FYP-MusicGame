@@ -22,6 +22,9 @@ UserDataManager="*res://Assets/Manager/UserDataManager.cs"
 GameSetting="*res://Assets/Global/GameSetting.cs"
 AudioManager="*res://Assets/Manager/AudioManager.cs"
 ApiClient="*res://Scripts/Client/ApiClient.cs"
+SignalManager="*res://Assets/Manager/SignalManager.cs"
+ChartManager="*res://Assets/Manager/ChartManager.cs"
+GameProgressManger="*res://Assets/Manager/GameProgressManger.cs"
 
 [display]
 
