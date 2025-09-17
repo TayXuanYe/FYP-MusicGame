@@ -37,6 +37,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="FYP-MUSICGAME-VER1"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dynamic_table/plugin.cfg")
+
 [input]
 
 key_D={
