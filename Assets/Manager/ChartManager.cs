@@ -118,6 +118,9 @@ public partial class ChartManager : Node
                 case "SongId":
                     chartData.SongId = int.Parse(value);
                     break;
+                case "Title":
+                    chartData.Title = value;
+                    break;
                 case "Artist":
                     chartData.Artist = value;
                     break;

@@ -1,6 +1,7 @@
 [Data]
 ChartId:1
 SongId:1
+Title:Title
 Artist:Artist
 Difficulty:Basic
 Level:10.0
