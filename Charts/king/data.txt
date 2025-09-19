@@ -1,10 +1,11 @@
 [Data]
 ChartId:2
 SongId:1
-Artist:Artist
+Title:King
+Artist:mafumafu
 Difficulty:Basic
 Level:10.0
-Designer:Designer
+Designer:nqrse
 
 [Lane1]
 16.108,Tap,#f651a7,0

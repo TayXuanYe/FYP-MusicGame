@@ -1,10 +1,11 @@
 [Data]
 ChartId:3
 SongId:1
-Artist:Artist
+Title:Chronomia
+Artist:Lime
 Difficulty:Basic
 Level:10.0
-Designer:Designer
+Designer:Lime
 
 [Lane1]
 5.575,Tap,#f651a7,0

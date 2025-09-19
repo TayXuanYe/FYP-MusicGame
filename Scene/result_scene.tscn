@@ -1,0 +1,861 @@
+[gd_scene load_steps=26 format=3 uid="uid://dgyk158wwdmkd"]
+
+[ext_resource type="Script" uid="uid://ds5ubbcguvfvv" path="res://Scene/ResultScene.cs" id="1_ayi4o"]
+[ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_fljhi"]
+
+[sub_resource type="Gradient" id="Gradient_rmkfi"]
+colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aa3wv"]
+gradient = SubResource("Gradient_rmkfi")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_8xdtu"]
+base_font = ExtResource("2_fljhi")
+variation_embolden = 1.45
+
+[sub_resource type="FontVariation" id="FontVariation_cenm5"]
+base_font = ExtResource("2_fljhi")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kosyp"]
+bg_color = Color(0, 0, 0, 0.313726)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8xdtu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cenm5"]
+bg_color = Color(0, 0, 0, 0.133333)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kosyp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4nmuv"]
+outline_size = 1
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8xdtu"]
+font_size = 12
+font_color = Color(1, 1, 1, 0.8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cenm5"]
+outline_size = 5
+outline_color = Color(1, 1, 1, 0.8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nmuv"]
+bg_color = Color(1, 1, 1, 0.2)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xdtu"]
+bg_color = Color(0, 0, 0, 0.466667)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_kosyp"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_v6bfe"]
+font_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gy8s0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hafx5"]
+bg_color = Color(0, 0, 0, 0.109804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wjeen"]
+line_spacing = -5.0
+font_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbiob"]
+bg_color = Color(0, 0, 0, 0.2)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cenm5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6bfe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6bfe"]
+bg_color = Color(1, 1, 1, 0.533333)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjeen"]
+bg_color = Color(1, 1, 1, 0.133333)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="ResultSecne" type="Control" node_paths=PackedStringArray("_titleLabel", "_artistLabel", "_difficultyLabel", "_levelLabel", "_scoreLabel", "_maxComboLabel", "_accuracyLabel", "_finalAttentionLabel", "_tapCriticalPerfectLabel", "_tapPerfectLabel", "_tapGreatLabel", "_tapGoodLabel", "_tapMissLabel", "_holdCriticalPerfectLabel", "_holdPerfectLabel", "_holdGreatLabel", "_holdGoodLabel", "_holdMissLabel", "_backButton", "_nextButton", "_exitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ayi4o")
+_titleLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/TitleLabel")
+_artistLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/ArtistLabel")
+_difficultyLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/DifficultyLabel")
+_levelLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/LevelLabel")
+_scoreLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/ScoreLabel")
+_maxComboLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer4/Panel2/MarginContainer/VBoxContainer/MaxComboLabel")
+_accuracyLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer3/Panel3/MarginContainer/VBoxContainer/AccurancyLabel")
+_finalAttentionLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/Panel4/MarginContainer/VBoxContainer/FinalAttentionLevel")
+_tapCriticalPerfectLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel2/TapCriticalPerfectLabel")
+_tapPerfectLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel3/TapPerfectLabel")
+_tapGreatLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel4/TapGreatLabel")
+_tapGoodLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel5/TapGoodLabel")
+_tapMissLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel6/TapMissLabel")
+_holdCriticalPerfectLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel2/HoldCriticalPerfecrLabel")
+_holdPerfectLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel3/HoldPerfectLabel")
+_holdGreatLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel4/HoldGreatLabel")
+_holdGoodLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel5/HoldGoodLabel")
+_holdMissLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel6/HoldMissLabel")
+_backButton = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/MarginContainer/BackButton")
+_nextButton = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/MarginContainer2/NextButton")
+_exitButton = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer6/HBoxContainer/MarginContainer2/ExitButton")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_aa3wv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_right = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 90
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_8xdtu")
+theme_override_font_sizes/font_size = 24
+text = "BeatMaster"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_cenm5")
+theme_override_font_sizes/font_size = 18
+text = "Performance Summary"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kosyp")
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="BackButton" type="Button" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8xdtu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cenm5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kosyp")
+text = "<"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_4nmuv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Artist:"
+label_settings = SubResource("LabelSettings_8xdtu")
+
+[node name="ArtistLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Artist"
+label_settings = SubResource("LabelSettings_8xdtu")
+
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "·"
+label_settings = SubResource("LabelSettings_cenm5")
+
+[node name="DifficultyLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Expert"
+label_settings = SubResource("LabelSettings_8xdtu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Lv."
+label_settings = SubResource("LabelSettings_8xdtu")
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "10"
+label_settings = SubResource("LabelSettings_8xdtu")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 1.5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4nmuv")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8xdtu")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Score"
+label_settings = SubResource("LabelSettings_kosyp")
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "999,999"
+label_settings = SubResource("LabelSettings_v6bfe")
+horizontal_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer4"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8xdtu")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer4/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer4/Panel2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer4/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MaxCombo"
+label_settings = SubResource("LabelSettings_kosyp")
+horizontal_alignment = 1
+
+[node name="MaxComboLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer4/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "999,999"
+label_settings = SubResource("LabelSettings_v6bfe")
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel3" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8xdtu")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer3/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer3/Panel3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer3/Panel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Accurancy (ms)"
+label_settings = SubResource("LabelSettings_kosyp")
+horizontal_alignment = 1
+
+[node name="AccurancyLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer3/Panel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "999,999"
+label_settings = SubResource("LabelSettings_v6bfe")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel4" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8xdtu")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/Panel4/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/Panel4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Final Attention"
+label_settings = SubResource("LabelSettings_kosyp")
+horizontal_alignment = 1
+
+[node name="FinalAttentionLevel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/Panel4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "99.99%"
+label_settings = SubResource("LabelSettings_v6bfe")
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gy8s0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "CRITICAL
+PERFECT"
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "PERFECT"
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer/Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "GREAT"
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel5" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer/Panel5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "GOOD"
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel6" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer/Panel6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "MISS"
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbiob")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "TAP"
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbiob")
+
+[node name="TapCriticalPerfectLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbiob")
+
+[node name="TapPerfectLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbiob")
+
+[node name="TapGreatLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel5" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbiob")
+
+[node name="TapGoodLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel6" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbiob")
+
+[node name="TapMissLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer2/Panel6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "HOLD"
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="HoldCriticalPerfecrLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="HoldPerfectLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="HoldGreatLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel5" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="HoldGoodLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel6" type="Panel" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hafx5")
+
+[node name="HoldMissLabel" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer3/Panel6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_wjeen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="NextButton" type="Button" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8xdtu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cenm5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cenm5")
+text = ">"
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer6"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_bottom = 20
+
+[node name="ExitButton" type="Button" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer6/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v6bfe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v6bfe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjeen")
+text = "Back to menu"
