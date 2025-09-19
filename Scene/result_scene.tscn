@@ -415,7 +415,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer3/Panel3/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Accurancy"
+text = "Accurancy (ms)"
 label_settings = SubResource("LabelSettings_kosyp")
 horizontal_alignment = 1
 
