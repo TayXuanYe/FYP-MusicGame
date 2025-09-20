@@ -25,6 +25,7 @@ ApiClient="*res://Scripts/Client/ApiClient.cs"
 SignalManager="*res://Assets/Manager/SignalManager.cs"
 ChartManager="*res://Assets/Manager/ChartManager.cs"
 GameProgressManger="*res://Assets/Manager/GameProgressManger.cs"
+EyeTrackingManager="*res://Assets/Manager/EyeTrackingManager.cs"
 
 [display]
 
