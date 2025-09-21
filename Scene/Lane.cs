@@ -31,10 +31,11 @@ public partial class Lane : Node2D
 	private int _laneIndex = -1;
 
 	[Signal] public delegate void DisplayResultEventHandler(string resultText);
-
+	private List<ProcessResult> _inputResults = new List<ProcessResult>();
 	public override void _Ready()
 	{
 		InitLane();
+		GameProgressManger.Instance.RawUserInputData.TryAdd(GameProgressManger.Instance.CurrentPlayCount, new List<ProcessResult>());
 	}
 
 	private void InitLane()
@@ -68,8 +69,6 @@ public partial class Lane : Node2D
 		_laneLabel.LabelSettings.FontSize = _fontSize;
 		_laneLabel.LabelSettings.OutlineSize = 2;
 	}
-
-	private List<ProcessResult> _inputResults = GameProgressManger.Instance.RawUserInputData[GameProgressManger.Instance.CurrentPlayCount];
 	public override void _Process(double delta)
 	{
 		_currentTime += delta;
