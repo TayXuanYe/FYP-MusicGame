@@ -25,7 +25,7 @@ ApiClient="*res://Scripts/Client/ApiClient.cs"
 SignalManager="*res://Assets/Manager/SignalManager.cs"
 ChartManager="*res://Assets/Manager/ChartManager.cs"
 GameProgressManger="*res://Assets/Manager/GameProgressManger.cs"
-EyeTrackingManager="*res://Assets/Manager/EyeTrackingManager.cs"
+BeamEyeTracker="*res://Eyeware/BeamEyeTracker.cs"
 
 [display]
 
@@ -40,7 +40,7 @@ project/assembly_name="FYP-MUSICGAME-VER1"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dynamic_table/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
