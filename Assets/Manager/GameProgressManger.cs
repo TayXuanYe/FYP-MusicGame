@@ -25,6 +25,22 @@ public partial class GameProgressManger : Node
 		SignalManager.Instance.UserEyeTrackingStatusUpdated += OnUserEyeTrackingStatusUpdatedSignalReceived;
 	}
 
+	public override void _Process(double delta)
+	{
+		GD.Print($"CurrentPlayCount: {CurrentPlayCount}, TargetPlayCount: {TargetPlayCount}, Current Play RawUserInputData: {RawUserInputData.GetValueOrDefault(CurrentPlayCount, new List<ProcessResult>()).Count} entries");
+	}
+
+	public void AddUserInputData(ProcessResult result)
+	{
+		if (!_isGameStart) return;
+
+		if (!RawUserInputData.ContainsKey(CurrentPlayCount))
+		{
+			RawUserInputData[CurrentPlayCount] = new List<ProcessResult>();
+		}
+		RawUserInputData[CurrentPlayCount].Add(result);
+		GD.Print($"Input data recorded: NoteType={result.NoteType}, LaneIndex={result.LaneIndex}, HitResult={result.HitResult}, HitTime={result.HitTime}, TargetHitTime={result.TargetHitTime}, SystemTime={result.SystemTime}");
+	}
 	// Signal progress started
 	public void StartProgress()
 	{

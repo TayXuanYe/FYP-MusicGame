@@ -31,11 +31,9 @@ public partial class Lane : Node2D
 	private int _laneIndex = -1;
 
 	[Signal] public delegate void DisplayResultEventHandler(string resultText);
-	private List<ProcessResult> _inputResults = new List<ProcessResult>();
 	public override void _Ready()
 	{
 		InitLane();
-		GameProgressManger.Instance.RawUserInputData.TryAdd(GameProgressManger.Instance.CurrentPlayCount, new List<ProcessResult>());
 	}
 
 	private void InitLane()
@@ -102,7 +100,7 @@ public partial class Lane : Node2D
 			{
 				var tapNote = _tapNotesQueue.Dequeue();
 				// record result
-				_inputResults.Add(ProcessResult.CreateTapNoteResult(
+				GameProgressManger.Instance.AddUserInputData(ProcessResult.CreateTapNoteResult(
 					laneIndex: _laneIndex,
 					hitResult: "Miss",
 					hitTime: _currentTime,
@@ -135,7 +133,7 @@ public partial class Lane : Node2D
 					AudioManager.Instance.PlaySound(GameSetting.Instance.TapSoundEffect);
 				}
 				// record result
-				_inputResults.Add(ProcessResult.CreateHoldNoteResult(
+				GameProgressManger.Instance.AddUserInputData(ProcessResult.CreateHoldNoteResult(
 					laneIndex: _laneIndex,
 					hitResult: holdNoteResult.hitResult,
 					hitTime: holdNote.TargetHitTime + holdNote.HoldDuration,
@@ -194,7 +192,7 @@ public partial class Lane : Node2D
 				AudioManager.Instance.PlaySound(GameSetting.Instance.TapSoundEffect);
 
 				// record result
-				_inputResults.Add(ProcessResult.CreateTapNoteResult(
+				GameProgressManger.Instance.AddUserInputData(ProcessResult.CreateTapNoteResult(
 					laneIndex: _laneIndex,
 					hitResult: hitResult.hitResult,
 					hitTime: hitResult.hitTime,
