@@ -4,7 +4,7 @@ using System;
 public partial class GameSetting : Node
 {
 	// unit px per second
-	[Export] public float NoteSpeed { get; set; } = 800f;
+	[Export] public float NoteSpeed { get; set; } = 1200f;
 
 	// unit second
 	[Export] public double GoodTimeRange { get; set; } = 0.15f;

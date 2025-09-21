@@ -8,7 +8,7 @@ public partial class GameProgressManger : Node
 	public List<ChartData> CurrentCharts { get; set; } = new();
 	public Dictionary<int, List<ProcessResult>> RawUserInputData { get; set; } = new();
 	public Dictionary<int,List<GazeData>> RawUserGazeData { get; set; } = new();
-	public int TargetPlayCount { get; private set; } = 4;
+	public int TargetPlayCount { get; private set; } = 1;
 	public int CurrentPlayCount { get; private set; } = 0;
 	private bool _isGameStart = false;
 	float level = 5.0f; // example level
@@ -24,6 +24,12 @@ public partial class GameProgressManger : Node
 		SignalManager.Instance.CurrentProgressEnded += OnCurrentProgressEndSignalReceived;
 		SignalManager.Instance.UserEyeTrackingStatusUpdated += OnUserEyeTrackingStatusUpdatedSignalReceived;
 	}
+
+	public override void _Process(double delta)
+	{
+		GD.Print($"Current Play Count: {CurrentPlayCount}, Target Play Count: {TargetPlayCount}, CurrentCharts Count: {CurrentCharts.Count}");
+	}
+
 
 	// Signal progress started
 	public void StartProgress()
@@ -43,6 +49,7 @@ public partial class GameProgressManger : Node
 			GD.Print($"Selected Chart IDs for level {level}: {string.Join(", ", chartIds)}");
 			foreach (var chartId in chartIds)
 			{
+				GD.Print($"Loading Chart ID: {chartId}");
 				ChartData chartData = ChartManager.Instance.LoadChart(chartId);
 				if (chartData != null)
 				{
@@ -67,6 +74,7 @@ public partial class GameProgressManger : Node
 
 			// Change to result scene
 			// SceneManager.Instance.ChangeToResultScene();
+			SceneManager.Instance.ChangeToMainMenuScene();
 		}
 		else
 		{
