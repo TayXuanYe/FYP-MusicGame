@@ -7,8 +7,10 @@ public partial class GameProgressManger : Node
 	public static GameProgressManger Instance { get; private set; }
 	public List<ChartData> CurrentCharts { get; set; } = new();
 	public Dictionary<int, List<ProcessResult>> RawUserInputData { get; set; } = new();
+	public Dictionary<int,List<GazeData>> RawUserGazeData { get; set; } = new();
 	public int TargetPlayCount { get; private set; } = 4;
 	public int CurrentPlayCount { get; private set; } = 0;
+	private bool _isGameStart = false;
 	float level = 5.0f; // example level
 	public override void _Ready()
 	{
@@ -20,6 +22,7 @@ public partial class GameProgressManger : Node
 		Instance = this;
 		// Connect to SignalManager signals
 		SignalManager.Instance.CurrentProgressEnded += OnCurrentProgressEndSignalReceived;
+		SignalManager.Instance.UserEyeTrackingStatusUpdated += OnUserEyeTrackingStatusUpdatedSignalReceived;
 	}
 
 	// Signal progress started
@@ -29,7 +32,8 @@ public partial class GameProgressManger : Node
 		CurrentCharts.Clear();
 		RawUserInputData.Clear();
 		CurrentPlayCount = 0;
-
+		RawUserGazeData.Clear();
+		_isGameStart = true;
 		// init raw user input data dictionary
 		RawUserInputData.Add(CurrentPlayCount, new List<ProcessResult>());
 
@@ -57,10 +61,12 @@ public partial class GameProgressManger : Node
 		CurrentPlayCount++;
 		if (CurrentPlayCount >= TargetPlayCount)
 		{
-			// All charts completed, show result page
-
 			// Clear current charts for next session
 			CurrentCharts.Clear();
+			_isGameStart = false;
+
+			// Change to result scene
+			// SceneManager.Instance.ChangeToResultScene();
 		}
 		else
 		{
@@ -68,5 +74,17 @@ public partial class GameProgressManger : Node
 		}
 	}
 	
-	
+	private void OnUserEyeTrackingStatusUpdatedSignalReceived(double x, double y, int confidence)
+	{
+		if (!_isGameStart) return;
+		
+		// Record gaze data with timestamp
+		double timestamp = System.Diagnostics.Stopwatch.GetTimestamp() / (double)System.Diagnostics.Stopwatch.Frequency;
+		if (!RawUserGazeData.ContainsKey(CurrentPlayCount))
+		{
+			RawUserGazeData[CurrentPlayCount] = new List<GazeData>();
+		}
+		RawUserGazeData[CurrentPlayCount].Add(new GazeData(x, y, confidence, timestamp));
+		GD.Print($"Gaze data recorded: x={x}, y={y}, confidence={confidence}, timestamp={timestamp}");
+	}
 }

@@ -24,8 +24,8 @@ AudioManager="*res://Assets/Manager/AudioManager.cs"
 ApiClient="*res://Scripts/Client/ApiClient.cs"
 SignalManager="*res://Assets/Manager/SignalManager.cs"
 ChartManager="*res://Assets/Manager/ChartManager.cs"
+EyeTrackerManager="*res://Assets/Manager/EyeTrackerManager.cs"
 GameProgressManger="*res://Assets/Manager/GameProgressManger.cs"
-BeamEyeTracker="*res://Eyeware/BeamEyeTracker.cs"
 
 [display]
 
