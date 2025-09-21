@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public partial class GameProgressManger : Node
 {
 	public static GameProgressManger Instance { get; private set; }
-	public List<ChartData> CurrentCharts { get; set; } = new();
+	public List<int> PlaylistChartsId { get; set; } = new();
 	public Dictionary<int, List<ProcessResult>> RawUserInputData { get; set; } = new();
 	public Dictionary<int,List<GazeData>> RawUserGazeData { get; set; } = new();
-	public int TargetPlayCount { get; private set; } = 1;
+	public int TargetPlayCount { get; private set; } = 2;
 	public int CurrentPlayCount { get; private set; } = 0;
 	private bool _isGameStart = false;
 	float level = 5.0f; // example level
@@ -27,7 +27,7 @@ public partial class GameProgressManger : Node
 
 	public override void _Process(double delta)
 	{
-		GD.Print($"Current Play Count: {CurrentPlayCount}, Target Play Count: {TargetPlayCount}, CurrentCharts Count: {CurrentCharts.Count}");
+		GD.Print($"Current Play Count: {CurrentPlayCount}, Target Play Count: {TargetPlayCount}, CurrentCharts Count: {PlaylistChartsId.Count}");
 	}
 
 
@@ -35,28 +35,16 @@ public partial class GameProgressManger : Node
 	public void StartProgress()
 	{
 		// reset current progress data
-		CurrentCharts.Clear();
+		PlaylistChartsId.Clear();
 		RawUserInputData.Clear();
 		CurrentPlayCount = 0;
 		RawUserGazeData.Clear();
 		_isGameStart = true;
-		// init raw user input data dictionary
-		RawUserInputData.Add(CurrentPlayCount, new List<ProcessResult>());
 
 		if (level != 0f)
 		{
-			List<int> chartIds = ChartManager.Instance.GetChartIdsByLevel(level, TargetPlayCount);
-			GD.Print($"Selected Chart IDs for level {level}: {string.Join(", ", chartIds)}");
-			foreach (var chartId in chartIds)
-			{
-				GD.Print($"Loading Chart ID: {chartId}");
-				ChartData chartData = ChartManager.Instance.LoadChart(chartId);
-				if (chartData != null)
-				{
-					CurrentCharts.Add(chartData);
-				}
-			}
-			TargetPlayCount = CurrentCharts.Count;
+			PlaylistChartsId = ChartManager.Instance.GetChartIdsByLevel(level, TargetPlayCount);
+			TargetPlayCount = PlaylistChartsId.Count;
 		}
 
 		SceneManager.Instance.ChangeToLoadingScene();
@@ -69,7 +57,7 @@ public partial class GameProgressManger : Node
 		if (CurrentPlayCount >= TargetPlayCount)
 		{
 			// Clear current charts for next session
-			CurrentCharts.Clear();
+			PlaylistChartsId.Clear();
 			_isGameStart = false;
 
 			// Change to result scene

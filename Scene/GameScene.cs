@@ -31,10 +31,12 @@ public partial class GameScene : Node2D
 		_lane3.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
 		_lane4.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
 
-		_lane1.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].Lane1NotesMetadataQueue);
-		_lane2.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].Lane2NotesMetadataQueue);
-		_lane3.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].Lane3NotesMetadataQueue);
-		_lane4.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].Lane4NotesMetadataQueue);
+		ChartData chartData = ChartManager.Instance.LoadChart(GameProgressManger.Instance.PlaylistChartsId[GameProgressManger.Instance.CurrentPlayCount]);
+
+		_lane1.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane1NotesMetadataQueue);
+		_lane2.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane2NotesMetadataQueue);
+		_lane3.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane3NotesMetadataQueue);
+		_lane4.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane4NotesMetadataQueue);
 
 		_displayTimer = new Timer();
 		_displayTimer.OneShot = true;
@@ -43,7 +45,7 @@ public partial class GameScene : Node2D
 		AddChild(_displayTimer);
 
 		_musicPlayer = new AudioStreamPlayer();
-		_musicPlayer.Stream = GameProgressManger.Instance.CurrentCharts[GameProgressManger.Instance.CurrentPlayCount].music;
+		_musicPlayer.Stream = chartData.music;
 		AddChild(_musicPlayer);
 		_musicPlayer.Play();
 		_musicPlayer.Finished += OnMusicFinished;
@@ -52,6 +54,7 @@ public partial class GameScene : Node2D
 	private void OnMusicFinished()
 	{
 		SignalManager.Instance.EmitCurrentProgressEndedSignal();
+		QueueFree();
 	}
 
 	public override void _UnhandledInput(InputEvent @event)

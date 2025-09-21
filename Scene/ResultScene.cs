@@ -39,7 +39,7 @@ public partial class ResultScene : Control
     private void DisplayResult(int index)
     {
         // var resultData = gameData.ResultData;
-        var songData = GameProgressManger.Instance.CurrentCharts[index];
+        var songData = ChartManager.Instance.LoadChart(GameProgressManger.Instance.PlaylistChartsId[index]);
         var resultData = GameProgressManger.Instance.RawUserInputData[index];
 
         int tapCriticalPerfectCount = 0;
@@ -182,7 +182,7 @@ public partial class ResultScene : Control
 
     private void OnNextButtonPressed()
     {
-        if(_currentIndex < GameProgressManger.Instance.CurrentCharts.Count - 1)
+        if(_currentIndex < GameProgressManger.Instance.PlaylistChartsId.Count - 1)
         {
             _currentIndex++;
             DisplayResult(_currentIndex);
