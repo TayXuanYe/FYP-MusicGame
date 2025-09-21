@@ -4,7 +4,7 @@ SongId:1
 Title:Cat Loving
 Artist:Nakiri Ayame
 Difficulty:Basic
-Level:10.0
+Level:1
 Designer:Nakiri Ayame
 
 [Lane1]

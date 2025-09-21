@@ -27,7 +27,7 @@ public partial class HoldNote : Area2D
 	public override void _Ready()
 	{
 		// Set the color of the note
-		_HoldShadow.Modulate = _noteColor with { A = 0.5f };
+		_HoldShadow.Modulate = _noteColor with { A = 0.7f };
 
 		// calculate the length of the shadow based on the hold duration and note speed
 		LengthOfShadow = (float)(GameSetting.Instance.NoteSpeed * HoldDuration);
@@ -43,12 +43,12 @@ public partial class HoldNote : Area2D
 		{
 			_holdTime += delta;
 			// change the color to bright when holding
-			_HoldShadow.Modulate = _noteColor with { A = 0.7f };
+			_HoldShadow.Modulate = _noteColor with { A = 0.9f };
 		}
 		else if (_currentTime > TargetHitTime)
 		{
 			// change the color more dark when not holding and missing
-			_HoldShadow.Modulate = _noteColor with { A = 0.3f };
+			_HoldShadow.Modulate = _noteColor with { A = 0.7f };
 		}
 
 	}

@@ -31,7 +31,6 @@ public partial class Lane : Node2D
 	private int _laneIndex = -1;
 
 	[Signal] public delegate void DisplayResultEventHandler(string resultText);
-
 	public override void _Ready()
 	{
 		InitLane();
@@ -68,8 +67,6 @@ public partial class Lane : Node2D
 		_laneLabel.LabelSettings.FontSize = _fontSize;
 		_laneLabel.LabelSettings.OutlineSize = 2;
 	}
-
-	private List<ProcessResult> _inputResults = GameProgressManger.Instance.RawUserInputData[GameProgressManger.Instance.CurrentPlayCount];
 	public override void _Process(double delta)
 	{
 		_currentTime += delta;
@@ -103,7 +100,7 @@ public partial class Lane : Node2D
 			{
 				var tapNote = _tapNotesQueue.Dequeue();
 				// record result
-				_inputResults.Add(ProcessResult.CreateTapNoteResult(
+				GameProgressManger.Instance.AddUserInputData(ProcessResult.CreateTapNoteResult(
 					laneIndex: _laneIndex,
 					hitResult: "Miss",
 					hitTime: _currentTime,
@@ -136,7 +133,7 @@ public partial class Lane : Node2D
 					AudioManager.Instance.PlaySound(GameSetting.Instance.TapSoundEffect);
 				}
 				// record result
-				_inputResults.Add(ProcessResult.CreateHoldNoteResult(
+				GameProgressManger.Instance.AddUserInputData(ProcessResult.CreateHoldNoteResult(
 					laneIndex: _laneIndex,
 					hitResult: holdNoteResult.hitResult,
 					hitTime: holdNote.TargetHitTime + holdNote.HoldDuration,
@@ -153,6 +150,8 @@ public partial class Lane : Node2D
 				peekedHoldNote = _holdNotesQueue.Peek();
 			}
 		}
+
+		_hittingArea.ZIndex = 10; // Ensure hitting area is always on top
 	}
 
 	private double CalculateNoteSpawnTime(double targetHitTime)
@@ -193,7 +192,7 @@ public partial class Lane : Node2D
 				AudioManager.Instance.PlaySound(GameSetting.Instance.TapSoundEffect);
 
 				// record result
-				_inputResults.Add(ProcessResult.CreateTapNoteResult(
+				GameProgressManger.Instance.AddUserInputData(ProcessResult.CreateTapNoteResult(
 					laneIndex: _laneIndex,
 					hitResult: hitResult.hitResult,
 					hitTime: hitResult.hitTime,
