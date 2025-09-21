@@ -16,6 +16,8 @@ public partial class GameScene : Node2D
 	[Export] private float _laneSpacing = 0f;
 	[Export] private float _laneWidth = 100f;
 	[Export] private PauseScene _pauseScene;
+	[Export] private Label _chartNameLabel;
+	[Export] private Label _chartDataLabel;
 
 	private Timer _displayTimer;
 	private AudioStreamPlayer _musicPlayer;
@@ -32,11 +34,13 @@ public partial class GameScene : Node2D
 		_lane4.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
 
 		ChartData chartData = ChartManager.Instance.LoadChart(GameProgressManger.Instance.PlaylistChartsId[GameProgressManger.Instance.CurrentPlayCount]);
-
 		_lane1.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane1NotesMetadataQueue);
 		_lane2.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane2NotesMetadataQueue);
 		_lane3.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane3NotesMetadataQueue);
 		_lane4.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane4NotesMetadataQueue);
+		_chartNameLabel.Text = chartData.Title;
+		_chartDataLabel.Text = $"{chartData.Artist} - {chartData.Difficulty} (Lv.{chartData.Level})";
+
 
 		_displayTimer = new Timer();
 		_displayTimer.OneShot = true;
