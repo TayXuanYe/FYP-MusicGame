@@ -153,6 +153,8 @@ public partial class Lane : Node2D
 				peekedHoldNote = _holdNotesQueue.Peek();
 			}
 		}
+
+		_hittingArea.ZIndex = 10; // Ensure hitting area is always on top
 	}
 
 	private double CalculateNoteSpawnTime(double targetHitTime)
