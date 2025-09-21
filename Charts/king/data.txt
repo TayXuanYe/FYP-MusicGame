@@ -4,7 +4,7 @@ SongId:1
 Title:King
 Artist:mafumafu
 Difficulty:Basic
-Level:10.0
+Level:5
 Designer:nqrse
 
 [Lane1]

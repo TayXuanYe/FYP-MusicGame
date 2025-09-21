@@ -4,7 +4,7 @@ SongId:1
 Title:Chronomia
 Artist:Lime
 Difficulty:Basic
-Level:10.0
+Level:7
 Designer:Lime
 
 [Lane1]
