@@ -40,7 +40,7 @@ public partial class ResultScene : Control
     {
         var songData = ChartManager.Instance.LoadChart(GameProgressManger.Instance.PlaylistChartsId[index]);
         var resultData = GameProgressManger.Instance.RawUserInputData[index];
-
+        GD.Print($"Displaying result for chart ID: {GameProgressManger.Instance.PlaylistChartsId[index]} with {resultData.Count} results.");
         int tapCriticalPerfectCount = 0;
         int tapPerfectCount = 0;
         int tapGreatCount = 0;
