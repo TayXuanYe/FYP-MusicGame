@@ -56,13 +56,9 @@ public partial class GameProgressManger : Node
 		CurrentPlayCount++;
 		if (CurrentPlayCount >= TargetPlayCount)
 		{
-			// Clear current charts for next session
-			PlaylistChartsId.Clear();
 			_isGameStart = false;
-
 			// Change to result scene
-			// SceneManager.Instance.ChangeToResultScene();
-			SceneManager.Instance.ChangeToMainMenuScene();
+			SceneManager.Instance.ChangeToResultScene();
 		}
 		else
 		{

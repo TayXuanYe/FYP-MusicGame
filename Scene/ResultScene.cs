@@ -38,7 +38,6 @@ public partial class ResultScene : Control
 
     private void DisplayResult(int index)
     {
-        // var resultData = gameData.ResultData;
         var songData = ChartManager.Instance.LoadChart(GameProgressManger.Instance.PlaylistChartsId[index]);
         var resultData = GameProgressManger.Instance.RawUserInputData[index];
 
