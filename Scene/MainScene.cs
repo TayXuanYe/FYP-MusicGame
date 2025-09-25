@@ -89,7 +89,7 @@ public partial class MainScene : Control
 			await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
 		}
 	}
-	
+
 	private void OnUserEyeTrackingStatusUpdated(double x, double y, int confidence)
 	{
 		// If we receive eye tracking data, it means the eye tracker is connected
@@ -98,5 +98,6 @@ public partial class MainScene : Control
 			_messageTextureRect.Visible = false;
 			_messageLabel.Text = "Eye Tracker connected successfully!";
 		}
+		SignalManager.Instance.UserEyeTrackingStatusUpdated -= OnUserEyeTrackingStatusUpdated;
 	}
 }

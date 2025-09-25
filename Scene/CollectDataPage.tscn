@@ -105,7 +105,6 @@ text = "CAT-SAT Result"
 [node name="CATSATLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 max_length = 32
-secret = true
 
 [node name="CATSATErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
 visible = false

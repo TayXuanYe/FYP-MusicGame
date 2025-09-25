@@ -29,7 +29,9 @@ public partial class CollectDataPage : Control
 			GenerateDataFolders();
 			
 			// Compress the output folder
-			ZipOutputFolder();
+			// ZipOutputFolder();
+
+            SceneManager.Instance.ChangeToMainMenuScene();
 		}
 		else
 		{

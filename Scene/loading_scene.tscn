@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwfhnff1prpe6"]
+[gd_scene load_steps=7 format=3 uid="uid://dwfhnff1prpe6"]
 
 [ext_resource type="Script" uid="uid://cwvukr8q1vscp" path="res://Scene/LoadingScene.cs" id="1_124xp"]
 
@@ -11,10 +11,13 @@ gradient = SubResource("Gradient_124xp")
 [sub_resource type="LabelSettings" id="LabelSettings_124xp"]
 font_size = 96
 
-[sub_resource type="LabelSettings" id="LabelSettings_iyffp"]
-font_size = 32
+[sub_resource type="LabelSettings" id="LabelSettings_songtitle"]
+font_size = 48
 
-[node name="LoadingScene" type="Control" node_paths=PackedStringArray("_trackCountLabel")]
+[sub_resource type="LabelSettings" id="LabelSettings_difficulty"]
+font_size = 36
+
+[node name="LoadingScene" type="Control" node_paths=PackedStringArray("_trackCountLabel", "_songTitleLabel", "_difficultyLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +26,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_124xp")
 _trackCountLabel = NodePath("CenterContainer/VBoxContainer/TrackLabel")
+_songTitleLabel = NodePath("CenterContainer/VBoxContainer/SongTitleLabel")
+_difficultyLabel = NodePath("CenterContainer/VBoxContainer/DifficultyLabel")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -42,15 +47,24 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+alignment = 1
 
 [node name="TrackLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "TRACK 1"
 label_settings = SubResource("LabelSettings_124xp")
+horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="SongTitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Loading ..."
-label_settings = SubResource("LabelSettings_iyffp")
+text = "Song Title"
+label_settings = SubResource("LabelSettings_songtitle")
+horizontal_alignment = 1
+
+[node name="DifficultyLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Difficulty Level"
+label_settings = SubResource("LabelSettings_difficulty")
 horizontal_alignment = 1

@@ -8,7 +8,7 @@ public partial class GameProgressManger : Node
 	public List<int> PlaylistChartsId { get; set; } = new();
 	public Dictionary<int, List<ProcessResult>> RawUserInputData { get; set; } = new();
 	public Dictionary<int, List<GazeData>> RawUserGazeData { get; set; } = new();
-	public int TargetPlayCount { get; private set; } = 2;
+	public int TargetPlayCount { get; private set; } = 1;
 	public int CurrentPlayCount { get; private set; } = 0;
 	private bool _isGameStart = false;
 	public override void _Ready()
