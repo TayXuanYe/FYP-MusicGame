@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ public partial class ChartManager : Node
     private static ChartManager _instance;
     public static ChartManager Instance => _instance;
     public Dictionary<int, string> ChartsIdIndex { get; private set; } = new();
-    public Dictionary<float, List<int>> LevelToChartIdsIndex { get; private set; } = new();
+    public Dictionary<string, List<int>> DifficultyToChartIdsIndex { get; private set; } = new();
     public override void _Ready()
     {
         _instance = this;
@@ -41,13 +42,13 @@ public partial class ChartManager : Node
                             chartId = int.Parse(value);
                             ChartsIdIndex[chartId] = filePath;
                             break;
-                        case "Level":
-                            float level = float.Parse(value);
-                            if (!LevelToChartIdsIndex.ContainsKey(level))
+                        case "Difficulty":
+                            string level = value;
+                            if (!DifficultyToChartIdsIndex.ContainsKey(level))
                             {
-                                LevelToChartIdsIndex[level] = new List<int>();
+                                DifficultyToChartIdsIndex[level] = new List<int>();
                             }
-                            LevelToChartIdsIndex[level].Add(chartId);
+                            DifficultyToChartIdsIndex[level].Add(chartId);
                             break;
                         default:
                             break;
@@ -189,7 +190,7 @@ public partial class ChartManager : Node
         }
     }
 
-    public List<int> GetChartIdsByLevel(float level, int amount)
+    public List<int> GetChartIdsByDifficulty(string difficulties, int amount)
     {
         if (amount <= 0)
         {
@@ -197,68 +198,26 @@ public partial class ChartManager : Node
         }
 
         List<int> result = new List<int>();
-        HashSet<int> foundChartIds = new HashSet<int>();
 
-        List<float> allLevels = LevelToChartIdsIndex.Keys.ToList();
-        allLevels.Sort();
-        // use binary search to find the closest level index
-        int closestLevelIndex = allLevels.BinarySearch(level);
-
-        // if not found, BinarySearch returns a negative number
-        // the bitwise complement of the index of the next element that is larger than value
-        if (closestLevelIndex < 0)
+        List<int> difficultiesToChartIdsIndexInList = DifficultyToChartIdsIndex.ContainsKey(difficulties) ? DifficultyToChartIdsIndex[difficulties] : new List<int>();
+        if (difficultiesToChartIdsIndexInList.Count == 0)
         {
-            closestLevelIndex = ~closestLevelIndex;
+            GD.PrintErr("No difficulties available in the index.");
+            return result;
         }
-
-        // set left and right pointers
-        int leftIndex = closestLevelIndex;
-        int rightIndex = closestLevelIndex + 1;
-
-        // using bfs to find closest levels
-        while (result.Count < amount && (leftIndex >= 0 || rightIndex < allLevels.Count))
+        Random random = new Random();
+        List<int> selectedRandomNumbers = new List<int>();
+        for (int i = 0; i < amount; i++)
         {
-            GD.Print($"Current result count: {result.Count}, LeftIndex: {leftIndex}, RightIndex: {rightIndex}");
-            bool movedLeft = false;
-            bool movedRight = false;
-            
-            // prioritize left side (lower level)
-            if (leftIndex >= 0)
+            int randomIndex = random.Next(difficultiesToChartIdsIndexInList.Count);
+            if (selectedRandomNumbers.Contains(randomIndex))
             {
-                float currentLevel = allLevels[leftIndex];
-                List<int> chartIds = LevelToChartIdsIndex[currentLevel];
-                foreach (int chartId in chartIds)
-                {
-                    if (result.Count < amount && foundChartIds.Add(chartId))
-                    {
-                        result.Add(chartId);
-                    }
-                }
-                leftIndex--;
-                movedLeft = true;
+                i--;
+                continue;
             }
-
-            // then check right side (higher level)
-            if (result.Count < amount && rightIndex < allLevels.Count)
-            {
-                float currentLevel = allLevels[rightIndex];
-                List<int> chartIds = LevelToChartIdsIndex[currentLevel];
-                foreach (int chartId in chartIds)
-                {
-                    if (result.Count < amount && foundChartIds.Add(chartId))
-                    {
-                        result.Add(chartId);
-                    }
-                }
-                rightIndex++;
-                movedRight = true;
-            }
-
-            // if neither side can move, break the loop
-            if (!movedLeft && !movedRight)
-            {
-                break;
-            }
+            selectedRandomNumbers.Add(randomIndex);
+            int chartId = difficultiesToChartIdsIndexInList[randomIndex];
+            result.Add(chartId);
         }
 
         return result;

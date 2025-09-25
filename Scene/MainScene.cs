@@ -14,9 +14,15 @@ public partial class MainScene : Control
 	{
 		//if (!UserDataManager.Instance.CurrentUser.IsLogin)
 		//{
-			//SceneManager.Instance.ChangeToLoginScene();
-			//return;
+		//SceneManager.Instance.ChangeToLoginScene();
+		//return;
 		//}
+		
+		if(UserDataManager.Instance.CurrentUser.SuggestedDifficulty == null)
+		{
+			SceneManager.Instance.ChangeToSetDefaultDifficultyScene();
+			return;
+		}
 
 		_playGameButton.Pressed += OnPlayGameButtonPressed;
 		_gameHistoryButton.Pressed += OnGameHistoryButtonPressed;
