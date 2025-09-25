@@ -15,7 +15,7 @@ public partial class LoadingScene : Control
 		// Update the label with the current progress
 		_trackCountLabel.Text = $"Track {GameProgressManger.Instance.CurrentPlayCount + 1}/{GameProgressManger.Instance.TargetPlayCount}";
 
-		await ToSignal(GetTree().CreateTimer(2f), "timeout"); // Optional delay for better UX
+		await ToSignal(GetTree().CreateTimer(1f), "timeout"); // Optional delay for better UX
 		SceneManager.Instance.ChangeToGameScene();
 	}
 }
