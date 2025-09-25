@@ -99,12 +99,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "CAT-SAT Result"
 
-[node name="PasswordLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="CATSATLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 max_length = 32
 secret = true
 
-[node name="PasswordErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="CATSATErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
