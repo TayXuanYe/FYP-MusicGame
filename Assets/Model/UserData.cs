@@ -20,6 +20,9 @@ public class UserData
 	[JsonPropertyName("authToken")]
 	public string AuthToken { get; set; }
 
+	[JsonPropertyName("suggestedDifficulty")]
+	public string SuggestedDifficulty { get; set; }
+
 	public UserData(int id, string username, string email, bool isLoggedIn, string authToken)
 	{
 		Id = id;

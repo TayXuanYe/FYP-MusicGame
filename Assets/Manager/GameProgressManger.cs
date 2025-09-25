@@ -11,7 +11,6 @@ public partial class GameProgressManger : Node
 	public int TargetPlayCount { get; private set; } = 2;
 	public int CurrentPlayCount { get; private set; } = 0;
 	private bool _isGameStart = false;
-	float level = 5.0f; // example level
 	public override void _Ready()
 	{
 		if (Instance != null && Instance != this)
@@ -51,11 +50,8 @@ public partial class GameProgressManger : Node
 		RawUserGazeData.Clear();
 		_isGameStart = true;
 
-		if (level != 0f)
-		{
-			PlaylistChartsId = ChartManager.Instance.GetChartIdsByLevel(level, TargetPlayCount);
-			TargetPlayCount = PlaylistChartsId.Count;
-		}
+		PlaylistChartsId = ChartManager.Instance.GetChartIdsByDifficulty(UserDataManager.Instance.CurrentUser.SuggestedDifficulty, TargetPlayCount);
+		TargetPlayCount = PlaylistChartsId.Count;
 
 		SceneManager.Instance.ChangeToLoadingScene();
 	}
