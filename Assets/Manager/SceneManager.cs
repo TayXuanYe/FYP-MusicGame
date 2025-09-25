@@ -13,6 +13,7 @@ public partial class SceneManager : Node
 	private PackedScene _loadingScene;
 	private PackedScene _resultScene;
 	private PackedScene _setDefaultDifficultyScene;
+	private PackedScene _collectDataPage;
 
 	public override void _Ready()
 	{
@@ -25,6 +26,7 @@ public partial class SceneManager : Node
 		_loadingScene = GD.Load<PackedScene>("res://Scene/loading_scene.tscn");
 		_resultScene = GD.Load<PackedScene>("res://Scene/result_scene.tscn");
 		_setDefaultDifficultyScene = GD.Load<PackedScene>("res://Scene/SetDefaultDifficultyScene.tscn");
+		_collectDataPage = GD.Load<PackedScene>("res://Scene/CollectDataPage.tscn");
 	}
 
 	public void ChangeToLoginScene()
@@ -98,7 +100,7 @@ public partial class SceneManager : Node
 			GD.PrintErr("ResultScene is not loaded!");
 		}
 	}
-	
+
 	public void ChangeToSetDefaultDifficultyScene()
 	{
 		if (_setDefaultDifficultyScene != null)
@@ -109,5 +111,10 @@ public partial class SceneManager : Node
 		{
 			GD.PrintErr("SetDefaultDifficultyScene is not loaded!");
 		}
+	}
+
+	public void ChangeToCollectDataPage()
+	{
+		GetTree().ChangeSceneToPacked(_collectDataPage);
 	}
 }

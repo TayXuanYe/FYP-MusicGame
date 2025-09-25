@@ -69,7 +69,8 @@ public partial class GameProgressManger : Node
 		}
 		else
 		{
-			SceneManager.Instance.ChangeToLoadingScene();
+			SceneManager.Instance.ChangeToCollectDataPage();
+			// SceneManager.Instance.ChangeToLoadingScene();
 		}
 	}
 
