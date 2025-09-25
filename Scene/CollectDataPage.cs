@@ -8,12 +8,12 @@ public partial class CollectDataPage : Control
 {
 	[Export] private Button _submitButton;
 	[Export] private LineEdit _input;
-    [Export] private Label _errorLabel;
+	[Export] private Label _errorLabel;
 
 	public override void _Ready()
-    {
-        _submitButton.Pressed += OnSubmitButtonPressed;
-    }
+	{
+		_submitButton.Pressed += OnSubmitButtonPressed;
+	}
 
 	private void OnSubmitButtonPressed()
 	{

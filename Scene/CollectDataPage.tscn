@@ -40,7 +40,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="CollectDataPage" type="Control"]
+[node name="CollectDataPage" type="Control" node_paths=PackedStringArray("_submitButton", "_input", "_errorLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +48,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gyut5")
+_submitButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/LoginButton")
+_input = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/CATSATLineEdit")
+_errorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/CATSATErrorLabel")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 clip_contents = true
