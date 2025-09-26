@@ -28,7 +28,7 @@ public partial class Lane : Node2D
 	private int _holdNoteIdCounter = 0;
 	private double _currentTime = 0f;
 	private float _spawnNoteYPosition = -100f;
-	private int _laneIndex = -1;
+	public int LaneIndex { get; set; } = -1;
 
 	[Signal] public delegate void DisplayResultEventHandler(string resultText);
 	public override void _Ready()
@@ -101,7 +101,7 @@ public partial class Lane : Node2D
 				var tapNote = _tapNotesQueue.Dequeue();
 				// record result
 				GameProgressManger.Instance.AddUserInputData(ProcessResult.CreateTapNoteResult(
-					laneIndex: _laneIndex,
+					laneIndex: LaneIndex,
 					hitResult: "Miss",
 					hitTime: _currentTime,
 					timeDifference: +0.15f,
@@ -134,7 +134,7 @@ public partial class Lane : Node2D
 				}
 				// record result
 				GameProgressManger.Instance.AddUserInputData(ProcessResult.CreateHoldNoteResult(
-					laneIndex: _laneIndex,
+					laneIndex: LaneIndex,
 					hitResult: holdNoteResult.hitResult,
 					hitTime: holdNote.TargetHitTime + holdNote.HoldDuration,
 					targetHitTime: holdNote.TargetHitTime,
@@ -193,7 +193,7 @@ public partial class Lane : Node2D
 
 				// record result
 				GameProgressManger.Instance.AddUserInputData(ProcessResult.CreateTapNoteResult(
-					laneIndex: _laneIndex,
+					laneIndex: LaneIndex,
 					hitResult: hitResult.hitResult,
 					hitTime: hitResult.hitTime,
 					timeDifference: hitResult.timeDifference,

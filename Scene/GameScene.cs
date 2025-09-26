@@ -33,6 +33,11 @@ public partial class GameScene : Node2D
 		_lane3.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
 		_lane4.Connect(Lane.SignalName.DisplayResult, new Callable(this, nameof(OnDisplayHitResultSignalHandler)));
 
+		_lane1.LaneIndex = 0;
+		_lane2.LaneIndex = 1;
+		_lane3.LaneIndex = 2;
+		_lane4.LaneIndex = 3;
+
 		ChartData chartData = ChartManager.Instance.LoadChart(GameProgressManger.Instance.PlaylistChartsId[GameProgressManger.Instance.CurrentPlayCount]);
 		_lane1.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane1NotesMetadataQueue);
 		_lane2.NotesMetadataQueue = new Queue<(double targetHitTime, Color noteColor, string type, double durationTime)>(chartData.Lane2NotesMetadataQueue);

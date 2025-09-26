@@ -31,7 +31,7 @@ public partial class CollectDataPage : Control
 			// Compress the output folder
 			// ZipOutputFolder();
 
-            SceneManager.Instance.ChangeToMainMenuScene();
+			SceneManager.Instance.ChangeToMainMenuScene();
 		}
 		else
 		{
