@@ -24,11 +24,6 @@ public partial class GameProgressManger : Node
 		SignalManager.Instance.UserEyeTrackingStatusUpdated += OnUserEyeTrackingStatusUpdatedSignalReceived;
 	}
 
-	public override void _Process(double delta)
-	{
-		GD.Print($"CurrentPlayCount: {CurrentPlayCount}, TargetPlayCount: {TargetPlayCount}, Current Play RawUserInputData: {RawUserInputData.GetValueOrDefault(CurrentPlayCount, new List<ProcessResult>()).Count} entries");
-	}
-
 	public void AddUserInputData(ProcessResult result)
 	{
 		if (!_isGameStart) return;
@@ -64,13 +59,11 @@ public partial class GameProgressManger : Node
 		{
 			_isGameStart = false;
 			// Change to result scene
-			SceneManager.Instance.ChangeToResultScene();
-			OutputRawUserData();
+			SceneManager.Instance.ChangeToCollectDataPage();
 		}
 		else
 		{
-			SceneManager.Instance.ChangeToCollectDataPage();
-			// SceneManager.Instance.ChangeToLoadingScene();
+			SceneManager.Instance.ChangeToLoadingScene();
 		}
 	}
 
@@ -85,7 +78,7 @@ public partial class GameProgressManger : Node
 			RawUserGazeData[CurrentPlayCount] = new List<GazeData>();
 		}
 		RawUserGazeData[CurrentPlayCount].Add(new GazeData(x, y, confidence, timestamp));
-		GD.Print($"Gaze data recorded: x={x}, y={y}, confidence={confidence}, timestamp={timestamp}");
+		// GD.Print($"Gaze data recorded: x={x}, y={y}, confidence={confidence}, timestamp={timestamp}");
 	}
 
 	private void OutputRawUserData()

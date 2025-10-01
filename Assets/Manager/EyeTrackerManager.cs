@@ -62,7 +62,7 @@ public partial class EyeTrackerManager : Node
                 double x = viewportGazeData.NormalizedPointOfRegard.X;
                 double y = viewportGazeData.NormalizedPointOfRegard.Y;
                 SignalManager.Instance.EmitUserEyeTrackingStatusUpdatedSignal(x, y, confidence == TrackingConfidence.High ? 1 : 0);
-                GD.Print($"Gaze data: x={x}, y={y}, confidence={confidence}");
+                // GD.Print($"Gaze data: x={x}, y={y}, confidence={confidence}");
 
                 await ToSignal(GetTree().CreateTimer(0.0167f), "timeout");
             }
