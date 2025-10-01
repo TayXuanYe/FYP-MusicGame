@@ -25,7 +25,7 @@ public partial class SceneManager : Node
 		_gameScene = GD.Load<PackedScene>("res://Scene/game_scene.tscn");
 		_loadingScene = GD.Load<PackedScene>("res://Scene/loading_scene.tscn");
 		_resultScene = GD.Load<PackedScene>("res://Scene/result_scene.tscn");
-		_setDefaultDifficultyScene = GD.Load<PackedScene>("res://Scene/SetDefaultDifficultyScene.tscn");
+		_setDefaultDifficultyScene = GD.Load<PackedScene>("res://Scene/set_default_difficulty_scene.tscn");
 		_collectDataPage = GD.Load<PackedScene>("res://Scene/CollectDataPage.tscn");
 	}
 
