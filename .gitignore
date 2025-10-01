@@ -51,3 +51,8 @@ export_presets.cfg
 Charts/
 Charts/*
 !Charts/.gitkeep
+
+# Output folder
+Output/
+Output/*
+Charts
