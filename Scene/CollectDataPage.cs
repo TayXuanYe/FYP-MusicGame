@@ -59,7 +59,7 @@ public partial class CollectDataPage : Control
 			int chartId = playlistChartsId[i];
 			
 			// Create chart folder
-			string chartFolder = Path.Combine(outputDir, $"Chart_{chartId}");
+			string chartFolder = Path.Combine(outputDir, $"Chart_{chartId}_{Time.GetUnixTimeFromSystem()}");
 			if (!Directory.Exists(chartFolder))
 			{
 				Directory.CreateDirectory(chartFolder);
