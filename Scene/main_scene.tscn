@@ -1,13 +1,13 @@
 [gd_scene load_steps=26 format=3 uid="uid://d0k21vq5nx2gk"]
 
 [ext_resource type="Script" uid="uid://c7bsjo6ew3g14" path="res://Scene/MainScene.cs" id="1_72i6h"]
-[ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="2_i7nbl"]
-[ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_phuym"]
-[ext_resource type="Texture2D" uid="uid://c7tgolcwfcqd1" path="res://Assets/Svg/escape.svg" id="4_3qwvu"]
-[ext_resource type="Texture2D" uid="uid://c7o71pbl02hwl" path="res://Assets/Svg/play.svg" id="4_i7nbl"]
-[ext_resource type="Texture2D" uid="uid://dwr0oqc1rplww" path="res://Assets/Svg/clock.svg" id="5_doiu5"]
-[ext_resource type="Texture2D" uid="uid://dnk2op34bpi5f" path="res://Assets/Svg/setting.svg" id="6_72i6h"]
-[ext_resource type="Texture2D" uid="uid://b1xo0wmuujva6" path="res://Assets/Svg/warning.svg" id="7_3qwvu"]
+[ext_resource type="Texture2D" uid="uid://b1m2jkdkhmkuy" path="res://Assets/Svg/icon.svg" id="2_i7nbl"]
+[ext_resource type="FontFile" uid="uid://dtoh8nfmdf67r" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_phuym"]
+[ext_resource type="Texture2D" uid="uid://b3worybt1a57f" path="res://Assets/Svg/escape.svg" id="4_3qwvu"]
+[ext_resource type="Texture2D" uid="uid://cnlgve7khr6h3" path="res://Assets/Svg/play.svg" id="4_i7nbl"]
+[ext_resource type="Texture2D" uid="uid://b1fmtdhqy8h86" path="res://Assets/Svg/clock.svg" id="5_doiu5"]
+[ext_resource type="Texture2D" uid="uid://saoi8acayhjd" path="res://Assets/Svg/setting.svg" id="6_72i6h"]
+[ext_resource type="Texture2D" uid="uid://xc020qyowvxq" path="res://Assets/Svg/warning.svg" id="7_3qwvu"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)

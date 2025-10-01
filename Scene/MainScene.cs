@@ -93,10 +93,18 @@ public partial class MainScene : Control
 	private void OnUserEyeTrackingStatusUpdated(double x, double y, int confidence)
 	{
 		// If we receive eye tracking data, it means the eye tracker is connected
+		// If we receive (-1, -1, -1), it means the eye tracker is not available
 		if (_messageTextureRect.Visible)
 		{
+			if (x == -1 && y == -1 && confidence == -1)
+			{
+				_messageLabel.Text = "Eye Tracker not available. Game will continue without eye tracking.";
+			}
+			else
+			{
+				_messageLabel.Text = "Eye Tracker connected successfully!";
+			}
 			_messageTextureRect.Visible = false;
-			_messageLabel.Text = "Eye Tracker connected successfully!";
 		}
 		SignalManager.Instance.UserEyeTrackingStatusUpdated -= OnUserEyeTrackingStatusUpdated;
 	}
