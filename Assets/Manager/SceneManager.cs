@@ -33,7 +33,7 @@ public partial class SceneManager : Node
 	{
 		if (_loginScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_loginScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _loginScene);
 		}
 		else
 		{
@@ -45,7 +45,7 @@ public partial class SceneManager : Node
 	{
 		if (_registerScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_registerScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _registerScene);
 		}
 		else
 		{
@@ -57,7 +57,7 @@ public partial class SceneManager : Node
 	{
 		if (_mainMenuScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_mainMenuScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _mainMenuScene);
 		}
 		else
 		{
@@ -69,7 +69,7 @@ public partial class SceneManager : Node
 	{
 		if (_gameScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_gameScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _gameScene);
 		}
 		else
 		{
@@ -81,7 +81,7 @@ public partial class SceneManager : Node
 	{
 		if (_loadingScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_loadingScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _loadingScene);
 		}
 		else
 		{
@@ -93,7 +93,7 @@ public partial class SceneManager : Node
 	{
 		if (_resultScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_resultScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _resultScene);
 		}
 		else
 		{
@@ -105,7 +105,7 @@ public partial class SceneManager : Node
 	{
 		if (_setDefaultDifficultyScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_setDefaultDifficultyScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _setDefaultDifficultyScene);
 		}
 		else
 		{
@@ -115,6 +115,6 @@ public partial class SceneManager : Node
 
 	public void ChangeToCollectDataPage()
 	{
-		GetTree().ChangeSceneToPacked(_collectDataPage);
+		GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _collectDataPage);
 	}
 }
