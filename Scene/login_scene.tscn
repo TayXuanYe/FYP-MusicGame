@@ -25,11 +25,11 @@ variation_embolden = 1.45
 [sub_resource type="FontVariation" id="FontVariation_y4u5i"]
 base_font = ExtResource("1_oj103")
 
-[sub_resource type="FontVariation" id="FontVariation_85sry"]
+[sub_resource type="FontVariation" id="FontVariation_d2unr"]
 base_font = ExtResource("1_oj103")
 
 [sub_resource type="LabelSettings" id="LabelSettings_354gg"]
-font = SubResource("FontVariation_85sry")
+font = SubResource("FontVariation_d2unr")
 font_size = 14
 outline_size = 1
 

@@ -1,13 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://d0k21vq5nx2gk"]
+[gd_scene load_steps=26 format=3 uid="uid://d0k21vq5nx2gk"]
 
 [ext_resource type="Script" uid="uid://c7bsjo6ew3g14" path="res://Scene/MainScene.cs" id="1_72i6h"]
-[ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="2_i7nbl"]
-[ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_phuym"]
-[ext_resource type="Texture2D" uid="uid://c7tgolcwfcqd1" path="res://Assets/Svg/escape.svg" id="4_3qwvu"]
-[ext_resource type="Texture2D" uid="uid://c7o71pbl02hwl" path="res://Assets/Svg/play.svg" id="4_i7nbl"]
-[ext_resource type="Texture2D" uid="uid://dwr0oqc1rplww" path="res://Assets/Svg/clock.svg" id="5_doiu5"]
-[ext_resource type="Texture2D" uid="uid://dnk2op34bpi5f" path="res://Assets/Svg/setting.svg" id="6_72i6h"]
-[ext_resource type="Texture2D" uid="uid://b1xo0wmuujva6" path="res://Assets/Svg/warning.svg" id="7_3qwvu"]
+[ext_resource type="Texture2D" uid="uid://b1m2jkdkhmkuy" path="res://Assets/Svg/icon.svg" id="2_i7nbl"]
+[ext_resource type="FontFile" uid="uid://dtoh8nfmdf67r" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_phuym"]
+[ext_resource type="Texture2D" uid="uid://b3worybt1a57f" path="res://Assets/Svg/escape.svg" id="4_3qwvu"]
+[ext_resource type="Texture2D" uid="uid://cnlgve7khr6h3" path="res://Assets/Svg/play.svg" id="4_i7nbl"]
+[ext_resource type="Texture2D" uid="uid://b1fmtdhqy8h86" path="res://Assets/Svg/clock.svg" id="5_doiu5"]
+[ext_resource type="Texture2D" uid="uid://saoi8acayhjd" path="res://Assets/Svg/setting.svg" id="6_72i6h"]
+[ext_resource type="Texture2D" uid="uid://xc020qyowvxq" path="res://Assets/Svg/warning.svg" id="7_3qwvu"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
@@ -83,7 +83,13 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[node name="MainScreen" type="Control" node_paths=PackedStringArray("_usernameLabel", "_playGameButton", "_gameHistoryButton", "_settingButton", "_reportBugButton", "_logoutButton")]
+[sub_resource type="Gradient" id="Gradient_k2rys"]
+colors = PackedColorArray(0, 0, 0, 0.666667, 0, 0, 0, 0.8)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i64o6"]
+gradient = SubResource("Gradient_k2rys")
+
+[node name="MainScreen" type="Control" node_paths=PackedStringArray("_usernameLabel", "_playGameButton", "_gameHistoryButton", "_settingButton", "_reportBugButton", "_logoutButton", "_messageTextureRect", "_messageLabel")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -99,6 +105,8 @@ _gameHistoryButton = NodePath("CenterContainer/VBoxContainer/MarginContainer2/Ga
 _settingButton = NodePath("CenterContainer/VBoxContainer/MarginContainer3/SettingButton")
 _reportBugButton = NodePath("CenterContainer/VBoxContainer/MarginContainer4/ReportBugButton")
 _logoutButton = NodePath("Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3/LogoutButton")
+_messageTextureRect = NodePath("TextureRect2")
+_messageLabel = NodePath("TextureRect2/CenterContainer/Label")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -292,3 +300,27 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_i7nbl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_3tb14")
 icon = ExtResource("4_3qwvu")
 icon_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture1D_i64o6")
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="TextureRect2/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "This is a message"

@@ -13,6 +13,7 @@ public partial class SceneManager : Node
 	private PackedScene _loadingScene;
 	private PackedScene _resultScene;
 	private PackedScene _setDefaultDifficultyScene;
+	private PackedScene _collectDataPage;
 
 	public override void _Ready()
 	{
@@ -24,14 +25,15 @@ public partial class SceneManager : Node
 		_gameScene = GD.Load<PackedScene>("res://Scene/game_scene.tscn");
 		_loadingScene = GD.Load<PackedScene>("res://Scene/loading_scene.tscn");
 		_resultScene = GD.Load<PackedScene>("res://Scene/result_scene.tscn");
-		_setDefaultDifficultyScene = GD.Load<PackedScene>("res://Scene/SetDefaultDifficultyScene.tscn");
+		_setDefaultDifficultyScene = GD.Load<PackedScene>("res://Scene/set_default_difficulty_scene.tscn");
+		_collectDataPage = GD.Load<PackedScene>("res://Scene/CollectDataPage.tscn");
 	}
 
 	public void ChangeToLoginScene()
 	{
 		if (_loginScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_loginScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _loginScene);
 		}
 		else
 		{
@@ -43,7 +45,7 @@ public partial class SceneManager : Node
 	{
 		if (_registerScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_registerScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _registerScene);
 		}
 		else
 		{
@@ -55,7 +57,7 @@ public partial class SceneManager : Node
 	{
 		if (_mainMenuScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_mainMenuScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _mainMenuScene);
 		}
 		else
 		{
@@ -67,7 +69,7 @@ public partial class SceneManager : Node
 	{
 		if (_gameScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_gameScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _gameScene);
 		}
 		else
 		{
@@ -79,7 +81,7 @@ public partial class SceneManager : Node
 	{
 		if (_loadingScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_loadingScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _loadingScene);
 		}
 		else
 		{
@@ -91,23 +93,28 @@ public partial class SceneManager : Node
 	{
 		if (_resultScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_resultScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _resultScene);
 		}
 		else
 		{
 			GD.PrintErr("ResultScene is not loaded!");
 		}
 	}
-	
+
 	public void ChangeToSetDefaultDifficultyScene()
 	{
 		if (_setDefaultDifficultyScene != null)
 		{
-			GetTree().ChangeSceneToPacked(_setDefaultDifficultyScene);
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _setDefaultDifficultyScene);
 		}
 		else
 		{
 			GD.PrintErr("SetDefaultDifficultyScene is not loaded!");
 		}
+	}
+
+	public void ChangeToCollectDataPage()
+	{
+		GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _collectDataPage);
 	}
 }

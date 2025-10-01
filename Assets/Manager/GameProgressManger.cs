@@ -8,7 +8,7 @@ public partial class GameProgressManger : Node
 	public List<int> PlaylistChartsId { get; set; } = new();
 	public Dictionary<int, List<ProcessResult>> RawUserInputData { get; set; } = new();
 	public Dictionary<int, List<GazeData>> RawUserGazeData { get; set; } = new();
-	public int TargetPlayCount { get; private set; } = 2;
+	public int TargetPlayCount { get; private set; } = 1;
 	public int CurrentPlayCount { get; private set; } = 0;
 	private bool _isGameStart = false;
 	public override void _Ready()
@@ -22,11 +22,6 @@ public partial class GameProgressManger : Node
 		// Connect to SignalManager signals
 		SignalManager.Instance.CurrentProgressEnded += OnCurrentProgressEndSignalReceived;
 		SignalManager.Instance.UserEyeTrackingStatusUpdated += OnUserEyeTrackingStatusUpdatedSignalReceived;
-	}
-
-	public override void _Process(double delta)
-	{
-		GD.Print($"CurrentPlayCount: {CurrentPlayCount}, TargetPlayCount: {TargetPlayCount}, Current Play RawUserInputData: {RawUserInputData.GetValueOrDefault(CurrentPlayCount, new List<ProcessResult>()).Count} entries");
 	}
 
 	public void AddUserInputData(ProcessResult result)
@@ -64,8 +59,7 @@ public partial class GameProgressManger : Node
 		{
 			_isGameStart = false;
 			// Change to result scene
-			SceneManager.Instance.ChangeToResultScene();
-			OutputRawUserData();
+			SceneManager.Instance.ChangeToCollectDataPage();
 		}
 		else
 		{
@@ -84,7 +78,7 @@ public partial class GameProgressManger : Node
 			RawUserGazeData[CurrentPlayCount] = new List<GazeData>();
 		}
 		RawUserGazeData[CurrentPlayCount].Add(new GazeData(x, y, confidence, timestamp));
-		GD.Print($"Gaze data recorded: x={x}, y={y}, confidence={confidence}, timestamp={timestamp}");
+		// GD.Print($"Gaze data recorded: x={x}, y={y}, confidence={confidence}, timestamp={timestamp}");
 	}
 
 	private void OutputRawUserData()

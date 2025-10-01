@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="2_nng06"]
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="3_xvvmh"]
 
-[sub_resource type="Gradient" id="Gradient_rmkfi"]
+[sub_resource type="Gradient" id="Gradient_jqfvw"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oj103"]
-gradient = SubResource("Gradient_rmkfi")
+gradient = SubResource("Gradient_jqfvw")
 fill_to = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sq1fn"]

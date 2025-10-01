@@ -78,7 +78,7 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[node name="GameScene" type="Node2D" node_paths=PackedStringArray("_lane1", "_lane2", "_lane3", "_lane4", "_pauseButton", "_background", "_uiContainer", "_navBarPanel", "_hitResultDisplayRichTextLabel", "_pauseScene")]
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("_lane1", "_lane2", "_lane3", "_lane4", "_pauseButton", "_background", "_uiContainer", "_navBarPanel", "_hitResultDisplayRichTextLabel", "_pauseScene", "_chartNameLabel", "_chartDataLabel")]
 script = ExtResource("1_51csq")
 _lane1 = NodePath("GameWorld/Lanes/Lane1")
 _lane2 = NodePath("GameWorld/Lanes/Lane2")
@@ -90,6 +90,8 @@ _uiContainer = NodePath("UI")
 _navBarPanel = NodePath("UI/Panel")
 _hitResultDisplayRichTextLabel = NodePath("UI/HitResultDisplayRichTextLabel")
 _pauseScene = NodePath("UI/CanvasLayer/PauseScene")
+_chartNameLabel = NodePath("UI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/ChartName")
+_chartDataLabel = NodePath("UI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/ChartData")
 
 [node name="Background" type="TextureRect" parent="."]
 clip_contents = true

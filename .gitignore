@@ -46,3 +46,13 @@ export_presets.cfg
 *.shader.glsl
 *.shader.glsl.remap
 *.gdignore
+
+# Charts folder
+Charts/
+Charts/*
+!Charts/.gitkeep
+
+# Output folder
+Output/
+Output/*
+Charts

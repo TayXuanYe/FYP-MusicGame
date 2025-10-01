@@ -1,0 +1,131 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu4w6paohgv1s"]
+
+[ext_resource type="Script" uid="uid://deyv2n5o36aou" path="res://Scene/CollectDataPage.cs" id="1_gyut5"]
+
+[sub_resource type="Gradient" id="Gradient_rmkfi"]
+colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e0dn8"]
+gradient = SubResource("Gradient_rmkfi")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dwal"]
+bg_color = Color(0, 0, 0, 0.313726)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_usqis"]
+bg_color = Color(0.614033, 0.121409, 0.597445, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4e3jy"]
+bg_color = Color(0.713726, 0.176471, 0.694118, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="CollectDataPage" type="Control" node_paths=PackedStringArray("_submitButton", "_input", "_errorLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gyut5")
+_submitButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/LoginButton")
+_input = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/CATSATLineEdit")
+_errorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/CATSATErrorLabel")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+layout_direction = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_e0dn8")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dwal")
+
+[node name="MarginContainer4" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "CAT-SAT Result"
+
+[node name="CATSATLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+max_length = 32
+
+[node name="CATSATErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_top = 24
+
+[node name="LoginButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxFlat_usqis")
+theme_override_styles/hover = SubResource("StyleBoxFlat_usqis")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_usqis")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_usqis")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4e3jy")
+text = "Submit & Gemerate Data"
