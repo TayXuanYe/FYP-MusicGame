@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c4wpdkn4ehyf8" path="res://Scene/SetDefaultDifficultyScene.cs" id="1_62wjd"]
 [ext_resource type="VideoStream" uid="uid://d164eixd08a0f" path="res://Assets/Video/BasicSampleVideo.ogv" id="2_ss4a2"]
 [ext_resource type="VideoStream" uid="uid://b01vpmafu57r" path="res://Assets/Video/AdvanceSampleVideo.ogv" id="3_xlbct"]
-[ext_resource type="VideoStream" path="uid://bn6ya1v7dxgpg" id="4_ypykv"]
+[ext_resource type="VideoStream" uid="uid://bn6ya1v7dxgpg" path="res://Assets/Video/ExpertSampleVideo.ogv" id="4_ypykv"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
@@ -65,7 +65,7 @@ expand_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txpgp"]
 
-[node name="SetDefaultDifficultyScene" type="Control"]
+[node name="SetDefaultDifficultyScene" type="Control" node_paths=PackedStringArray("_basicButton", "_advancedButton", "_expertButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,6 +73,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_62wjd")
+_basicButton = NodePath("CenterContainer/HBoxContainer/Panel/VBoxContainer/BasicButton")
+_advancedButton = NodePath("CenterContainer/HBoxContainer/Panel2/VBoxContainer/AdvancedButton")
+_expertButton = NodePath("CenterContainer/HBoxContainer/Panel3/VBoxContainer/ExpertButton")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
