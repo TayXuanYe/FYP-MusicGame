@@ -48,12 +48,13 @@ expand_margin_right = 12.0
 expand_margin_bottom = 8.0
 
 [node name="HistoryCard" type="Control" node_paths=PackedStringArray("_difficultyLabel", "_trackLabel", "_nameLabel", "_levelLabel", "_accuracyLabel", "_recordTimeLabel", "_attentionLevelLabel", "_detailsButton", "_backgroundPanel")]
+custom_minimum_size = Vector2(516, 332)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_left = -258.0
+offset_top = -116.0
+offset_right = 258.0
+offset_bottom = 216.0
 script = ExtResource("1_ps0iu")
 _difficultyLabel = NodePath("MarginContainer/VBoxContainer/HSplitContainer/MarginContainer2/DifficultyLabel")
 _trackLabel = NodePath("MarginContainer/VBoxContainer/HSplitContainer/MarginContainer/HBoxContainer/TrackLabel")
@@ -67,8 +68,8 @@ _backgroundPanel = NodePath("MarginContainer/VBoxContainer/Panel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 516.0
+offset_bottom = 332.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -101,7 +102,7 @@ alignment = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.0666667)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
@@ -110,7 +111,7 @@ horizontal_alignment = 2
 
 [node name="TrackLabel" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.0666667)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16

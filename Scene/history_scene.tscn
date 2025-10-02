@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvtgf3u781485"]
+[gd_scene load_steps=13 format=3 uid="uid://dvtgf3u781485"]
 
+[ext_resource type="PackedScene" uid="uid://bgxfqfwo6dyk8" path="res://Scene/history_card.tscn" id="1_phm8w"]
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="6_jxu1l"]
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="7_00cxb"]
 
@@ -77,23 +78,24 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_oj103")
 metadata/_edit_lock_ = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="."]
-process_mode = 3
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 64.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0241h")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel"]
 layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 64.0
@@ -102,51 +104,51 @@ mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_right = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("6_jxu1l")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/margin_left = 8
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_0241h")
 theme_override_font_sizes/font_size = 20
 text = "BeatMaster"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
 
-[node name="LogoutButton" type="Button" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3"]
+[node name="LogoutButton" type="Button" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -156,3 +158,34 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_umtfa")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hh2pc")
 text = "Back to Home"
 icon_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 1012)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HistoryCard" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_phm8w")]
+layout_mode = 2
+
+[node name="HistoryCard2" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_phm8w")]
+layout_mode = 2
+
+[node name="HistoryCard3" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_phm8w")]
+layout_mode = 2
+
+[node name="HistoryCard4" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_phm8w")]
+layout_mode = 2
+
+[node name="HistoryCard5" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_phm8w")]
+layout_mode = 2
+
+[node name="HistoryCard6" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_phm8w")]
+layout_mode = 2
