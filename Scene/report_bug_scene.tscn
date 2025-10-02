@@ -1,0 +1,418 @@
+[gd_scene load_steps=23 format=3 uid="uid://dk6drb771fajf"]
+
+[ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="1_ayrp7"]
+[ext_resource type="Texture2D" uid="uid://byrxl731dbxqr" path="res://Assets/Svg/warning-red.svg" id="1_eb86y"]
+[ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_eb86y"]
+
+[sub_resource type="Gradient" id="Gradient_rmkfi"]
+colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o0e13"]
+gradient = SubResource("Gradient_rmkfi")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb86y"]
+bg_color = Color(0, 0, 0, 0.313726)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="FontVariation" id="FontVariation_4hy2a"]
+base_font = ExtResource("2_eb86y")
+
+[sub_resource type="FontVariation" id="FontVariation_d2unr"]
+base_font = ExtResource("2_eb86y")
+
+[sub_resource type="LabelSettings" id="LabelSettings_npq24"]
+font = SubResource("FontVariation_d2unr")
+font_size = 14
+outline_size = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ayrp7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eb86y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eetb1"]
+bg_color = Color(1, 1, 1, 0.133333)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eetb1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54730"]
+bg_color = Color(0.614033, 0.121409, 0.597445, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pw14"]
+bg_color = Color(0.713726, 0.176471, 0.694118, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Gradient" id="Gradient_4hy2a"]
+colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_72i6h"]
+gradient = SubResource("Gradient_4hy2a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_npq24"]
+texture = SubResource("GradientTexture1D_72i6h")
+
+[sub_resource type="FontVariation" id="FontVariation_54730"]
+base_font = ExtResource("2_eb86y")
+variation_embolden = 1.45
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m4j07"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayrp7"]
+bg_color = Color(0.8, 0.8, 0.8, 0.133333)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4j07"]
+bg_color = Color(1, 1, 1, 0.133333)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="ReportBugScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_o0e13")
+metadata/_edit_lock_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(600, 700)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eb86y")
+
+[node name="MarginContainer4" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/CenterContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/CenterContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("1_eb86y")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 24
+text = "Bug Report"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_4hy2a")
+theme_override_font_sizes/font_size = 14
+text = "Help us improve BeatMaster by reporting any issues"
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Bug Title"
+label_settings = SubResource("LabelSettings_npq24")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BugTitleLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ayrp7")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_eb86y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eetb1")
+placeholder_text = "Enter your username"
+max_length = 50
+context_menu_enabled = false
+
+[node name="BugTitleErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Description"
+label_settings = SubResource("LabelSettings_npq24")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eetb1")
+
+[node name="UsernameTextEdit" type="TextEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eetb1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ayrp7")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_eb86y")
+placeholder_text = "Describe the problem in details..."
+context_menu_enabled = false
+shortcut_keys_enabled = false
+
+[node name="DescriptionErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Steps to Reporduce"
+label_settings = SubResource("LabelSettings_npq24")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eetb1")
+
+[node name="ReporduceTextEdit" type="TextEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eetb1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ayrp7")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_eb86y")
+placeholder_text = "How can we reproduce this bug."
+context_menu_enabled = false
+shortcut_keys_enabled = false
+
+[node name="ReporduceErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+
+[node name="Submit" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_top = 24
+
+[node name="SubmitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/Submit"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxFlat_54730")
+theme_override_styles/hover = SubResource("StyleBoxFlat_54730")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_54730")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_54730")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0pw14")
+text = "Submit Report"
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_npq24")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 64.0
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_ayrp7")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 8
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_54730")
+theme_override_font_sizes/font_size = 20
+text = "BeatMaster"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="BackToHomeButton" type="Button" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m4j07")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ayrp7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4j07")
+text = "Back To Home"
