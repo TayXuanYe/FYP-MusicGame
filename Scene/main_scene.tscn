@@ -9,11 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://dnk2op34bpi5f" path="res://Assets/Svg/setting.svg" id="6_72i6h"]
 [ext_resource type="Texture2D" uid="uid://b1xo0wmuujva6" path="res://Assets/Svg/warning.svg" id="7_3qwvu"]
 
-[sub_resource type="Gradient" id="Gradient_rmkfi"]
+[sub_resource type="Gradient" id="Gradient_i64o6"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oj103"]
-gradient = SubResource("Gradient_rmkfi")
+gradient = SubResource("Gradient_i64o6")
 fill_to = Vector2(1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_72i6h"]
@@ -49,11 +49,11 @@ expand_margin_bottom = 4.0
 [sub_resource type="Gradient" id="Gradient_sc7om"]
 colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_72i6h"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0xtjt"]
 gradient = SubResource("Gradient_sc7om")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0241h"]
-texture = SubResource("GradientTexture1D_72i6h")
+texture = SubResource("GradientTexture1D_0xtjt")
 
 [sub_resource type="FontVariation" id="FontVariation_0241h"]
 base_font = ExtResource("3_phuym")
@@ -213,6 +213,7 @@ offset_bottom = 64.0
 grow_horizontal = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0241h")
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 2
@@ -310,6 +311,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 texture = SubResource("GradientTexture1D_i64o6")
+metadata/_edit_lock_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="TextureRect2"]
 layout_mode = 1
@@ -319,8 +321,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="TextureRect2/CenterContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "This is a message"
+metadata/_edit_lock_ = true
