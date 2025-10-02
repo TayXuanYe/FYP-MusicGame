@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://btym38jse128i"]
+[gd_scene load_steps=18 format=3 uid="uid://btym38jse128i"]
 
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="1_oj103"]
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="1_sq1fn"]
@@ -33,6 +33,30 @@ font = SubResource("FontVariation_d2unr")
 font_size = 14
 outline_size = 1
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d2unr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_scb6b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eetb1"]
+bg_color = Color(1, 1, 1, 0.133333)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7evl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5d10c"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85sry"]
 bg_color = Color(0.614033, 0.121409, 0.597445, 1)
 border_width_left = 1
@@ -66,8 +90,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y4u5i")
 _httpRequest = NodePath("HTTPRequest")
-_usernameLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/UsernameLineEdit")
-_passwordLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/PasswordLineEdit")
+_usernameLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/UsernameLineEdit")
+_passwordLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/PasswordLineEdit")
 _usernameErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/UsernameErrorLabel")
 _passwordErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/PasswordErrorLabel")
 _loginButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/LoginButton")
@@ -157,8 +181,18 @@ layout_mode = 2
 text = "Username"
 label_settings = SubResource("LabelSettings_354gg")
 
-[node name="UsernameLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="UsernameLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d2unr")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_scb6b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eetb1")
 placeholder_text = "Enter your username"
 max_length = 50
 
@@ -185,8 +219,17 @@ layout_mode = 2
 text = "Password"
 label_settings = SubResource("LabelSettings_354gg")
 
-[node name="PasswordLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="PasswordLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g7evl")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_5d10c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eetb1")
 placeholder_text = "Enter your password"
 max_length = 32
 secret = true
