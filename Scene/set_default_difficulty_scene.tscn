@@ -1,26 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://b55u2mu83tdss"]
+[gd_scene load_steps=20 format=3 uid="uid://b55u2mu83tdss"]
 
 [ext_resource type="Script" uid="uid://c4wpdkn4ehyf8" path="res://Scene/SetDefaultDifficultyScene.cs" id="1_62wjd"]
-[ext_resource type="Texture2D" uid="uid://dtq35x94wqz1w" path="res://Assets/Svg/icon.svg" id="2_dtq35"]
+[ext_resource type="VideoStream" uid="uid://d164eixd08a0f" path="res://Assets/Video/BasicSampleVideo.ogv" id="2_ss4a2"]
+[ext_resource type="VideoStream" uid="uid://b01vpmafu57r" path="res://Assets/Video/AdvanceSampleVideo.ogv" id="3_xlbct"]
+[ext_resource type="VideoStream" path="uid://bn6ya1v7dxgpg" id="4_ypykv"]
 
-[sub_resource type="Gradient" id="Gradient_124xp"]
-colors = PackedColorArray(0.2, 0.2, 0.2, 1, 0.2, 0.2, 0.2, 1)
+[sub_resource type="Gradient" id="Gradient_rmkfi"]
+colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_coah4"]
-gradient = SubResource("Gradient_124xp")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_coah4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62wjd"]
-bg_color = Color(0.303435, 0.75026, 0.366066, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-expand_margin_left = 30.0
-expand_margin_top = 30.0
-expand_margin_right = 30.0
-expand_margin_bottom = 30.0
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oj103"]
+gradient = SubResource("Gradient_rmkfi")
+fill_to = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_coah4"]
 bg_color = Color(0.33084, 0.822404, 0.401865, 1)
@@ -33,16 +23,13 @@ expand_margin_top = 30.0
 expand_margin_right = 30.0
 expand_margin_bottom = 30.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo0gu"]
-bg_color = Color(0.860565, 0.643278, 0.139927, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-expand_margin_left = 30.0
-expand_margin_top = 30.0
-expand_margin_right = 30.0
-expand_margin_bottom = 30.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_coah4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pkyk4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ss4a2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xlbct"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwi07"]
 bg_color = Color(0.974377, 0.747547, 0.278618, 1)
@@ -55,16 +42,11 @@ expand_margin_top = 30.0
 expand_margin_right = 30.0
 expand_margin_bottom = 30.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5b7c0"]
-bg_color = Color(0.880107, 0.268271, 0.265427, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-expand_margin_left = 30.0
-expand_margin_top = 30.0
-expand_margin_right = 30.0
-expand_margin_bottom = 30.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ypykv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wc5dy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ks31y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xyxu"]
 bg_color = Color(0.929746, 0.34384, 0.330258, 1)
@@ -77,18 +59,13 @@ expand_margin_top = 30.0
 expand_margin_right = 30.0
 expand_margin_bottom = 30.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_preview"]
-bg_color = Color(0.15, 0.15, 0.15, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5bvg"]
 
-[node name="SetDefaultDifficultyScene" type="Control" node_paths=PackedStringArray("_basicButton", "_advancedButton", "_expertButton")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jidxp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txpgp"]
+
+[node name="SetDefaultDifficultyScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,9 +73,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_62wjd")
-_basicButton = NodePath("CenterContainer/HBoxContainer/BasicContainer/BasicButton")
-_advancedButton = NodePath("CenterContainer/HBoxContainer/AdvancedContainer/AdvancedButton")
-_expertButton = NodePath("CenterContainer/HBoxContainer/ExpertContainer/ExpertButton")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -107,7 +81,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_coah4")
+texture = SubResource("GradientTexture2D_oj103")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -119,91 +93,106 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 100
 
-[node name="BasicContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 700)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_coah4")
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/HBoxContainer/BasicContainer"]
-custom_minimum_size = Vector2(300, 200)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_preview")
-texture = ExtResource("2_dtq35")
-expand_mode = 2
-stretch_mode = 5
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/HBoxContainer/BasicContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="BasicButton" type="Button" parent="CenterContainer/HBoxContainer/BasicContainer/MarginContainer"]
+[node name="BasicButton" type="Button" parent="CenterContainer/HBoxContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_coah4")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_62wjd")
-theme_override_styles/hover = SubResource("StyleBoxFlat_62wjd")
-theme_override_styles/normal = SubResource("StyleBoxFlat_coah4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_pkyk4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ss4a2")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xlbct")
 text = "Basic"
 
-[node name="AdvancedContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CenterContainer/HBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(400, 450)
 layout_mode = 2
+stream = ExtResource("2_ss4a2")
+volume_db = -80.0
+autoplay = true
+loop = true
 
-[node name="TextureRect2" type="TextureRect" parent="CenterContainer/HBoxContainer/AdvancedContainer"]
-custom_minimum_size = Vector2(300, 200)
+[node name="Panel2" type="Panel" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 700)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_preview")
-texture = ExtResource("2_dtq35")
-expand_mode = 2
-stretch_mode = 5
+theme_override_styles/panel = SubResource("StyleBoxFlat_uwi07")
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/HBoxContainer/AdvancedContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
 
-[node name="AdvancedButton" type="Button" parent="CenterContainer/HBoxContainer/AdvancedContainer/MarginContainer"]
+[node name="AdvancedButton" type="Button" parent="CenterContainer/HBoxContainer/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_coah4")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jo0gu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jo0gu")
-theme_override_styles/normal = SubResource("StyleBoxFlat_uwi07")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ypykv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wc5dy")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ks31y")
 text = "Advanced"
 
-[node name="ExpertContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CenterContainer/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(400, 450)
 layout_mode = 2
+stream = ExtResource("3_xlbct")
+volume_db = -80.0
+autoplay = true
+loop = true
 
-[node name="TextureRect3" type="TextureRect" parent="CenterContainer/HBoxContainer/ExpertContainer"]
-custom_minimum_size = Vector2(300, 200)
+[node name="Panel3" type="Panel" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 700)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_preview")
-texture = ExtResource("2_dtq35")
-expand_mode = 2
-stretch_mode = 5
+theme_override_styles/panel = SubResource("StyleBoxFlat_1xyxu")
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/HBoxContainer/ExpertContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
 
-[node name="ExpertButton" type="Button" parent="CenterContainer/HBoxContainer/ExpertContainer/MarginContainer"]
+[node name="ExpertButton" type="Button" parent="CenterContainer/HBoxContainer/Panel3/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_coah4")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5b7c0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_5b7c0")
-theme_override_styles/normal = SubResource("StyleBoxFlat_1xyxu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_j5bvg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jidxp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_txpgp")
 text = "Expert"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CenterContainer/HBoxContainer/Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(400, 450)
+layout_mode = 2
+stream = ExtResource("4_ypykv")
+volume_db = -80.0
+autoplay = true
+loop = true
