@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dk6drb771fajf"]
+[gd_scene load_steps=23 format=3 uid="uid://ci6yx7c3ur14b"]
 
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="1_ayrp7"]
 [ext_resource type="Texture2D" uid="uid://byrxl731dbxqr" path="res://Assets/Svg/warning-red.svg" id="1_eb86y"]
@@ -21,11 +21,11 @@ corner_radius_bottom_left = 16
 [sub_resource type="FontVariation" id="FontVariation_4hy2a"]
 base_font = ExtResource("2_eb86y")
 
-[sub_resource type="FontVariation" id="FontVariation_d2unr"]
+[sub_resource type="FontVariation" id="FontVariation_ayrp7"]
 base_font = ExtResource("2_eb86y")
 
 [sub_resource type="LabelSettings" id="LabelSettings_npq24"]
-font = SubResource("FontVariation_d2unr")
+font = SubResource("FontVariation_ayrp7")
 font_size = 14
 outline_size = 1
 
@@ -40,10 +40,10 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 expand_margin_left = 10.0
 expand_margin_top = 10.0
 expand_margin_right = 10.0
@@ -78,11 +78,11 @@ corner_radius_bottom_left = 8
 [sub_resource type="Gradient" id="Gradient_4hy2a"]
 colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_72i6h"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eb86y"]
 gradient = SubResource("Gradient_4hy2a")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_npq24"]
-texture = SubResource("GradientTexture1D_72i6h")
+texture = SubResource("GradientTexture1D_eb86y")
 
 [sub_resource type="FontVariation" id="FontVariation_54730"]
 base_font = ExtResource("2_eb86y")
