@@ -12,7 +12,7 @@ public partial class LoadingComponent : Control
 	}
 	public override void _Process(double delta)
 	{
-		_loadingIcon.Rotation += (float)(delta * 3); // Rotate at 2 radians per second
+		_loadingIcon.Rotation += (float)(delta * 3); // Rotate at 3 radians per second
 	}
 
 }
