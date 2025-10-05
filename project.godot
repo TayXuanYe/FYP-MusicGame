@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FYP-MUSICGAME-VER1"
-run/main_scene="uid://d0k21vq5nx2gk"
+run/main_scene="uid://btym38jse128i"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
