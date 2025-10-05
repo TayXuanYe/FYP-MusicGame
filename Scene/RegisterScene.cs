@@ -47,12 +47,6 @@ public partial class RegisterScene : Control
 		return ValidationResult.Success();
 	}
 
-	private bool SubmitEmailUniqueValidationToServer(string email)
-	{
-		// future enhance
-		return true;
-	}
-
 	private ValidationResult ValidateEmail(string email)
 	{
 		if (string.IsNullOrEmpty(email))
@@ -63,11 +57,6 @@ public partial class RegisterScene : Control
 		if (!email.Contains("@") || !email.Contains("."))
 		{
 			return ValidationResult.Fail("Invalid email format");
-		}
-
-		if (!SubmitEmailUniqueValidationToServer(email))
-		{
-			return ValidationResult.Fail("Email already exists");
 		}
 
 		return ValidationResult.Success();
