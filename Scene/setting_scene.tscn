@@ -1,7 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bt4hscniylftc"]
+[gd_scene load_steps=16 format=3 uid="uid://bt4hscniylftc"]
 
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="1_m4mkp"]
+[ext_resource type="Script" uid="uid://blis3augrm4do" path="res://Scene/SettingScene.cs" id="1_moc2d"]
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_moc2d"]
+[ext_resource type="PackedScene" uid="uid://bsw60yo2f503m" path="res://Scene/loading_component.tscn" id="4_mghrk"]
+[ext_resource type="PackedScene" uid="uid://boafr10pj3rtg" path="res://message_component.tscn" id="5_rfmfi"]
 
 [sub_resource type="Gradient" id="Gradient_i64o6"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
@@ -64,15 +67,25 @@ texture = SubResource("GradientTexture1D_72i6h")
 base_font = ExtResource("2_moc2d")
 variation_embolden = 1.45
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inrdt"]
-
-[node name="SettingScene" type="Control"]
+[node name="SettingScene" type="Control" node_paths=PackedStringArray("_applyChangesButton", "_backButton", "_masterVolumeSlider", "_effectVolumeSlider", "_musicVolumeSlider", "_masterVolumeLabel", "_effectVolumeLabel", "_musicVolumeLabel", "_loadingComponent", "_httpRequest", "_messageComponentInstance")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_moc2d")
+_applyChangesButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/ApplyChangeButton")
+_backButton = NodePath("Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer/BackToHomeButton")
+_masterVolumeSlider = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/VBoxContainer/HBoxContainer/MasterHSlider")
+_effectVolumeSlider = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/VBoxContainer2/HBoxContainer/EffectHSlider")
+_musicVolumeSlider = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/VBoxContainer3/HBoxContainer/MusicHSlider")
+_masterVolumeLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/VBoxContainer/HBoxContainer/MasterValueLabel")
+_effectVolumeLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/VBoxContainer2/HBoxContainer/EffectValueLabel")
+_musicVolumeLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/VBoxContainer3/HBoxContainer/MusicValueLabel")
+_loadingComponent = NodePath("Container")
+_httpRequest = NodePath("HTTPRequest")
+_messageComponentInstance = NodePath("MessageComponent")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -210,6 +223,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m4mkp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3pil5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3pil5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_u1ovr")
 text = "Apply Change"
@@ -279,7 +293,17 @@ theme_override_constants/margin_right = 10
 [node name="BackToHomeButton" type="Button" parent="Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_styles/focus = SubResource("StyleBoxEmpty_inrdt")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3pil5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3pil5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3pil5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_u1ovr")
 text = "Back To Home"
+
+[node name="Container" parent="." instance=ExtResource("4_mghrk")]
+visible = false
+layout_mode = 1
+
+[node name="MessageComponent" parent="." instance=ExtResource("5_rfmfi")]
+layout_mode = 1
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
