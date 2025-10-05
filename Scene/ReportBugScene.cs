@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text.Json;
 
 public partial class ReportBugScene : Control
 {
@@ -11,11 +12,18 @@ public partial class ReportBugScene : Control
 	[Export] private TextEdit _stepsToReproduceTextEdit;
 	[Export] private Label _stepsToReproduceErrorLabel;
 	[Export] private Button _submitButton;
+	[Export] private HttpRequest _httpRequest;
+	[Export] private Control _popupControl;
+	[Export] private Label _popupMessageLabel;
+	[Export] private Button _popupBackToHomeButton;
 
 	public override void _Ready()
 	{
+		_httpRequest.RequestCompleted += OnHttpRequestCompleted;
 		_backToHomeButton.Pressed += OnBackToHomeButtonPressed;
 		_submitButton.Pressed += OnSubmitButtonPressed;
+		_popupBackToHomeButton.Pressed += OnBackToHomeButtonPressed;
+		_popupControl.Visible = false;
 	}
 
 	private void OnBackToHomeButtonPressed()
@@ -28,8 +36,7 @@ public partial class ReportBugScene : Control
 		bool isValid = ValidateForm();
 		if (isValid)
 		{
-			// Handle bug report submission future enhancement: send to server
-			GD.Print("Bug report submitted successfully!");
+			SubmitReportToServer(_bugTitleLineEdit.Text, _bugDescriptionTextEdit.Text, _stepsToReproduceTextEdit.Text);
 		}
 	}
 
@@ -76,4 +83,51 @@ public partial class ReportBugScene : Control
 		return isValid;
 	}
 
+	private bool _isRequestSend = false;
+	private void SubmitReportToServer(string title, string description, string stepsToReproduce)
+	{
+		if (_isRequestSend) { return; }
+		_isRequestSend = true;
+		string submitBugReportUrl = ApiClient.Instance.BuildUrl("BugReport");
+
+		// prepare headers for the request
+		var headers = new string[] { "Content-Type: application/json" };
+
+		// prepare body for the request
+		var data = new Godot.Collections.Dictionary
+		{
+			{"userId", UserDataManager.Instance.CurrentUser.Id ?? 0},
+			{"title", title},
+			{"description", description},
+			{"stepsToReproduce", stepsToReproduce},
+		};
+		string body = Json.Stringify(data);
+		GD.Print("Request send--temp");
+		GD.Print(body);
+
+		// submit request
+		_httpRequest.Request(submitBugReportUrl, headers, HttpClient.Method.Post, body);
+	}   
+
+	private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
+	{
+		GD.Print("Request receive--temp");
+		GD.Print(responseCode);
+		_isRequestSend = false;
+
+		if (responseCode == 201)
+		{
+			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
+			GD.Print($"Response body: {jsonResponse}");
+			_popupControl.Visible = true;
+			_popupMessageLabel.Text = "Bug report submitted successfully. Thank you for your feedback!";
+		}
+		else if (responseCode >= 400)
+		{
+			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
+			GD.Print($"Error response body: {jsonResponse}");
+			_popupControl.Visible = true;
+			_popupMessageLabel.Text = "Failed to submit bug report. Please try again later.";
+		}
+	}
 }
