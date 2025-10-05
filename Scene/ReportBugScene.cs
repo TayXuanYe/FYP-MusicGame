@@ -16,6 +16,7 @@ public partial class ReportBugScene : Control
 	[Export] private Control _popupControl;
 	[Export] private Label _popupMessageLabel;
 	[Export] private Button _popupBackToHomeButton;
+	[Export] private Control _loadingComponent;
 
 	public override void _Ready()
 	{
@@ -24,6 +25,7 @@ public partial class ReportBugScene : Control
 		_submitButton.Pressed += OnSubmitButtonPressed;
 		_popupBackToHomeButton.Pressed += OnBackToHomeButtonPressed;
 		_popupControl.Visible = false;
+		_loadingComponent.Visible = false;
 	}
 
 	private void OnBackToHomeButtonPressed()
@@ -88,6 +90,7 @@ public partial class ReportBugScene : Control
 	{
 		if (_isRequestSend) { return; }
 		_isRequestSend = true;
+		_loadingComponent.Visible = true;
 		string submitBugReportUrl = ApiClient.Instance.BuildUrl("BugReport");
 
 		// prepare headers for the request
@@ -111,21 +114,15 @@ public partial class ReportBugScene : Control
 
 	private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
 	{
-		GD.Print("Request receive--temp");
-		GD.Print(responseCode);
 		_isRequestSend = false;
-
+		_loadingComponent.Visible = false;
 		if (responseCode == 201)
 		{
-			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
-			GD.Print($"Response body: {jsonResponse}");
 			_popupControl.Visible = true;
 			_popupMessageLabel.Text = "Bug report submitted successfully. Thank you for your feedback!";
 		}
 		else if (responseCode >= 400)
 		{
-			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
-			GD.Print($"Error response body: {jsonResponse}");
 			_popupControl.Visible = true;
 			_popupMessageLabel.Text = "Failed to submit bug report. Please try again later.";
 		}
