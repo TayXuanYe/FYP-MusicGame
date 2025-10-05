@@ -14,6 +14,7 @@ public partial class RegisterScene : Control
 	[Export] private Label _passwordErrorLabel;
 	[Export] private Button _registerButton;
 	[Export] private LinkButton _signInLinkButton;
+	[Export] private Control _loadingComponent;
 	private bool _isRequestSend = false;
 
 	public override void _Ready()
@@ -21,6 +22,7 @@ public partial class RegisterScene : Control
 		_httpRequest.RequestCompleted += OnHttpRequestCompleted;
 		_registerButton.Pressed += OnRegisterButtonPressed;
 		_signInLinkButton.Pressed += OnSignInLinkButtonPressed;
+		_loadingComponent.Visible = false;
 	}
 
 	private string GetUsername()
@@ -78,6 +80,7 @@ public partial class RegisterScene : Control
 	private void SubmitRegistrationToServer(string username, string email, string password)
 	{
 		if (_isRequestSend) { return; }
+		_loadingComponent.Visible = true;
 		string registerUrl = ApiClient.Instance.BuildUrl("users/register");
 
 		// prepare headers for the request
@@ -99,14 +102,12 @@ public partial class RegisterScene : Control
 
 	private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
 	{
-		GD.Print("Request receive--temp");
-		GD.Print(responseCode);
 		_isRequestSend = false;
+		_loadingComponent.Visible = false;
 
 		if (responseCode == 201)
 		{
 			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
-			GD.Print($"Response body: {jsonResponse}");
 
 			UserDataManager.Instance.CurrentUser = JsonSerializer.Deserialize<UserData>(jsonResponse);
 
@@ -119,10 +120,12 @@ public partial class RegisterScene : Control
 			if (jsonResponse.Contains("email", StringComparison.OrdinalIgnoreCase))
 			{
 				_emailErrorLabel.Text = jsonResponse;
+				_emailErrorLabel.Visible = true;
 			}
 			if (jsonResponse.Contains("username", StringComparison.OrdinalIgnoreCase))
 			{
 				_usernameErrorLabel.Text = jsonResponse;
+				_usernameErrorLabel.Visible = true;
 			}
 		}
 	}
