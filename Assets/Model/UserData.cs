@@ -24,13 +24,13 @@ public class UserData
 	public string SuggestedDifficulty { get; set; }
 
 	[JsonPropertyName("masterVolume")]
-	public string MasterVolume { get; set; } = "1.0";
+	public float MasterVolume { get; set; } = 1.0f;
 
 	[JsonPropertyName("effectVolume")]
-	public string EffectVolume { get; set; } = "1.0";
+	public float EffectVolume { get; set; } = 1.0f;
 
 	[JsonPropertyName("musicVolume")]
-	public string MusicVolume { get; set; } = "1.0";
+	public float MusicVolume { get; set; } = 1.0f;
 
 	public UserData(int id, string username, string email, bool isLoggedIn, string authToken)
 	{
