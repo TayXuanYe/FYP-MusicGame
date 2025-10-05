@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://ci6yx7c3ur14b"]
+[gd_scene load_steps=27 format=3 uid="uid://ci6yx7c3ur14b"]
 
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="1_ayrp7"]
 [ext_resource type="Texture2D" uid="uid://byrxl731dbxqr" path="res://Assets/Svg/warning-red.svg" id="1_eb86y"]
 [ext_resource type="Script" uid="uid://btb7yqur13hbi" path="res://Scene/ReportBugScene.cs" id="1_eetb1"]
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_eb86y"]
+[ext_resource type="PackedScene" uid="uid://boafr10pj3rtg" path="res://message_component.tscn" id="5_4hy2a"]
 [ext_resource type="PackedScene" uid="uid://bsw60yo2f503m" path="res://Scene/loading_component.tscn" id="5_eetb1"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
@@ -140,21 +141,7 @@ expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
-[sub_resource type="Gradient" id="Gradient_eb86y"]
-colors = PackedColorArray(0, 0, 0, 0.784314, 0, 0, 0, 0.784314)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_eetb1"]
-gradient = SubResource("Gradient_eb86y")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qv1gj"]
-bg_color = Color(0.117647, 0.0862745, 0.0862745, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.388235, 0.294118, 0.294118, 1)
-
-[node name="ReportBugScene" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_bugTitleLineEdit", "_bugTitleErrorLabel", "_bugDescriptionTextEdit", "_bugDescriptionErrorLabel", "_stepsToReproduceTextEdit", "_stepsToReproduceErrorLabel", "_submitButton", "_httpRequest", "_popupControl", "_popupMessageLabel", "_popupBackToHomeButton", "_loadingComponent")]
+[node name="ReportBugScene" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_bugTitleLineEdit", "_bugTitleErrorLabel", "_bugDescriptionTextEdit", "_bugDescriptionErrorLabel", "_stepsToReproduceTextEdit", "_stepsToReproduceErrorLabel", "_submitButton", "_httpRequest", "_popupMessageComponentInstance", "_loadingComponent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,9 +158,7 @@ _stepsToReproduceTextEdit = NodePath("CenterContainer/PanelContainer/MarginConta
 _stepsToReproduceErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer/ReporduceErrorLabel")
 _submitButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/Submit/SubmitButton")
 _httpRequest = NodePath("HTTPRequest")
-_popupControl = NodePath("ResultDisplayWindow")
-_popupMessageLabel = NodePath("ResultDisplayWindow/CenterContainer/Panel/MarginContainer/VBoxContainer/MessageLabel")
-_popupBackToHomeButton = NodePath("ResultDisplayWindow/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/BackToHomeButton")
+_popupMessageComponentInstance = NodePath("ResultDisplayWindow")
 _loadingComponent = NodePath("LoadingComponent")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -468,77 +453,11 @@ text = "Back To Home"
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 timeout = 10.0
 
-[node name="ResultDisplayWindow" type="Control" parent="."]
+[node name="ResultDisplayWindow" parent="." instance=ExtResource("5_4hy2a")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="ResultDisplayWindow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture1D_eetb1")
-
-[node name="CenterContainer" type="CenterContainer" parent="ResultDisplayWindow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="ResultDisplayWindow/CenterContainer"]
-custom_minimum_size = Vector2(500, 300)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qv1gj")
-
-[node name="MarginContainer" type="MarginContainer" parent="ResultDisplayWindow/CenterContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ResultDisplayWindow/CenterContainer/Panel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="MessageLabel" type="Label" parent="ResultDisplayWindow/CenterContainer/Panel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 205)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 24
-text = "This is a message"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="ResultDisplayWindow/CenterContainer/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 30
-
-[node name="BackToHomeButton" type="Button" parent="ResultDisplayWindow/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/focus = SubResource("StyleBoxEmpty_m4j07")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ayrp7")
-theme_override_styles/normal = SubResource("StyleBoxFlat_m4j07")
-text = "Back To Home"
 
 [node name="LoadingComponent" parent="." instance=ExtResource("5_eetb1")]
+visible = false
 layout_mode = 1
 mouse_filter = 1

@@ -13,19 +13,20 @@ public partial class ReportBugScene : Control
 	[Export] private Label _stepsToReproduceErrorLabel;
 	[Export] private Button _submitButton;
 	[Export] private HttpRequest _httpRequest;
-	[Export] private Control _popupControl;
-	[Export] private Label _popupMessageLabel;
-	[Export] private Button _popupBackToHomeButton;
+	[Export] private Control _popupMessageComponentInstance;
 	[Export] private Control _loadingComponent;
+	private MessageComponent _popupMessageComponentScript;
 
 	public override void _Ready()
 	{
 		_httpRequest.RequestCompleted += OnHttpRequestCompleted;
 		_backToHomeButton.Pressed += OnBackToHomeButtonPressed;
 		_submitButton.Pressed += OnSubmitButtonPressed;
-		_popupBackToHomeButton.Pressed += OnBackToHomeButtonPressed;
-		_popupControl.Visible = false;
+		_popupMessageComponentInstance.Visible = false;
 		_loadingComponent.Visible = false;
+
+		_popupMessageComponentScript = (MessageComponent)_popupMessageComponentInstance;
+		_popupMessageComponentScript.ClickButton.Pressed += OnBackToHomeButtonPressed;
 	}
 
 	private void OnBackToHomeButtonPressed()
@@ -118,13 +119,13 @@ public partial class ReportBugScene : Control
 		_loadingComponent.Visible = false;
 		if (responseCode == 201)
 		{
-			_popupControl.Visible = true;
-			_popupMessageLabel.Text = "Bug report submitted successfully. Thank you for your feedback!";
+			_popupMessageComponentInstance.Visible = true;
+			_popupMessageComponentScript.MessageLabel.Text = "Bug report submitted successfully. Thank you for your feedback!";
 		}
 		else if (responseCode >= 400)
 		{
-			_popupControl.Visible = true;
-			_popupMessageLabel.Text = "Failed to submit bug report. Please try again later.";
+			_popupMessageComponentInstance.Visible = true;
+			_popupMessageComponentScript.MessageLabel.Text = "Failed to submit bug report. Please try again later.";
 		}
 	}
 }
