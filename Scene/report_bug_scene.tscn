@@ -230,7 +230,7 @@ layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ayrp7")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_eb86y")
 theme_override_styles/normal = SubResource("StyleBoxFlat_eetb1")
-placeholder_text = "Enter your username"
+placeholder_text = "Enter bug title"
 max_length = 50
 context_menu_enabled = false
 
