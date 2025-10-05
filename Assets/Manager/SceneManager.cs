@@ -15,6 +15,7 @@ public partial class SceneManager : Node
 	private PackedScene _setDefaultDifficultyScene;
 	private PackedScene _collectDataPage;
 	private PackedScene _reportBugScene;
+	private PackedScene _settingScene;
 
 	public override void _Ready()
 	{
@@ -29,6 +30,7 @@ public partial class SceneManager : Node
 		_setDefaultDifficultyScene = GD.Load<PackedScene>("res://Scene/set_default_difficulty_scene.tscn");
 		_collectDataPage = GD.Load<PackedScene>("res://Scene/CollectDataPage.tscn");
 		_reportBugScene = GD.Load<PackedScene>("res://Scene/report_bug_scene.tscn");
+		_settingScene = GD.Load<PackedScene>("res://Scene/setting_scene.tscn");
 	}
 
 	public void ChangeToLoginScene()
@@ -124,6 +126,18 @@ public partial class SceneManager : Node
 		else
 		{
 			GD.PrintErr("ReportBugScene is not loaded!");
+		}
+	}
+
+	public void ChangeToSettingScene()
+	{
+		if (_settingScene != null)
+		{
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _settingScene);
+		}
+		else
+		{
+			GD.PrintErr("SettingScene is not loaded!");
 		}
 	}
 

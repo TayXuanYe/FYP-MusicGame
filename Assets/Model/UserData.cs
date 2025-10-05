@@ -23,6 +23,15 @@ public class UserData
 	[JsonPropertyName("suggestedDifficulty")]
 	public string SuggestedDifficulty { get; set; }
 
+	[JsonPropertyName("masterVolume")]
+	public float MasterVolume { get; set; } = 1.0f;
+
+	[JsonPropertyName("effectVolume")]
+	public float EffectVolume { get; set; } = 1.0f;
+
+	[JsonPropertyName("musicVolume")]
+	public float MusicVolume { get; set; } = 1.0f;
+
 	public UserData(int id, string username, string email, bool isLoggedIn, string authToken)
 	{
 		Id = id;
