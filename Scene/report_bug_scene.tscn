@@ -123,7 +123,7 @@ expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
-[node name="ReportBugScene" type="Control"]
+[node name="ReportBugScene" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_bugTitleLineEdit", "_bugTitleErrorLabel", "_bugDescriptionTextEdit", "_bugDescriptionErrorLabel", "_stepsToReproduceTextEdit", "_stepsToReproduceErrorLabel", "_submitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,6 +131,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eetb1")
+_backToHomeButton = NodePath("Panel/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer/BackToHomeButton")
+_bugTitleLineEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/BugTitleLineEdit")
+_bugTitleErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/BugTitleErrorLabel")
+_bugDescriptionTextEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/BugDescriptionTextEdit")
+_bugDescriptionErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/DescriptionErrorLabel")
+_stepsToReproduceTextEdit = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/ReporduceTextEdit")
+_stepsToReproduceErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer/ReporduceErrorLabel")
+_submitButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/Submit/SubmitButton")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -270,7 +278,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eetb1")
 
-[node name="UsernameTextEdit" type="TextEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2"]
+[node name="BugDescriptionTextEdit" type="TextEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eetb1")
