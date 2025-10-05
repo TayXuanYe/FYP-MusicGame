@@ -89,7 +89,7 @@ public partial class LoginScene : Control
 		if (responseCode == 200)
 		{
 			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
-			GD.Print($"Response body: {jsonResponse}");
+			GD.Print($"Success Response body: {jsonResponse}");
 
 			UserDataManager.Instance.CurrentUser = JsonSerializer.Deserialize<UserData>(jsonResponse);
 
@@ -98,7 +98,6 @@ public partial class LoginScene : Control
 		else if (responseCode >= 400)
 		{
 			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
-			GD.Print($"Response body: {jsonResponse}");
 
 			if (jsonResponse.Contains("password", StringComparison.OrdinalIgnoreCase))
 			{
