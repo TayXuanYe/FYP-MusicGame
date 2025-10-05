@@ -58,7 +58,7 @@ public partial class MainScene : Control
 
 	private void OnReportBugButtonPressed()
 	{
-		// Handle report bug button pressed
+		SceneManager.Instance.ChangeToReportBugScene();
 	}
 
 	private void OnLogoutButtonPressed()
