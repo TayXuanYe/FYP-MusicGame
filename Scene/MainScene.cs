@@ -53,7 +53,7 @@ public partial class MainScene : Control
 
 	private void OnSettingButtonPressed()
 	{
-		// Handle setting button pressed
+		SceneManager.Instance.ChangeToSettingScene();
 	}
 
 	private void OnReportBugButtonPressed()
