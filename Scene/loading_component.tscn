@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsw60yo2f503m"]
+
+[ext_resource type="Script" uid="uid://dx2f6p446i76t" path="res://Scene/LoadingComponent.cs" id="1_frd52"]
+[ext_resource type="Texture2D" uid="uid://cfpjkxtrqnve7" path="res://Assets/Svg/loading.svg" id="2_frd52"]
+
+[sub_resource type="Gradient" id="Gradient_y7hvy"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_abds3"]
+gradient = SubResource("Gradient_y7hvy")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7hvy"]
+bg_color = Color(0, 0, 0, 0.67451)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="LoadingComponent" type="Control" node_paths=PackedStringArray("_loadingIcon")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_frd52")
+_loadingIcon = NodePath("CenterContainer/MarginContainer/Panel/CenterContainer/TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_abds3")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y7hvy")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/CenterContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("2_frd52")
+expand_mode = 1
