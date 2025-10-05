@@ -50,7 +50,7 @@ expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
-[node name="ResultDisplayWindow" type="Control" node_paths=PackedStringArray("MessageLabel", "ClickButton")]
+[node name="MessageComponent" type="Control" node_paths=PackedStringArray("MessageLabel", "ClickButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
