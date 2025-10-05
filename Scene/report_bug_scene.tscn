@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ci6yx7c3ur14b"]
+[gd_scene load_steps=28 format=3 uid="uid://ci6yx7c3ur14b"]
 
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="1_ayrp7"]
 [ext_resource type="Texture2D" uid="uid://byrxl731dbxqr" path="res://Assets/Svg/warning-red.svg" id="1_eb86y"]
@@ -30,7 +30,21 @@ font = SubResource("FontVariation_ayrp7")
 font_size = 14
 outline_size = 1
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ayrp7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2unr"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eb86y"]
 
@@ -49,6 +63,8 @@ expand_margin_left = 10.0
 expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hy2a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eetb1"]
 
@@ -255,7 +271,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="BugTitleLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ayrp7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_d2unr")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_eb86y")
 theme_override_styles/normal = SubResource("StyleBoxFlat_eetb1")
 placeholder_text = "Enter bug title"
@@ -297,10 +313,11 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eetb1")
 
 [node name="BugDescriptionTextEdit" type="TextEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2"]
+clip_contents = false
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_eetb1")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ayrp7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4hy2a")
+theme_override_styles/focus = SubResource("StyleBoxFlat_d2unr")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_eb86y")
 placeholder_text = "Describe the problem in details..."
 context_menu_enabled = false
@@ -342,10 +359,11 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eetb1")
 
 [node name="ReporduceTextEdit" type="TextEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2"]
+clip_contents = false
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eetb1")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ayrp7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_d2unr")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_eb86y")
 placeholder_text = "How can we reproduce this bug."
 context_menu_enabled = false
@@ -449,6 +467,7 @@ text = "Back To Home"
 timeout = 10.0
 
 [node name="ResultDisplayWindow" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
