@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://ci6yx7c3ur14b"]
+[gd_scene load_steps=24 format=3 uid="uid://ci6yx7c3ur14b"]
 
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="1_ayrp7"]
 [ext_resource type="Texture2D" uid="uid://byrxl731dbxqr" path="res://Assets/Svg/warning-red.svg" id="1_eb86y"]
+[ext_resource type="Script" uid="uid://btb7yqur13hbi" path="res://Scene/ReportBugScene.cs" id="1_eetb1"]
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_eb86y"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
@@ -129,6 +130,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_eetb1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
