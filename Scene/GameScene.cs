@@ -56,6 +56,7 @@ public partial class GameScene : Node2D
 		_musicPlayer = new AudioStreamPlayer();
 		_musicPlayer.Stream = chartData.music;
 		AddChild(_musicPlayer);
+		_musicPlayer.VolumeLinear = UserDataManager.Instance.CurrentUser.MusicVolume * UserDataManager.Instance.CurrentUser.MasterVolume;
 		_musicPlayer.Play();
 		_musicPlayer.Finished += OnMusicFinished;
 	}

@@ -29,6 +29,7 @@ public partial class AudioManager : Node
 			if (!player.Playing)
 			{
 				player.Stream = sound;
+				player.VolumeLinear = UserDataManager.Instance.CurrentUser.EffectVolume * UserDataManager.Instance.CurrentUser.MasterVolume;
 				player.Play();
 				return;
 			}
