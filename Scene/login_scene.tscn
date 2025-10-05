@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://btym38jse128i"]
+[gd_scene load_steps=18 format=3 uid="uid://btym38jse128i"]
 
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="1_oj103"]
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="1_sq1fn"]
 [ext_resource type="Script" uid="uid://b0vrfndg2nxkb" path="res://Scene/LoginScene.cs" id="1_y4u5i"]
+[ext_resource type="PackedScene" uid="uid://bsw60yo2f503m" path="res://Scene/loading_component.tscn" id="4_scb6b"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
@@ -93,7 +94,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="LoginScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_usernameLineEdit", "_passwordLineEdit", "_usernameErrorLabel", "_passwordErrorLabel", "_loginButton", "_createAccountLinkButton")]
+[node name="LoginScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_usernameLineEdit", "_passwordLineEdit", "_usernameErrorLabel", "_passwordErrorLabel", "_loginButton", "_createAccountLinkButton", "_loadingComponent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,6 +109,7 @@ _usernameErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/
 _passwordErrorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/PasswordErrorLabel")
 _loginButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer3/LoginButton")
 _createAccountLinkButton = NodePath("CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer4/CenterContainer/HBoxContainer/CreateAccountLinkButton")
+_loadingComponent = NodePath("LoadingComponent")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -123,6 +125,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -8.0
+offset_right = -11.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -239,6 +245,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="PasswordLineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2"]
 layout_mode = 2
@@ -306,5 +313,9 @@ underline = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 timeout = 10.0
+
+[node name="LoadingComponent" parent="." instance=ExtResource("4_scb6b")]
+visible = false
+layout_mode = 1
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

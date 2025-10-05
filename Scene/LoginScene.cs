@@ -11,12 +11,14 @@ public partial class LoginScene : Control
 	[Export] private Label _passwordErrorLabel;
 	[Export] private Button _loginButton;
 	[Export] private LinkButton _createAccountLinkButton;
-	
+	[Export] private Control _loadingComponent;
+
 	public override void _Ready()
 	{
 		_httpRequest.RequestCompleted += OnHttpRequestCompleted;
 		_loginButton.Pressed += OnLoginButtonPressed;
 		_createAccountLinkButton.Pressed += OnCreateAccountLinkButtonPressed;
+		_loadingComponent.Visible = false;
 	}
 	
 	private string GetUsername()
@@ -60,6 +62,8 @@ public partial class LoginScene : Control
 	private void SubmitLoginToServer(string username, string password)
 	{
 		if (_isRequestSend) { return; }
+		_loadingComponent.Visible = true;
+		_isRequestSend = true;
 		string loginUrl = ApiClient.Instance.BuildUrl("users/login");
 
 		// prepare headers for the request
@@ -79,9 +83,8 @@ public partial class LoginScene : Control
 	
 	private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
 	{
-		GD.Print("Request receive--temp");
-		GD.Print(responseCode);
 		_isRequestSend = false;
+		_loadingComponent.Visible = false;
 
 		if (responseCode == 200)
 		{
@@ -95,13 +98,16 @@ public partial class LoginScene : Control
 		else if (responseCode >= 400)
 		{
 			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
+			GD.Print($"Response body: {jsonResponse}");
 
 			if (jsonResponse.Contains("password", StringComparison.OrdinalIgnoreCase))
 			{
+				_passwordErrorLabel.Visible = true;
 				_passwordErrorLabel.Text = jsonResponse;
 			}
-			if (jsonResponse.Contains("user", StringComparison.OrdinalIgnoreCase))
+			if (jsonResponse.Contains("User", StringComparison.OrdinalIgnoreCase))
 			{
+				_usernameErrorLabel.Visible = true;
 				_usernameErrorLabel.Text = jsonResponse;
 			}
 		}
@@ -120,7 +126,7 @@ public partial class LoginScene : Control
 		passwordErrorLabel.Text = "";
 		usernameErrorLabel.Visible = false;
 		passwordErrorLabel.Visible = false;
-		
+		bool isValid = true;
 		
 		//verify username and password are valid
 		var usernameValidateResult = ValidateUsername(username);
@@ -129,14 +135,15 @@ public partial class LoginScene : Control
 		{
 			usernameErrorLabel.Visible = true;
 			usernameErrorLabel.Text = usernameValidateResult.ErrorMessage;
-			return;
+			isValid = false;
 		}
 		if(!passwordValidateResult.IsValid)
 		{
 			passwordErrorLabel.Visible = true;
 			passwordErrorLabel.Text = passwordValidateResult.ErrorMessage;
-			return;
+			isValid = false;
 		}
+		if (!isValid) { return; }
 		
 		SubmitLoginToServer(username, password);
 	}
