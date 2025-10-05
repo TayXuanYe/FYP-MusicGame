@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://b55u2mu83tdss"]
+[gd_scene load_steps=21 format=3 uid="uid://b55u2mu83tdss"]
 
 [ext_resource type="Script" uid="uid://c4wpdkn4ehyf8" path="res://Scene/SetDefaultDifficultyScene.cs" id="1_62wjd"]
 [ext_resource type="VideoStream" uid="uid://d164eixd08a0f" path="res://Assets/Video/BasicSampleVideo.ogv" id="2_ss4a2"]
 [ext_resource type="VideoStream" uid="uid://b01vpmafu57r" path="res://Assets/Video/AdvanceSampleVideo.ogv" id="3_xlbct"]
 [ext_resource type="VideoStream" uid="uid://bn6ya1v7dxgpg" path="res://Assets/Video/ExpertSampleVideo.ogv" id="4_ypykv"]
+[ext_resource type="PackedScene" uid="uid://bsw60yo2f503m" path="res://Scene/loading_component.tscn" id="5_wc5dy"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
@@ -65,7 +66,7 @@ expand_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txpgp"]
 
-[node name="SetDefaultDifficultyScene" type="Control" node_paths=PackedStringArray("_basicButton", "_advancedButton", "_expertButton")]
+[node name="SetDefaultDifficultyScene" type="Control" node_paths=PackedStringArray("_basicButton", "_advancedButton", "_expertButton", "_httpRequest", "_loadingComponent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,6 +77,8 @@ script = ExtResource("1_62wjd")
 _basicButton = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Panel/VBoxContainer/BasicButton")
 _advancedButton = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Panel2/VBoxContainer/AdvancedButton")
 _expertButton = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Panel3/VBoxContainer/ExpertButton")
+_httpRequest = NodePath("HTTPRequest")
+_loadingComponent = NodePath("LoadingComponent")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -210,3 +213,10 @@ stream = ExtResource("4_ypykv")
 volume_db = -80.0
 autoplay = true
 loop = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="LoadingComponent" parent="." instance=ExtResource("5_wc5dy")]
+visible = false
+layout_mode = 1
+mouse_filter = 1
