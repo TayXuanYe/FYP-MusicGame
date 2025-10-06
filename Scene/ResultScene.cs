@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 public partial class ResultScene : Control
 {
 	[Export] private Label _titleLabel;
@@ -26,153 +27,118 @@ public partial class ResultScene : Control
 	[Export] private Button _backButton;
 	[Export] private Button _nextButton;
 	[Export] private Button _exitButton;
+	[Export] private HttpRequest _httpRequest;
+	[Export] private Control _loadingComponent;
 	private int _currentIndex = 0;
+	private int _totalCount = 0;
+	private ChartPlayResult[] _results;
+
 	public override void _Ready()
 	{
 		_backButton.Pressed += OnBackButtonPressed;
 		_nextButton.Pressed += OnNextButtonPressed;
 		_exitButton.Pressed += OnExitButtonPressed;
-		DisplayResult(_currentIndex);
-		
+		_httpRequest.RequestCompleted += OnHttpRequestCompleted;
+		_loadingComponent.Visible = false;
+	}
+
+	public void Initialize(int historyId)
+	{
+		_currentIndex = 0;
+		_totalCount = 1;
+		_backButton.Visible = false;
+		_nextButton.Visible = false;
+		_results = new ChartPlayResult[1];
+		FetchResultFromServer(historyId);
+	}
+
+	public void Initialize()
+	{
+		_currentIndex = 0;
+		_totalCount = GameProgressManger.Instance.PlaylistChartsId.Count;
+		_backButton.Visible = _totalCount > 1;
+		_nextButton.Visible = _totalCount > 1;
+		_results = new ChartPlayResult[_totalCount];
+		SubmitRequestAnalyzeResult();
+	}
+
+	private void FetchResultFromServer(int historyId)
+	{
+		_loadingComponent.Visible = true;
+		string url = ApiClient.Instance.BuildUrl("history/{historyId}");
+
+		// prepare headers for the request
+		var headers = new string[] { "Content-Type: application/json" };
+
+		// submit request
+		_httpRequest.Request(url, headers, HttpClient.Method.Get, null);
+	}
+
+	private void SubmitRequestAnalyzeResult()
+	{
+		_loadingComponent.Visible = true;
+		string url = ApiClient.Instance.BuildUrl("history/analyze");
+
+		// prepare headers for the request
+		var headers = new string[] { "Content-Type: application/json" };
+
+		// prepare body for the request
+		var bodyDict = new List<object>();
+		for (int i = 0; i < _totalCount; i++)
+		{
+			bodyDict.Add(new Dictionary<string, object>
+			{
+				{ "chart_id", GameProgressManger.Instance.PlaylistChartsId[i] },
+				{ "user_input_data", GameProgressManger.Instance.RawUserInputData.ContainsKey(i + 1) ? GameProgressManger.Instance.RawUserInputData[i + 1] : new List<ProcessResult>() },
+				{ "user_gaze_data", GameProgressManger.Instance.RawUserGazeData.ContainsKey(i + 1) ? GameProgressManger.Instance.RawUserGazeData[i + 1] : new List<GazeData>() }
+			});
+		}
+		string bodyJson = JsonSerializer.Serialize(bodyDict);
+
+		// submit request
+		_httpRequest.Request(url, headers, HttpClient.Method.Post, bodyJson);
 	}
 
 	private void DisplayResult(int index)
 	{
-		var songData = ChartManager.Instance.LoadChart(GameProgressManger.Instance.PlaylistChartsId[index]);
-		var resultData = GameProgressManger.Instance.RawUserInputData[index];
-		GD.Print($"Displaying result for chart ID: {GameProgressManger.Instance.PlaylistChartsId[index]} with {resultData.Count} results.");
-		int tapCriticalPerfectCount = 0;
-		int tapPerfectCount = 0;
-		int tapGreatCount = 0;
-		int tapGoodCount = 0;
-		int tapMissCount = 0;
-
-		int holdCriticalPerfectCount = 0;
-		int holdPerfectCount = 0;
-		int holdGreatCount = 0;
-		int holdGoodCount = 0;
-		int holdMissCount = 0;
-
-		int maxCombo = 0;
-		double totalSimulateScore = 0;
-		int totalSimulateCount = 0;
-		List<double> timeDifferences = new List<double>();
-		foreach (ProcessResult processResult in resultData)
+		if (_results == null || index < 0 || index >= _results.Length)
 		{
-			int currentCombo = 0;
-			if (processResult.NoteType == "Tap")
-			{
-				totalSimulateCount++;
-				timeDifferences.Add(processResult.TimeDifference);
-				switch (processResult.HitResult)
-				{
-					case "CriticalPerfect":
-						totalSimulateScore += 1;
-						tapCriticalPerfectCount++;
-						currentCombo++;
-						break;
-					case "Perfect":
-						totalSimulateScore += 0.9;
-						tapPerfectCount++;
-						currentCombo++;
-						break;
-					case "Great":
-						totalSimulateScore += 0.7;
-						tapGreatCount++;
-						currentCombo++;
-						break;
-					case "Good":
-						totalSimulateScore += 0.5;
-						tapGoodCount++;
-						currentCombo++;
-						break;
-					case "Miss":
-						if (currentCombo > maxCombo)
-						{
-							maxCombo = currentCombo;
-						}
-						currentCombo = 0;
-						tapMissCount++;
-						break;
-				}
-			}
-			else if (processResult.NoteType == "Hold")
-			{
-				double duration = processResult.DurationTime;
-				int count = 1;
-				while (duration > 0)
-				{
-					duration -= count * 0.3;
-					count++;
-				}
-				totalSimulateCount+= count;
-				switch (processResult.HitResult)
-				{
-					case "CriticalPerfect":
-						totalSimulateScore += count * 1;
-						holdCriticalPerfectCount++;
-						currentCombo++;
-						break;
-					case "Perfect":
-						totalSimulateScore += count * 0.9;
-						holdPerfectCount++;
-						currentCombo++;
-						break;
-					case "Great":
-						totalSimulateScore += count * 0.7;
-						holdGreatCount++;
-						currentCombo++;
-						break;
-					case "Good":
-						totalSimulateScore += count * 0.5;
-						holdGoodCount++;
-						currentCombo++;
-						break;
-					case "Miss":
-						holdMissCount++;
-						if (currentCombo > maxCombo)
-						{
-							maxCombo = currentCombo;
-						}
-						currentCombo = 0;
-						break;
-				}
-			}
+			GD.PrintErr("Invalid index or results not loaded.");
+			return;
 		}
-		if(timeDifferences.Count == 0)
+		int chartId = _results[index].ChartId;
+		ChartData chartData = ChartManager.Instance.LoadChart(chartId);
+		if (chartData == null)
 		{
-			timeDifferences.Add(0);
+			GD.PrintErr($"Chart data for Chart ID {chartId} not found.");
+			return;
 		}
-		double average = timeDifferences.Average();
-		double variance = timeDifferences.Sum(d => Math.Pow(d - average, 2)) / timeDifferences.Count();
-		double std = Math.Sqrt(variance);
 
-		_titleLabel.Text = songData.Title;
-		_artistLabel.Text = songData.Artist;
-		_difficultyLabel.Text = songData.Difficulty;
-		_levelLabel.Text = songData.Level.ToString("F2");
+		_titleLabel.Text = chartData.Title;
+		_artistLabel.Text = chartData.Artist;
+		_difficultyLabel.Text = chartData.Difficulty;
+		_levelLabel.Text = chartData.Level.ToString("0.00");
+		_scoreLabel.Text = _results[index].Score.ToString();
+		_maxComboLabel.Text = _results[index].MaxCombo.ToString();
+		_accuracyLabel.Text = _results[index].Accuracy.ToString("0.00");
+		_finalAttentionLabel.Text = _results[index].FinalAttention.ToString("0.00");
 
-		_scoreLabel.Text = (totalSimulateCount/totalSimulateScore*1000000).ToString("F0");
-		_maxComboLabel.Text = maxCombo.ToString();
-		_accuracyLabel.Text = $"{std*1000} ms";
-		// _finalAttentionLabel.Text = resultData.FinalAttention.ToString("F2");
+		_tapCriticalPerfectLabel.Text = _results[index].TapCriticalPerfectCount.ToString();
+		_tapPerfectLabel.Text = _results[index].TapPerfectCount.ToString();
+		_tapGreatLabel.Text = _results[index].TapGreatCount.ToString();
+		_tapGoodLabel.Text = _results[index].TapGoodCount.ToString();
+		_tapMissLabel.Text = _results[index].TapMissCount.ToString();
 
-		_tapCriticalPerfectLabel.Text = tapCriticalPerfectCount.ToString();
-		_tapPerfectLabel.Text = tapPerfectCount.ToString();
-		_tapGreatLabel.Text = tapGreatCount.ToString();
-		_tapGoodLabel.Text = tapGoodCount.ToString();
-		_tapMissLabel.Text = tapMissCount.ToString();
-		
-		_holdCriticalPerfectLabel.Text = holdCriticalPerfectCount.ToString();
-		_holdPerfectLabel.Text = holdPerfectCount.ToString();
-		_holdGreatLabel.Text = holdGreatCount.ToString();
-		_holdGoodLabel.Text = holdGoodCount.ToString();
-		_holdMissLabel.Text = holdMissCount.ToString();
+		_holdCriticalPerfectLabel.Text = _results[index].HoldCriticalPerfectCount.ToString();
+		_holdPerfectLabel.Text = _results[index].HoldPerfectCount.ToString();
+		_holdGreatLabel.Text = _results[index].HoldGreatCount.ToString();
+		_holdGoodLabel.Text = _results[index].HoldGoodCount.ToString();
+		_holdMissLabel.Text = _results[index].HoldMissCount.ToString();
 	}
 
 	private void OnBackButtonPressed()
 	{
-		if(_currentIndex > 0)
+		if (_currentIndex > 0)
 		{
 			_currentIndex--;
 			DisplayResult(_currentIndex);
@@ -181,7 +147,7 @@ public partial class ResultScene : Control
 
 	private void OnNextButtonPressed()
 	{
-		if(_currentIndex < GameProgressManger.Instance.PlaylistChartsId.Count - 1)
+		if (_currentIndex < GameProgressManger.Instance.PlaylistChartsId.Count - 1)
 		{
 			_currentIndex++;
 			DisplayResult(_currentIndex);
@@ -191,5 +157,32 @@ public partial class ResultScene : Control
 	private void OnExitButtonPressed()
 	{
 		SceneManager.Instance.ChangeToMainMenuScene();
+	}
+
+	private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
+	{
+		_loadingComponent.Visible = false;
+
+		if (responseCode == 200)
+		{
+			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
+			GD.Print($"Success Response body: {jsonResponse}");
+
+			var results = JsonSerializer.Deserialize<List<ChartPlayResult>>(jsonResponse);
+			if (results != null && results.Count > 0)
+			{
+				_results = results.ToArray();
+				DisplayResult(_currentIndex);
+			}
+			else
+			{
+				GD.PrintErr("No results found in the response.");
+			}
+		}
+		else
+		{
+			string errorResponse = System.Text.Encoding.UTF8.GetString(body);
+			GD.PrintErr($"Error Response Code: {responseCode}, Body: {errorResponse}");
+		}
 	}
 }
