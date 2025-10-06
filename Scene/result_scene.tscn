@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://dgyk158wwdmkd"]
+[gd_scene load_steps=27 format=3 uid="uid://dgyk158wwdmkd"]
 
 [ext_resource type="Script" uid="uid://ds5ubbcguvfvv" path="res://Scene/ResultScene.cs" id="1_ayi4o"]
 [ext_resource type="FontFile" uid="uid://dy4od74bj7wge" path="res://Assets/Font/OpenSans-VariableFont_wdth,wght.ttf" id="2_fljhi"]
+[ext_resource type="PackedScene" uid="uid://bsw60yo2f503m" path="res://Scene/loading_component.tscn" id="3_fljhi"]
 
 [sub_resource type="Gradient" id="Gradient_rmkfi"]
 colors = PackedColorArray(0.196078, 0.176471, 0.505882, 1, 0.92549, 0.282353, 0.6, 1)
@@ -128,7 +129,7 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[node name="ResultSecne" type="Control" node_paths=PackedStringArray("_titleLabel", "_artistLabel", "_difficultyLabel", "_levelLabel", "_scoreLabel", "_maxComboLabel", "_accuracyLabel", "_finalAttentionLabel", "_tapCriticalPerfectLabel", "_tapPerfectLabel", "_tapGreatLabel", "_tapGoodLabel", "_tapMissLabel", "_holdCriticalPerfectLabel", "_holdPerfectLabel", "_holdGreatLabel", "_holdGoodLabel", "_holdMissLabel", "_backButton", "_nextButton", "_exitButton")]
+[node name="ResultSecne" type="Control" node_paths=PackedStringArray("_titleLabel", "_artistLabel", "_difficultyLabel", "_levelLabel", "_scoreLabel", "_maxComboLabel", "_accuracyLabel", "_finalAttentionLabel", "_tapCriticalPerfectLabel", "_tapPerfectLabel", "_tapGreatLabel", "_tapGoodLabel", "_tapMissLabel", "_holdCriticalPerfectLabel", "_holdPerfectLabel", "_holdGreatLabel", "_holdGoodLabel", "_holdMissLabel", "_backButton", "_nextButton", "_exitButton", "_httpRequest", "_loadingComponent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,6 +158,8 @@ _holdMissLabel = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelCon
 _backButton = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/MarginContainer/BackButton")
 _nextButton = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/HBoxContainer/MarginContainer2/NextButton")
 _exitButton = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer4/VBoxContainer/MarginContainer6/HBoxContainer/MarginContainer2/ExitButton")
+_httpRequest = NodePath("HTTPRequest")
+_loadingComponent = NodePath("LoadingComponent")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -859,3 +862,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_v6bfe")
 theme_override_styles/hover = SubResource("StyleBoxFlat_v6bfe")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wjeen")
 text = "Back to menu"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+timeout = 10.0
+
+[node name="LoadingComponent" parent="." instance=ExtResource("3_fljhi")]
+layout_mode = 1
