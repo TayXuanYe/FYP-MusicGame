@@ -59,7 +59,7 @@ public partial class GameProgressManger : Node
 		{
 			_isGameStart = false;
 			// Change to result scene
-			SceneManager.Instance.ChangeToCollectDataPage();
+			SceneManager.Instance.ChangeToResultScene();
 		}
 		else
 		{

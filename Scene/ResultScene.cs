@@ -35,9 +35,9 @@ public partial class ResultScene : Control
 	private int _pendingHistoryId = -1;
 
 	public void SetInitializationData(int historyId)
-    {
-        _pendingHistoryId = historyId;
-    }
+	{
+		_pendingHistoryId = historyId;
+	}
 
 	public override void _Ready()
 	{
@@ -48,13 +48,13 @@ public partial class ResultScene : Control
 		_loadingComponent.Visible = false;
 
 		if (_pendingHistoryId != -1)
-        {
-            Initialize(_pendingHistoryId);
-        }
-        else
-        {
-            Initialize();
-        }
+		{
+			Initialize(_pendingHistoryId);
+		}
+		else
+		{
+			Initialize();
+		}
 	}
 
 	public void Initialize(int historyId)
