@@ -131,6 +131,29 @@ public partial class HistoryScene : Control
 					chartPlayResult.HoldGreatCount = GetInt(dict, "hold_great_count", "holdGreatCount", 0);
 					chartPlayResult.HoldGoodCount = GetInt(dict, "hold_good_count", "holdGoodCount", 0);
 					chartPlayResult.HoldMissCount = GetInt(dict, "hold_miss_count", "holdMissCount", 0);
+					chartPlayResult.TrackNo = GetInt(dict, "track_no", "trackNo", 0);
+					string GetString(Godot.Collections.Dictionary d, string snakeKey, string camelKey, string defaultValue = null)
+					{
+						if (d.ContainsKey(snakeKey)) return VariantToString(d[snakeKey], defaultValue);
+						if (d.ContainsKey(camelKey)) return VariantToString(d[camelKey], defaultValue);
+						return defaultValue;
+					}
+
+					string VariantToString(object val, string defaultValue = null)
+					{
+						if (val == null) return defaultValue;
+						try
+						{
+							if (val is string s) return s;
+							if (val is Godot.Variant gv) return gv.ToString();
+							return val.ToString();
+						}
+						catch { }
+						return defaultValue;
+					}
+
+					string recordTimeStr = GetString(dict, "record_time", "recordTime", null);
+					chartPlayResult.RecordTime = recordTimeStr != null ? DateTime.Parse(recordTimeStr) : DateTime.MinValue;
 
 					chartPlayResult.HitTimings = new List<double>();
 					var hitArray2 = GetArray(dict, "hit_timings", "hitTimings");
@@ -163,12 +186,12 @@ public partial class HistoryScene : Control
 			{
 				var historyCard = _historyCardComponent.Instantiate<HistoryCard>();
 				ChartData chartData = ChartManager.Instance.LoadChart(item.ChartId);
-				string imagePath = chartData.filePath.Replace("data.txt", "cover.png");
+				string imagePath = chartData.filePath;
 				historyCard.Initialize(item.HistoryId ?? 0, chartData.Title, chartData.SongId, item.ChartId, chartData.Difficulty,
 					chartData.Level, item.TrackNo, item.RecordTime, item.Accuracy, item.FinalAttention,
 					imagePath);
 				_historyList.AddChild(historyCard);
-			}
+			}	
 		}
 		else
 		{

@@ -43,8 +43,17 @@ public partial class CollectDataPage : Control
 
 	private void GenerateDataFolders()
 	{
-		// Create Output directory if it doesn't exist
-		string outputDir = Path.Combine(Directory.GetCurrentDirectory(), "Output");
+		// Create Output directory in Godot's user:// folder (writable). Use user:// instead of res:// because res:// is not writable at runtime.
+		string outputDir;
+		try
+		{
+			outputDir = ProjectSettings.GlobalizePath("user://Output");
+		}
+		catch
+		{
+			// Fallback to current directory if ProjectSettings is unavailable
+			outputDir = Path.Combine(Directory.GetCurrentDirectory(), "Output");
+		}
 		if (!Directory.Exists(outputDir))
 		{
 			Directory.CreateDirectory(outputDir);
@@ -224,12 +233,29 @@ public partial class CollectDataPage : Control
 	{
 		try
 		{
-			string outputDir = Path.Combine(Directory.GetCurrentDirectory(), "Output");
+			string outputDir;
+			try
+			{
+				outputDir = ProjectSettings.GlobalizePath("user://Output");
+			}
+			catch
+			{
+				outputDir = Path.Combine(Directory.GetCurrentDirectory(), "Output");
+			}
 			if (Directory.Exists(outputDir))
 			{
 				// Create zip file name with timestamp
 				string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-				string zipFilePath = Path.Combine(Directory.GetCurrentDirectory(), $"Output_{timestamp}.zip");
+				string baseDir;
+				try
+				{
+					baseDir = ProjectSettings.GlobalizePath("user://");
+				}
+				catch
+				{
+					baseDir = Directory.GetCurrentDirectory();
+				}
+				string zipFilePath = Path.Combine(baseDir, $"Output_{timestamp}.zip");
 				
 				// Create zip file
 				ZipFile.CreateFromDirectory(outputDir, zipFilePath);
