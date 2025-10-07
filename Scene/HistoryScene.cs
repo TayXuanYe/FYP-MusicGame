@@ -116,7 +116,7 @@ public partial class HistoryScene : Control
 
 					// Safely extract values with fallback defaults using typed getters
 					chartPlayResult.ChartId = GetInt(dict, "chart_id", "chartId", 0);
-					chartPlayResult.HistoryId = GetInt(dict, "id", "id", 0);
+					chartPlayResult.HistoryId = GetInt(dict, "history_id", "historyId", 0);
 					chartPlayResult.Score = GetInt(dict, "score", "score", 0);
 					chartPlayResult.MaxCombo = GetInt(dict, "max_combo", "maxCombo", 0);
 					chartPlayResult.Accuracy = GetFloat(dict, "accuracy", "accuracy", 0f);

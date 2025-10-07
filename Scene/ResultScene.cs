@@ -40,7 +40,8 @@ public partial class ResultScene : Control
 		_httpRequest.RequestCompleted += OnHttpRequestCompleted;
 		if(SceneManager.Instance.IsChangeToResultSceneCalled)
 		{
-			if(SceneManager.Instance.ResultSceneHistoryId != -1)
+			GD.Print("ResultScene _Ready detected scene change request.");
+			if (SceneManager.Instance.ResultSceneHistoryId != -1)
 			{
 				Initialize(SceneManager.Instance.ResultSceneHistoryId);
 			}
@@ -55,6 +56,7 @@ public partial class ResultScene : Control
 
 	public void Initialize(int historyId)
 	{
+		GD.Print($"ResultScene Initialize with historyId: {historyId} called.");
 		_loadingComponent.Visible = false;
 		_currentIndex = 0;
 		_totalCount = 1;
@@ -66,7 +68,6 @@ public partial class ResultScene : Control
 
 	public void Initialize()
 	{
-		GD.Print("ResultScene Initialize without historyId called.");
 		_loadingComponent.Visible = false;
 		_currentIndex = 0;
 		_totalCount = GameProgressManger.Instance.PlaylistChartsId.Count;
@@ -78,8 +79,10 @@ public partial class ResultScene : Control
 
 	private void FetchResultFromServer(int historyId)
 	{
+		GD.Print($"Fetching result for historyId: {historyId} from server...");
 		_loadingComponent.Visible = true;
 		string url = ApiClient.Instance.BuildUrl($"history/{historyId}");
+		GD.Print($"Requesting URL: {url}");
 
 		// prepare headers for the request
 		var headers = new string[] { "Content-Type: application/json" };
