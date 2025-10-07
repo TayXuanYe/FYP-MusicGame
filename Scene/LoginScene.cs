@@ -39,6 +39,11 @@ public partial class LoginScene : Control
 		{
 			return ValidationResult.Fail("Username cannot be empty");
 		}
+
+		if (username.Contains("@") || username.Contains("#") || username.Contains("$") || username.Contains("%") || username.Contains("^") || username.Contains("&") || username.Contains("*"))
+		{
+			return ValidationResult.Fail("Username cannot contain special characters");
+		}
 		
 		return ValidationResult.Success();
 	}
@@ -49,11 +54,21 @@ public partial class LoginScene : Control
 		{
 			return ValidationResult.Fail("Password cannot be empty");
 		}
+
+		if (password.Contains(" "))
+		{
+			return ValidationResult.Fail("Password cannot contain spaces");
+		}
+
+		if (password.Contains("@") || password.Contains("#") || password.Contains("$") || password.Contains("%") || password.Contains("^") || password.Contains("&") || password.Contains("*"))
+		{
+			return ValidationResult.Fail("Password cannot contain special characters");
+		}
 		
 		if (password.Length < 8 || password.Length > 32)
-		{
-			return ValidationResult.Fail("Length of password must be between 8 to 32 characters");
-		}
+			{
+				return ValidationResult.Fail("Length of password must be between 8 to 32 characters");
+			}
 		
 		return ValidationResult.Success();
 	}
@@ -72,8 +87,8 @@ public partial class LoginScene : Control
 		// prepare body for the request
 		var data = new Godot.Collections.Dictionary
 		{
-			{"username", username},
-			{"password", password}
+			{"username", username.Trim()},
+			{"password", password.Trim()}
 		};
 		string body = Json.Stringify(data);
 
