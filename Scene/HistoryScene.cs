@@ -8,11 +8,13 @@ public partial class HistoryScene : Control
 	[Export] private VBoxContainer _historyList;
 	[Export] private PackedScene _historyCardComponent;
 	[Export] private Control _loadingComponent;
-	[Export] private MarginContainer _noHistoryContainer; 	
+	[Export] private MarginContainer _noHistoryContainer;
+	[Export] private Button _backButton;
 
 	public override void _Ready()
 	{
 		_httpRequest.RequestCompleted += OnRequestCompleted;
+		_backButton.Pressed += OnBackButtonPressed;
 		LoadHistory();
 	}
 
@@ -172,5 +174,10 @@ public partial class HistoryScene : Control
 		{
 			GD.PrintErr("Failed to load history data. Response code: " + responseCode);
 		}
+	}
+
+	private void OnBackButtonPressed()
+	{
+		SceneManager.Instance.ChangeToMainMenuScene();
 	}
 }
