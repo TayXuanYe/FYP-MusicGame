@@ -69,7 +69,7 @@ public partial class HistoryScene : Control
 				ChartData chartData = ChartManager.Instance.LoadChart(item.ChartId);
 				string imagePath = chartData.filePath.Replace("data.txt", "cover.png");
 				historyCard.Initialize(item.HistoryId ?? 0, chartData.Title, chartData.SongId, item.ChartId, chartData.Difficulty,
-					chartData.Level, item.trackNo, item.RecordTime, item.Accuracy, item.FinalAttention,
+					chartData.Level, item.TrackNo, item.RecordTime, item.Accuracy, item.FinalAttention,
 					imagePath);
 				_historyList.AddChild(historyCard);
 			}

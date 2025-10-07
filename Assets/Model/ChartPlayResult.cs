@@ -24,5 +24,5 @@ public class ChartPlayResult
 
     public List<double> HitTimings { get; set; }
     public DateTime RecordTime { get; set; }
-    public int trackNo { get; set; }
+    public int TrackNo { get; set; }
 }
