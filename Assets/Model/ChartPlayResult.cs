@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 public class ChartPlayResult
@@ -22,4 +23,6 @@ public class ChartPlayResult
     public int HoldMissCount { get; set; }
 
     public List<double> HitTimings { get; set; }
+    public DateTime RecordTime { get; set; }
+    public int trackNo { get; set; }
 }
