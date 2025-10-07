@@ -32,6 +32,12 @@ public partial class ResultScene : Control
 	private int _currentIndex = 0;
 	private int _totalCount = 0;
 	private ChartPlayResult[] _results;
+	private int _pendingHistoryId = -1;
+
+	public void SetInitializationData(int historyId)
+    {
+        _pendingHistoryId = historyId;
+    }
 
 	public override void _Ready()
 	{
@@ -40,6 +46,15 @@ public partial class ResultScene : Control
 		_exitButton.Pressed += OnExitButtonPressed;
 		_httpRequest.RequestCompleted += OnHttpRequestCompleted;
 		_loadingComponent.Visible = false;
+
+		if (_pendingHistoryId != -1)
+        {
+            Initialize(_pendingHistoryId);
+        }
+        else
+        {
+            Initialize();
+        }
 	}
 
 	public void Initialize(int historyId)

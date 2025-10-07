@@ -108,6 +108,6 @@ public partial class HistoryCard : Control
 
 	private void OnDetailsButtonPressed()
 	{
-
+		SceneManager.Instance.ChangeToResultScene(_historyId);
 	}
 }

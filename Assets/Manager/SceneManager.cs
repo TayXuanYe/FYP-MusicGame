@@ -97,7 +97,37 @@ public partial class SceneManager : Node
 	{
 		if (_resultScene != null)
 		{
-			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _resultScene);
+			var resultSceneInstance = _resultScene.Instantiate();
+			if (resultSceneInstance is Node resultNode)
+			{
+				(resultNode as dynamic).SetInitializationData(-1);
+				GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, resultNode);
+			}
+			else
+			{
+				GD.PrintErr("ResultScene could not be instantiated as a Node!");
+			}
+		}
+		else
+		{
+			GD.PrintErr("ResultScene is not loaded!");
+		}
+	}
+
+	public void ChangeToResultScene(int historyId)
+	{
+		if (_resultScene != null)
+		{
+			var resultSceneInstance = _resultScene.Instantiate();
+			if (resultSceneInstance is Node resultNode)
+			{
+				(resultNode as dynamic).SetInitializationData(historyId);
+				GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, resultNode);
+			}
+			else
+			{
+				GD.PrintErr("ResultScene could not be instantiated as a Node!");
+			}
 		}
 		else
 		{
