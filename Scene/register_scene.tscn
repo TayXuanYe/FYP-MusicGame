@@ -357,5 +357,5 @@ underline = 2
 layout_mode = 1
 mouse_filter = 1
 
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="OnHttpRequestCompleted"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

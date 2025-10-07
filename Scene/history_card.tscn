@@ -47,7 +47,7 @@ expand_margin_top = 8.0
 expand_margin_right = 12.0
 expand_margin_bottom = 8.0
 
-[node name="HistoryCard" type="Control" node_paths=PackedStringArray("_difficultyLabel", "_trackLabel", "_nameLabel", "_levelLabel", "_accuracyLabel", "_recordTimeLabel", "_attentionLevelLabel", "_detailsButton", "_backgroundPanel")]
+[node name="HistoryCard" type="Control" node_paths=PackedStringArray("_difficultyLabel", "_trackLabel", "_nameLabel", "_levelLabel", "_accuracyLabel", "_recordTimeLabel", "_attentionLevelLabel", "_detailsButton", "_backgroundPanel", "_imageTextureRect")]
 custom_minimum_size = Vector2(516, 332)
 layout_mode = 3
 anchors_preset = 0
@@ -65,6 +65,7 @@ _recordTimeLabel = NodePath("MarginContainer/VBoxContainer/Panel/CenterContainer
 _attentionLevelLabel = NodePath("MarginContainer/VBoxContainer/Panel/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/AttentionLevelLabel")
 _detailsButton = NodePath("MarginContainer/VBoxContainer/Panel/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/DetailsButton")
 _backgroundPanel = NodePath("MarginContainer/VBoxContainer/Panel")
+_imageTextureRect = NodePath("MarginContainer/VBoxContainer/Panel/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/TextureRect")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -172,6 +173,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(192, 192)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_g0q8t")
+expand_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2

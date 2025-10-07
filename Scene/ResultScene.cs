@@ -32,18 +32,32 @@ public partial class ResultScene : Control
 	private int _currentIndex = 0;
 	private int _totalCount = 0;
 	private ChartPlayResult[] _results;
-
 	public override void _Ready()
 	{
 		_backButton.Pressed += OnBackButtonPressed;
 		_nextButton.Pressed += OnNextButtonPressed;
 		_exitButton.Pressed += OnExitButtonPressed;
 		_httpRequest.RequestCompleted += OnHttpRequestCompleted;
-		_loadingComponent.Visible = false;
+		if(SceneManager.Instance.IsChangeToResultSceneCalled)
+		{
+			GD.Print("ResultScene _Ready detected scene change request.");
+			if (SceneManager.Instance.ResultSceneHistoryId != -1)
+			{
+				Initialize(SceneManager.Instance.ResultSceneHistoryId);
+			}
+			else
+			{
+				Initialize();
+			}
+			SceneManager.Instance.IsChangeToResultSceneCalled = false;
+			SceneManager.Instance.ResultSceneHistoryId = -1;
+		}
 	}
 
 	public void Initialize(int historyId)
 	{
+		GD.Print($"ResultScene Initialize with historyId: {historyId} called.");
+		_loadingComponent.Visible = false;
 		_currentIndex = 0;
 		_totalCount = 1;
 		_backButton.Visible = false;
@@ -54,6 +68,7 @@ public partial class ResultScene : Control
 
 	public void Initialize()
 	{
+		_loadingComponent.Visible = false;
 		_currentIndex = 0;
 		_totalCount = GameProgressManger.Instance.PlaylistChartsId.Count;
 		_backButton.Visible = _totalCount > 1;
@@ -64,8 +79,10 @@ public partial class ResultScene : Control
 
 	private void FetchResultFromServer(int historyId)
 	{
+		GD.Print($"Fetching result for historyId: {historyId} from server...");
 		_loadingComponent.Visible = true;
-		string url = ApiClient.Instance.BuildUrl("history/{historyId}");
+		string url = ApiClient.Instance.BuildUrl($"history/{historyId}");
+		GD.Print($"Requesting URL: {url}");
 
 		// prepare headers for the request
 		var headers = new string[] { "Content-Type: application/json" };
@@ -76,8 +93,10 @@ public partial class ResultScene : Control
 
 	private void SubmitRequestAnalyzeResult()
 	{
+		GD.Print("Submitting analysis request...");
 		_loadingComponent.Visible = true;
 		string url = ApiClient.Instance.BuildUrl("history/analyze");
+		GD.Print($"Submitting analysis request to {url}");
 
 		// prepare headers for the request
 		var headers = new string[] { "Content-Type: application/json" };
@@ -88,10 +107,15 @@ public partial class ResultScene : Control
 		{
 			bodyDict.Add(new Dictionary<string, object>
 			{
+				{ "user_id", UserDataManager.Instance.CurrentUser.Id },
 				{ "chart_id", GameProgressManger.Instance.PlaylistChartsId[i] },
-				{ "user_input_data", GameProgressManger.Instance.RawUserInputData.ContainsKey(i + 1) ? GameProgressManger.Instance.RawUserInputData[i + 1] : new List<ProcessResult>() },
-				{ "user_gaze_data", GameProgressManger.Instance.RawUserGazeData.ContainsKey(i + 1) ? GameProgressManger.Instance.RawUserGazeData[i + 1] : new List<GazeData>() }
+				{ "track_no", i + 1 },
+				{ "user_input_data", GameProgressManger.Instance.RawUserInputData.ContainsKey(i) ? GameProgressManger.Instance.RawUserInputData[i] : new List<ProcessResult>() },
+				{ "user_gaze_data", GameProgressManger.Instance.RawUserGazeData.ContainsKey(i) ? GameProgressManger.Instance.RawUserGazeData[i] : new List<GazeData>() }
 			});
+			GD.Print($"Chart ID {GameProgressManger.Instance.PlaylistChartsId[i]} added to request body.");
+			GD.Print($"User Input Data: {(GameProgressManger.Instance.RawUserInputData.ContainsKey(i) ? GameProgressManger.Instance.RawUserInputData[i].Count : 0)} items");
+			GD.Print($"User Gaze Data: {(GameProgressManger.Instance.RawUserGazeData.ContainsKey(i) ? GameProgressManger.Instance.RawUserGazeData[i].Count : 0)} items");
 		}
 		string bodyJson = JsonSerializer.Serialize(bodyDict);
 
@@ -162,13 +186,18 @@ public partial class ResultScene : Control
 	private void OnHttpRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
 	{
 		_loadingComponent.Visible = false;
+		GD.Print($"HTTP Request Completed with Result: {result}, Response Code: {responseCode}");
 
 		if (responseCode == 200)
 		{
 			string jsonResponse = System.Text.Encoding.UTF8.GetString(body);
 			GD.Print($"Success Response body: {jsonResponse}");
 
-			var results = JsonSerializer.Deserialize<List<ChartPlayResult>>(jsonResponse);
+			var jsonOptions = new JsonSerializerOptions
+			{
+				PropertyNameCaseInsensitive = true
+			};
+			var results = JsonSerializer.Deserialize<List<ChartPlayResult>>(jsonResponse, jsonOptions);
 			if (results != null && results.Count > 0)
 			{
 				_results = results.ToArray();

@@ -16,6 +16,7 @@ public partial class SceneManager : Node
 	private PackedScene _collectDataPage;
 	private PackedScene _reportBugScene;
 	private PackedScene _settingScene;
+	private PackedScene _historyScene;
 
 	public override void _Ready()
 	{
@@ -31,6 +32,7 @@ public partial class SceneManager : Node
 		_collectDataPage = GD.Load<PackedScene>("res://Scene/CollectDataPage.tscn");
 		_reportBugScene = GD.Load<PackedScene>("res://Scene/report_bug_scene.tscn");
 		_settingScene = GD.Load<PackedScene>("res://Scene/setting_scene.tscn");
+		_historyScene = GD.Load<PackedScene>("res://Scene/history_scene.tscn");
 	}
 
 	public void ChangeToLoginScene()
@@ -91,12 +93,30 @@ public partial class SceneManager : Node
 		{
 			GD.PrintErr("LoadingScene is not loaded!");
 		}
+	
 	}
 
+	public bool IsChangeToResultSceneCalled = false;
+	public int ResultSceneHistoryId = -1;
 	public void ChangeToResultScene()
 	{
 		if (_resultScene != null)
 		{
+			IsChangeToResultSceneCalled = true;
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _resultScene);
+		}
+		else
+		{
+			GD.PrintErr("ResultScene is not loaded!");
+		}
+	}
+
+	public void ChangeToResultScene(int historyId)
+	{
+		if (_resultScene != null)
+		{
+			IsChangeToResultSceneCalled = true;
+			ResultSceneHistoryId = historyId;
 			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _resultScene);
 		}
 		else
@@ -138,6 +158,18 @@ public partial class SceneManager : Node
 		else
 		{
 			GD.PrintErr("SettingScene is not loaded!");
+		}
+	}
+
+	public void ChangeToHistoryScene()
+	{
+		if (_historyScene != null)
+		{
+			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _historyScene);
+		}
+		else
+		{
+			GD.PrintErr("HistoryScene is not loaded!");
 		}
 	}
 
