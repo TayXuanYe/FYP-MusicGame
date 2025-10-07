@@ -165,10 +165,10 @@ public partial class ChartManager : Node
         chartData.Lane3NotesMetadataQueue = new Queue<(double, Color, string, double)>();
         chartData.Lane4NotesMetadataQueue = new Queue<(double, Color, string, double)>();
 
-    LoadLaneNotes(filePath, "Lane1", chartData.Lane1NotesMetadataQueue);
-    LoadLaneNotes(filePath, "Lane2", chartData.Lane2NotesMetadataQueue);
-    LoadLaneNotes(filePath, "Lane3", chartData.Lane3NotesMetadataQueue);
-    LoadLaneNotes(filePath, "Lane4", chartData.Lane4NotesMetadataQueue);
+        LoadLaneNotes(filePath, "Lane1", chartData.Lane1NotesMetadataQueue);
+        LoadLaneNotes(filePath, "Lane2", chartData.Lane2NotesMetadataQueue);
+        LoadLaneNotes(filePath, "Lane3", chartData.Lane3NotesMetadataQueue);
+        LoadLaneNotes(filePath, "Lane4", chartData.Lane4NotesMetadataQueue);
 
         // load music
         // try loading music using res:// paths — construct directory from res:// path safely
