@@ -14,11 +14,11 @@ public partial class MainScene : Control
 
 	public override void _Ready()
 	{
-		//if (!UserDataManager.Instance.CurrentUser.IsLogin)
-		//{
-		//SceneManager.Instance.ChangeToLoginScene();
-		//return;
-		//}
+		if (!UserDataManager.Instance.CurrentUser.IsLogin)
+		{
+		SceneManager.Instance.ChangeToLoginScene();
+		return;
+		}
 
 		if (UserDataManager.Instance.CurrentUser.SuggestedDifficulty == null)
 		{
@@ -48,7 +48,7 @@ public partial class MainScene : Control
 
 	private void OnGameHistoryButtonPressed()
 	{
-		// Handle game history button pressed
+		SceneManager.Instance.ChangeToHistoryScene();
 	}
 
 	private void OnSettingButtonPressed()
