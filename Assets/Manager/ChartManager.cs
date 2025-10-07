@@ -8,6 +8,7 @@ public partial class ChartManager : Node
 {
     private static ChartManager _instance;
     public static ChartManager Instance => _instance;
+    // We store resource paths (res://) rather than absolute filesystem paths.
     public Dictionary<int, string> ChartsIdIndex { get; private set; } = new();
     public Dictionary<string, List<int>> DifficultyToChartIdsIndex { get; private set; } = new();
     public override void _Ready()
@@ -40,7 +41,18 @@ public partial class ChartManager : Node
                     {
                         case "ChartId":
                             chartId = int.Parse(value);
-                            ChartsIdIndex[chartId] = filePath;
+                            // convert absolute filesystem path to res:// path relative to res://Charts/
+                            try
+                            {
+                                string rel = filePath.StartsWith(rootDirectory) ? filePath.Substring(rootDirectory.Length) : Path.GetFileName(filePath);
+                                rel = rel.Replace("\\", "/");
+                                ChartsIdIndex[chartId] = relativePath + rel; // store res:// path
+                            }
+                            catch
+                            {
+                                // fallback: store full res path using filename only
+                                ChartsIdIndex[chartId] = relativePath + Path.GetFileName(filePath);
+                            }
                             break;
                         case "Difficulty":
                             string level = value;
@@ -67,7 +79,15 @@ public partial class ChartManager : Node
         List<string> sectionLines = new List<string>();
         bool inTargetSection = false;
 
-        foreach (string line in File.ReadLines(filePath))
+        // filePath is stored as a res:// path in ChartsIdIndex. Convert to filesystem path for reading.
+        string fsPath = filePath;
+        try
+        {
+            if (filePath.StartsWith("res://")) fsPath = ProjectSettings.GlobalizePath(filePath);
+        }
+        catch { }
+
+        foreach (string line in File.ReadLines(fsPath))
         {
             string trimmedLine = line.Trim();
 
@@ -145,26 +165,39 @@ public partial class ChartManager : Node
         chartData.Lane3NotesMetadataQueue = new Queue<(double, Color, string, double)>();
         chartData.Lane4NotesMetadataQueue = new Queue<(double, Color, string, double)>();
 
-        LoadLaneNotes(filePath, "Lane1", chartData.Lane1NotesMetadataQueue);
-        LoadLaneNotes(filePath, "Lane2", chartData.Lane2NotesMetadataQueue);
-        LoadLaneNotes(filePath, "Lane3", chartData.Lane3NotesMetadataQueue);
-        LoadLaneNotes(filePath, "Lane4", chartData.Lane4NotesMetadataQueue);
+    LoadLaneNotes(filePath, "Lane1", chartData.Lane1NotesMetadataQueue);
+    LoadLaneNotes(filePath, "Lane2", chartData.Lane2NotesMetadataQueue);
+    LoadLaneNotes(filePath, "Lane3", chartData.Lane3NotesMetadataQueue);
+    LoadLaneNotes(filePath, "Lane4", chartData.Lane4NotesMetadataQueue);
 
         // load music
-        foreach (var format in supportedFormats)
+        // try loading music using res:// paths — construct directory from res:// path safely
+        try
         {
-            var musicPath = Path.GetDirectoryName(filePath) + $"/music{format}";
-            if (File.Exists(musicPath))
+            string dirRes = filePath;
+            int lastSlash = filePath.LastIndexOf('/');
+            if (lastSlash >= 0)
             {
-                var musicResource = GD.Load<AudioStream>(musicPath);
-                if (musicResource == null)
+                dirRes = filePath.Substring(0, lastSlash);
+            }
+            dirRes = dirRes.Replace("\\", "/");
+            foreach (var format in supportedFormats)
+            {
+                var musicResPath = dirRes + $"/music{format}";
+
+                if (Godot.ResourceLoader.Exists(musicResPath))
                 {
-                    GD.PrintErr($"Failed to load music at path: {musicPath}");
+                    var musicResource = GD.Load<AudioStream>(musicResPath); 
+                    
+                    if (musicResource != null)
+                    {
+                        chartData.music = musicResource;
+                        break;
+                    }
                 }
-                chartData.music = musicResource;
-                break;
             }
         }
+        catch { }
         return chartData;
     }
 
