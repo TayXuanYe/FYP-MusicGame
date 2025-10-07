@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvtgf3u781485"]
+[gd_scene load_steps=15 format=3 uid="uid://dvtgf3u781485"]
 
+[ext_resource type="PackedScene" uid="uid://bgxfqfwo6dyk8" path="res://Scene/history_card.tscn" id="1_phm8w"]
 [ext_resource type="Script" uid="uid://bcjhgxygbxdab" path="res://Scene/HistoryScene.cs" id="1_vnnsy"]
 [ext_resource type="PackedScene" uid="uid://bsw60yo2f503m" path="res://Scene/loading_component.tscn" id="5_qkgly"]
 [ext_resource type="Texture2D" uid="uid://b7w66khco7t5v" path="res://Assets/Svg/icon.svg" id="6_jxu1l"]
@@ -57,7 +58,7 @@ expand_margin_top = 8.0
 expand_margin_right = 12.0
 expand_margin_bottom = 8.0
 
-[node name="MainScreen" type="Control"]
+[node name="MainScreen" type="Control" node_paths=PackedStringArray("_httpRequest", "_historyList", "_loadingComponent", "_noHistoryContainer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -67,6 +68,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_vnnsy")
+_httpRequest = NodePath("HTTPRequest")
+_historyList = NodePath("VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer")
+_historyCardComponent = ExtResource("1_phm8w")
+_loadingComponent = NodePath("LoadingComponent")
+_noHistoryContainer = NodePath("VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/NoHistory")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -174,11 +180,11 @@ alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+[node name="NoHistory" type="MarginContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 30
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/NoHistory"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "No history found QwQ"
