@@ -91,14 +91,17 @@ public partial class SceneManager : Node
 		{
 			GD.PrintErr("LoadingScene is not loaded!");
 		}
+	
 	}
 
+	public bool IsChangeToResultSceneCalled = false;
+	public int ResultSceneHistoryId = -1;
 	public void ChangeToResultScene()
 	{
 		if (_resultScene != null)
 		{
+			IsChangeToResultSceneCalled = true;
 			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _resultScene);
-			CallDeferred(nameof(DelayedInitializeResultScene));
 		}
 		else
 		{
@@ -110,38 +113,13 @@ public partial class SceneManager : Node
 	{
 		if (_resultScene != null)
 		{
+			IsChangeToResultSceneCalled = true;
+			ResultSceneHistoryId = historyId;
 			GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, _resultScene);
-			CallDeferred(nameof(DelayedInitializeResultScene), historyId);
 		}
 		else
 		{
 			GD.PrintErr("ResultScene is not loaded!");
-		}
-	}
-
-	public void DelayedInitializeResultScene(int historyId)
-	{
-		var currentScene = GetTree().CurrentScene;
-		if (currentScene is ResultScene resultScene)
-		{
-			resultScene.Initialize(historyId);
-		}
-		else
-		{
-			GD.PrintErr("Current scene is not ResultScene!");
-		}
-	}
-
-	public void DelayedInitializeResultScene()
-	{
-		var currentScene = GetTree().CurrentScene;
-		if (currentScene is ResultScene resultScene)
-		{
-			resultScene.Initialize();
-		}
-		else
-		{
-			GD.PrintErr("Current scene is not ResultScene!");
 		}
 	}
 
