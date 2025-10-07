@@ -8,7 +8,6 @@ public partial class HistoryCard : Control
 	private int _chartId;
 	private string _difficulty;
 	private float _level;
-	private int _trackNo;
 	private DateTime _recordTime;
 	private float _accuracy;
 	private float _attentionLevel;
@@ -24,23 +23,18 @@ public partial class HistoryCard : Control
 	[Export] private Button _detailsButton;
 	[Export] private Panel _backgroundPanel;
 	[Export] private TextureRect _imageTextureRect;
+	private int _historyId;
 
-	public override void _Ready()
-	{
-		Initialize("testSongName", 1, 1, "ADVANCE", 13.4f, 2, new DateTime(2024, 9, 2, 8, 33, 00), 99.9999f, 101f, "this is a sting");
-	}
-
-
-	public void Initialize(string songName, int songId, int chartId, string difficulty,
+	public void Initialize(int historyId, string songName, int songId, int chartId, string difficulty,
 		float level, int trackNo, DateTime recordTime, float accuracy, float attentionLevel,
 		string imagePath)
 	{
+		_historyId = historyId;
 		_songName = songName;
 		_songId = songId;
 		_chartId = chartId;
 		_difficulty = difficulty.ToUpper();
 		_level = level;
-		_trackNo = trackNo;
 		_recordTime = recordTime;
 		_accuracy = accuracy;
 		_attentionLevel = attentionLevel;
